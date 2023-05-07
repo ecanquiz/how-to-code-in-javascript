@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "JavaScript"
-  text: "Cómo codificar en JS"
+  text: "Cómo codificar en"
   tagline: "Tutorial"
   image:
     src: /logo.png
@@ -12,10 +12,10 @@ hero:
   actions:
     - theme: brand
       text: Comenzar
-      link: /comenzar/tdd
+      link: /intro
     - theme: alt
-      text: CaribesTIC
-      link: https://caribestic.github.io/
+      text: ecanquiz
+      link: https://ecanquiz.github.io/
 
 features:  
   - title: Cómo utilizar la consola de desarrollo de JavaScript
