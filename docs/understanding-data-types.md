@@ -1,4 +1,8 @@
-# Comprender los Tipos de Datos en JavaScript
+# Comprender Tipos de Datos en JavaScript
+
+:::info
+La fuente original (en ingles) de este tutorial se encuentra [aquí](https://www.digitalocean.com/community/tutorials/understanding-data-types-in-javascript)
+:::
 
 ## Introducción
 

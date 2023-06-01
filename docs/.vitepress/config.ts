@@ -18,7 +18,8 @@ export default defineConfig({
       sidebarDepth: 1,    // optional, defaults to 1
       items: [
         { text: 'Introducción', link: '/intro' },
-        { text: 'Comprender Tipos de Datos', link: '/understanding-data-types' },                     
+        { text: 'Comprender Tipos de Datos', link: '/understanding-data-types' },
+        { text: 'Comprender Objetos en JavaScript', link: '/understanding-objects-in-javascript' }
       ]
     }],
     socialLinks: [
