@@ -18,6 +18,7 @@ export default defineConfig({
       sidebarDepth: 1,    // optional, defaults to 1
       items: [
         { text: 'Introducción', link: '/intro' },
+        { text: 'Cómo utilizar la consola para desarrolladores de JavaScript', link: '/how-to-use-the-js-dev-console' },
         { text: 'Comprender Tipos de Datos', link: '/understanding-data-types' },
         { text: 'Comprender Objetos en JavaScript', link: '/understanding-objects-in-javascript' }
       ]
@@ -27,3 +28,5 @@ export default defineConfig({
     ]
   }
 })
+
+
