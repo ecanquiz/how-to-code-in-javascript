@@ -19,6 +19,7 @@ export default defineConfig({
       items: [
         { text: 'Introducción', link: '/intro' },
         { text: 'Cómo utilizar la consola para desarrolladores de JavaScript', link: '/how-to-use-the-js-dev-console' },
+        { text: 'Cómo Agregar JavaScript a HTML', link: '/how-to-add-javascript-to-html' },
         { text: 'Comprender Tipos de Datos', link: '/understanding-data-types' },
         { text: 'Comprender Objetos en JavaScript', link: '/understanding-objects-in-javascript' }
       ]
