@@ -18,11 +18,11 @@ hero:
       link: https://ecanquiz.github.io/
 
 features:  
-  - title: Cómo utilizar la consola de desarrollo de JavaScript
+  - title: Cómo Utilizar la Consola de Desarrollo de JavaScript
     details: Este tutorial explicará cómo trabajar con la Consola en JavaScript dentro del contexto de un navegador y brindará una descripción general de otras herramientas de desarrollo integradas que puede usar como parte de su proceso de desarrollo web.
-  - title: Cómo agregar JavaScript a HTML
+  - title: Cómo Agregar JavaScript a HTML
     details: Este tutorial explicará cómo incorporar JavaScript en sus archivos web, tanto en línea en un documento HTML como en un archivo separado.
-  - title: Cómo escribir su primer programa de JavaScript
+  - title: Cómo Escribir Su Primer Programa de JavaScript
     details: Este tutorial lo guiará a través de la creación de un programa "¡Hola, mundo!" en JavaScript. Para hacer el programa más interesante, modificaremos el tradicional programa "¡Hola, mundo!" para que pregunte al usuario por su nombre. Luego usaremos el nombre en un saludo. Cuando haya terminado con este tutorial, tendrá un programa "¡Hola, mundo!" interactivo.
   - title: Comprender la sintaxis y la estructura del código en JavaScript
     details: En este tutorial, repasaremos muchas de las reglas y convenciones de la sintaxis y la estructura del código de JavaScript.

@@ -1,4 +1,4 @@
-# Cómo utilizar la consola para desarrolladores de JavaScript
+# Cómo Utilizar la Consola para Desarrolladores de JavaScript
 
 :::info
 La fuente original (en ingles) de este tutorial se encuentra [aquí](https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-developer-console)
