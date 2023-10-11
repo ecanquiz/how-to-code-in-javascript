@@ -18,11 +18,14 @@ export default defineConfig({
       sidebarDepth: 1,    // optional, defaults to 1
       items: [
         { text: 'Introducción', link: '/intro' },
-        { text: 'Cómo Utilizar la Consola para Desarrolladores de JavaScript', link: '/how-to-use-the-js-dev-console' },
-        { text: 'Cómo Agregar JavaScript a HTML', link: '/how-to-add-javascript-to-html' },
-        { text: 'Cómo Escribir Su Primer Programa JavaScript', link: '/how-to-write-your-first-javascript-program' },
+        { text: 'Cómo Utilizar la Consola para Desarrolladores', link: '/how-to-use-the-js-dev-console' },
+        { text: 'Cómo Agregar JS a HTML', link: '/how-to-add-javascript-to-html' },
+        { text: 'Cómo Escribir Su Primer Programa', link: '/how-to-write-your-first-javascript-program' },
+        { text: 'Comprender Sintaxis y Estructura del Código', link: '/understanding-syntax-and-code-structure-in-javascript' },
         { text: 'Comprender Tipos de Datos', link: '/understanding-data-types' },
-        { text: 'Comprender Objetos en JavaScript', link: '/understanding-objects-in-javascript' }
+        { text: 'Cómo Trabajar con Cadenas', link: '/how-to-work-with-strings-in-javascript' },
+        { text: 'Comprensión de Variables, Alcance y Elevación', link: '/understanding-variables-scope-and-hoisting' },
+        { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' }
       ]
     }],
     socialLinks: [
@@ -30,5 +33,7 @@ export default defineConfig({
     ]
   }
 })
+
+
 
 
