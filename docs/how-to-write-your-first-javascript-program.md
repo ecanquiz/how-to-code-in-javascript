@@ -16,7 +16,7 @@ Este tutorial lo guiará en la creación de este programa en JavaScript. Sin emb
 You can complete this tutorial by using the JavaScript Developer Console in your web browser. Before beginning this tutorial, you should have some familiarity with working with this tool. To learn more about it, you can read our tutorial “How To Use the JavaScript Developer Console.”
 
 
-Puede completar este tutorial utilizando la Consola de Desarrollador de JavaScript en su navegador web. Antes de comenzar este tutorial, debe estar familiarizado con el trabajo con esta herramienta. Para obtener más información al respecto, puede leer el tutorial "[Cómo Utilizar la Consola para Desarrolladores de JavaScript](./how-to-use-the-js-dev-console.html)".
+Puede completar este tutorial utilizando la Consola de Desarrollador de JavaScript en su navegador web. Antes de comenzar este tutorial, debe estar familiarizado con el trabajo con esta herramienta. Para obtener más información al respecto, puede leer el tutorial "[Cómo Utilizar la Consola para Desarrolladores de Javascript](./how-to-use-the-js-dev-console.html)".
 
 
 ## Creando el Programa _"Hello, World!"_
@@ -29,7 +29,7 @@ Hay dos formas principales en las que podemos crear el programa _"Hello, World!"
 
 La primera forma en que podemos escribir este programa es usando el método `alert()`, que mostrará un cuadro de alerta sobre su ventana actual con un mensaje específico (en este caso, será _"Hello, World!"_) y un `OK`. Botón que permitirá al usuario cerrar la alerta.
 
-Dentro del método pasaremos el tipo de datos [string](./how-to-work-with-strings-in-javaScript.html) como parámetro. Esta cadena se establecerá en el valor `Hello, World!` para que ese valor se imprima en el cuadro de alerta.
+Dentro del método pasaremos el tipo de datos [string](./how-to-work-with-strings-in-javascript.html) como parámetro. Esta cadena se establecerá en el valor `Hello, World!` para que ese valor se imprima en el cuadro de alerta.
 
 To write this first style of “Hello, World!” program, we’ll encase the string within the parentheses of the alert() method. We’ll end our JavaScript statement with a semicolon.
 
