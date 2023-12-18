@@ -26,6 +26,7 @@ export default defineConfig({
         { text: 'Comprender Tipos de Datos', link: '/understanding-data-types' },
         { text: 'Cómo Trabajar con Cadenas', link: '/how-to-work-with-strings-in-javascript' },
         { text: 'Comprensión de Variables, Alcance y Elevación', link: '/understanding-variables-scope-and-hoisting' },
+        { text: 'Cómo Hacer Matemáticas en JavaScript con Operadores', link: '/how-to-do-math-in-javascript-with-operators' },
         { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' }
       ]
     }],
