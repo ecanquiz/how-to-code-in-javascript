@@ -112,3 +112,20 @@ Cuando combinamos dos o más cadenas mediante concatenación estamos creando una
 
 ## Variables en Cadenas con Literales de Plantilla
 
+Una característica especial de la característica literal de plantilla es la capacidad de incluir expresiones y variables dentro de una cadena. En lugar de tener que usar concatenación, podemos usar la sintaxis `${}` para insertar una variable.
+
+```js
+const poem = "The Wide Ocean";
+const author = "Pablo Neruda";
+
+const favePoem = `My favorite poem is ${poem} by ${author}.`;
+```
+
+```sh
+Output
+My favorite poem is The Wide Ocean by Pablo Neruda.
+```
+
+Como podemos ver, incluir expresiones en literales de plantilla es otra forma de lograr el mismo resultado. En este caso, usar literales de plantilla puede ser más fácil de escribir y más conveniente.
+
+## String Literals and String Values
