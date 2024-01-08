@@ -128,4 +128,52 @@ My favorite poem is The Wide Ocean by Pablo Neruda.
 
 Como podemos ver, incluir expresiones en literales de plantilla es otra forma de lograr el mismo resultado. En este caso, usar literales de plantilla puede ser más fácil de escribir y más conveniente.
 
-## String Literals and String Values
+## Literales de Cadena y Valores de Cadena
+
+Es posible que observe que las cadenas que escribimos en el código fuente están entre comillas o comillas invertidas, pero la salida impresa real no incluye ninguna comilla.
+
+```js
+"Beyond the Sea"; 
+```
+
+```sh
+Output
+Beyond the Sea
+```
+
+Hay una distinción al referirse a cada uno de estos. Un **literal de cadena** es la cadena tal como está escrita en el código fuente, incluidas las comillas. Un **valor de cadena** es lo que vemos en el resultado y no incluye comillas.
+
+En el ejemplo anterior, `"Beyond the Sea"` es un literal de cadena y `Beyond the Sea` es un valor de cadena.
+
+## Escapar de Comillas y Apóstrofes en Cadenas
+
+Debido a que se utilizan comillas para indicar cadenas, se deben tener consideraciones especiales al utilizar apóstrofes y comillas en cadenas. Intentar utilizar un apóstrofo en medio de una cadena entre comillas simples, por ejemplo, finalizará la cadena y JavaScript intentará analizar el resto de la cadena deseada como código.
+
+Podemos ver esto intentando usar un apóstrofe en la contracción `I'm` a continuación:
+
+```js
+const brokenString = 'I'm a broken string';
+
+console.log(brokenString);
+```
+
+```sh
+Output
+unknown: Unexpected token (1:24)
+```
+
+Lo mismo se aplicaría al intentar utilizar comillas en una cadena entre comillas dobles.
+
+Para evitar que se produzca un error en estas situaciones, tenemos algunas opciones que podemos usar:
+
+- Sintaxis de cadena opuesta
+- Caracteres de escape
+- Literales de plantilla
+
+Exploraremos estas opciones a continuación.
+
+## Using the Alternate String Syntax
+
+
+
+
