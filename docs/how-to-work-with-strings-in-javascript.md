@@ -172,8 +172,27 @@ Para evitar que se produzca un error en estas situaciones, tenemos algunas opcio
 
 Exploraremos estas opciones a continuación.
 
-## Using the Alternate String Syntax
+## Usando la Sintaxis de Cadena Alternativa
+
+Una manera fácil de evitar casos aislados de cadenas potencialmente rotas es usar la sintaxis de cadena opuesta a la que estás usando actualmente.
+
+Por ejemplo, apóstrofes en cadenas creadas con `"`.
 
 
+```js
+"We're safely using an apostrophe in double quotes."
+```
+
+Comillas en cadenas construidas con `'`.
+
+
+```js
+'Then he said, "Hello, World!"';
+```
+
+En la forma en que combinamos comillas simples y dobles, podemos controlar la visualización de comillas y apóstrofes dentro de nuestras cadenas. Sin embargo, cuando trabajamos para utilizar una sintaxis coherente dentro de los archivos de programación del proyecto, esto puede resultar difícil de mantener en todo el código base.
+
+
+## Using the Escape Character (`\`)
 
 
