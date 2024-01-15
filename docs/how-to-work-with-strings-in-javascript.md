@@ -192,7 +192,30 @@ Comillas en cadenas construidas con `'`.
 
 En la forma en que combinamos comillas simples y dobles, podemos controlar la visualización de comillas y apóstrofes dentro de nuestras cadenas. Sin embargo, cuando trabajamos para utilizar una sintaxis coherente dentro de los archivos de programación del proyecto, esto puede resultar difícil de mantener en todo el código base.
 
+## Usando el Carácter de Escape (`\`)
 
-## Using the Escape Character (`\`)
+Podemos usar el carácter de escape de barra invertida (`\`) para evitar que JavaScript interprete una comilla como el final de la cadena.
+
+La sintaxis de `\'` siempre será una comilla simple, y la sintaxis de `\"` siempre será una comilla doble, sin temor a romper la cadena.
+
+Usando este método, podemos usar apóstrofes en cadenas creadas con `"`.
+
+```js
+'We\'re safely using an apostrophe in single quotes.'
+```
+
+También podemos usar comillas en cadenas creadas con `"`.
+
+```js
+"Then he said, \"Hello, World!\"";
+```
+
+Este método tiene un aspecto un poco más complicado, pero es posible que necesites usar un apóstrofe y unas comillas dentro de la misma cadena, lo que hará que sea necesario escapar.
+
+## Using Template Literals
+
+
+
+
 
 
