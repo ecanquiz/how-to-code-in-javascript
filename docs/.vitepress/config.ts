@@ -22,9 +22,10 @@ export default defineConfig({
         { text: 'Cómo Agregar JS a HTML', link: '/how-to-add-javascript-to-html' },
         { text: 'Cómo Escribir Su Primer Programa', link: '/how-to-write-your-first-javascript-program' },
         { text: 'Comprender Sintaxis y Estructura del Código', link: '/understanding-syntax-and-code-structure-in-javascript' },
-        { text: 'Cómo Escribir Comentarios en Javascript', link: '/how-to-write-comments-in-javascript' },        
+        { text: 'Cómo Escribir Comentarios', link: '/how-to-write-comments-in-javascript' },        
         { text: 'Comprender Tipos de Datos', link: '/understanding-data-types' },
         { text: 'Cómo Trabajar con Cadenas', link: '/how-to-work-with-strings-in-javascript' },
+        { text: 'Cómo Indexar, Dividir y Manipular Cadenas', link: '/how-to-index-split-and-manipulate-strings-in-javascript' },        
         { text: 'Comprensión de Variables, Alcance y Elevación', link: '/understanding-variables-scope-and-hoisting' },
         { text: 'Cómo Hacer Matemáticas en JavaScript con Operadores', link: '/how-to-do-math-in-javascript-with-operators' },
         { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' }
