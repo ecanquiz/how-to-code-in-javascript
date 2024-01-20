@@ -212,10 +212,76 @@ También podemos usar comillas en cadenas creadas con `"`.
 
 Este método tiene un aspecto un poco más complicado, pero es posible que necesites usar un apóstrofe y unas comillas dentro de la misma cadena, lo que hará que sea necesario escapar.
 
-## Using Template Literals
+## Uso de Literales de Plantilla.
+
+Los literales de plantilla se definen con comillas invertidas y, por lo tanto, tanto las comillas como los apóstrofes se pueden utilizar de forma segura sin ningún tipo de escape o consideración adicional.
 
 
+```js
+`We're safely using apostrophes and "quotes" in a template literal.`;
+```
+
+Además de evitar la necesidad de escape de caracteres y permitir expresiones incrustadas, los literales de plantilla también brindan soporte multilínea, lo cual discutiremos en la [siguiente sección](./how-to-work-with-strings-in-javascript.html#cadenas-largas-y-nuevas-lineas).
+
+Con la sintaxis de cadena alterna, el uso de caracteres de escape y el uso de literales de plantilla, existen varias formas de crear una cadena de forma segura.
+
+## Cadenas Largas y Nuevas Líneas
+
+Hay ocasiones en las que es posible que desees insertar un carácter de nueva línea o un retorno de carro en tu cadena. Los caracteres de escape `\n` o `\r` se pueden utilizar para insertar una nueva línea en la salida del código.
+
+```js
+const threeLines = "This is a string\nthat spans across\nthree lines.";
+```
+
+```sh
+Output
+This is a string
+that spans across
+three lines.
+```
 
 
+Esto técnicamente funciona para obtener nuestra salida en múltiples líneas. Sin embargo, escribir una cadena muy larga en una sola línea rápidamente resultará muy difícil de leer y trabajar con ella. Podemos usar el operador de concatenación para mostrar la cadena en varias líneas.
 
 
+```js
+const threeLines = "This is a string\n" +
+"that spans across\n" +
+"three lines.";
+```
+
+En lugar de concatenar varias cadenas, podemos usar el carácter `\` escape para escapar de la nueva línea.
+
+
+```js
+const threeLines = "This is a string\n\
+that spans across\n\
+three lines.";
+```
+
+:::warning Nota
+No se prefiere este método, ya que puede causar problemas con algunos navegadores y minificadores.
+:::
+
+Para que el código sea más legible, podemos utilizar cadenas literales de plantilla. Estos eliminan la necesidad de concatenación o escape en cadenas largas que contienen nuevas líneas. Se conservarán la cadena y las nuevas líneas.
+
+
+```js
+const threeLines = `This is a string
+that spans across
+three lines.`;
+```
+
+```sh
+Output
+This is a string
+that spans across
+three lines.
+```
+
+Es importante conocer todas las formas de crear nuevas líneas y cadenas que abarcan varias líneas, ya que diferentes bases de código pueden utilizar diversos estándares.
+
+
+## Conclusión
+
+En este artículo, repasamos los conceptos básicos del trabajo con cadenas en JavaScript, desde la creación y visualización de cadenas literales usando comillas simples y dobles, la creación de plantillas literales, la concatenación, el escape y la asignación de valores de cadena a variables.
