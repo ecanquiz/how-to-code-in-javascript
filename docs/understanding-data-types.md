@@ -267,7 +267,7 @@ Ocean53
 
 Sin embargo, si comienza con números, los dos números se agregarán antes de que se interpreten como una cadena cuando el tiempo de ejecución del programa llegue a `"Ocean"`, por lo que el valor devuelto será la suma de los dos números concatenados con la cadena:
 
-```s
+```js
 let p = 5 + 3 + "Ocean";
 ```
 

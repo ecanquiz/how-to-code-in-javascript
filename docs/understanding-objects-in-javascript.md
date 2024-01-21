@@ -224,7 +224,7 @@ La operación `delete` se evalúa como `true` si la propiedad se eliminó correc
 
 Podemos probar la salida de `gimli` para ver si tuvo éxito.
 
-```s
+```js
 gimli;
 ```
 ```sh
