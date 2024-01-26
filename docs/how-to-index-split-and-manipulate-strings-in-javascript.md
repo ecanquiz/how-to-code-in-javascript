@@ -98,4 +98,152 @@ El primer carácter de la cadena es `H`, que corresponde al índice `0`. El últ
 
 Ser capaz de acceder a todos los caracteres de una cadena nos brinda varias formas de trabajar y manipular cadenas.
 
-## Accessing Characters
+## Accediendo a Caracteres
+
+Vamos a demostrar cómo acceder a caracteres e índices con la cadena `How are you?`.
+
+
+```js
+"How are you?";
+```
+
+Usando la notación entre corchetes, podemos acceder a cualquier carácter de la cadena.
+
+
+```js
+"How are you?"[5];
+```
+
+
+```sh
+Output
+r
+```
+
+
+Alternativamente, podemos usar `indexOf()` para devolver el número de índice por la primera instancia de un carácter.
+
+
+```js
+"How are you?".indexOf("o");
+```
+
+```sh
+Output
+1
+```
+
+Aunque la “o” aparece dos veces en la cadena `How are you?`, `indexOf()` obtendrá la primera instancia.
+
+`lastIndexOf()` se utiliza para encontrar la última instancia.
+
+
+```js
+"How are you?".lastIndexOf("o");
+```
+
+
+```sh
+Output
+9
+```
+
+Para ambos métodos, también puedes buscar varios caracteres en la cadena. Devolverá el número de índice del primer carácter de la instancia.
+
+
+```js
+"How are you?".indexOf("are");
+```
+
+```sh
+Output
+4
+```
+
+El método `slice()`, por otro lado, devuelve los caracteres entre dos números de índice. El primer parámetro será el número de índice inicial y el segundo parámetro será el número de índice donde debe terminar.
+
+
+```js
+"How are you?".slice(8, 11);
+```
+
+
+```sh
+Output
+you
+```
+
+Tenga en cuenta que `11` es `?`, pero `?` no es parte de la salida devuelta. `slice()` devolverá lo que está entre el último parámetro, pero sin incluirlo.
+
+Si no se incluye un segundo parámetro, `slice()` devolverá todo, desde el parámetro hasta el final de la cadena.
+
+```js
+"How are you?".slice(8);
+```
+
+
+```sh
+Output
+you?
+```
+
+
+En resumen, `charAt()` y `slice()` ayudarán a devolver valores de cadena basados en números de índice, e `indexOf()` y `lastIndexOf()` harán lo contrario, devolviendo números de índice basados en los caracteres de cadena proporcionados.
+
+
+## Encontrar la Longitud de una Cadena
+
+Usando la propiedad `length`, podemos devolver el número de caracteres en una cadena.
+
+
+```js
+"How are you?".length;
+```
+
+
+```sh
+Output
+12
+```
+
+
+Recuerde que la propiedad `length` devuelve el número real de caracteres que comienzan con 1, que da como resultado 12, no el número de índice final, que comienza en `0` y termina en `11`.
+
+
+## Convertir a Mayúsculas o Minúsculas
+
+Los dos métodos integrados `toUpperCase()` y `toLowerCase()` son formas útiles de formatear texto y hacer comparaciones textuales en JavaScript.
+
+`toUpperCase()` convertirá todos los caracteres a caracteres en mayúsculas.
+
+
+```js
+"How are you?".toUpperCase();
+```
+
+```sh
+Output
+HOW ARE YOU?
+```
+
+`toLowerCase()` convertirá todos los caracteres a minúsculas.
+
+
+```js
+"How are you?".toLowerCase();
+```
+
+
+```sh
+Output
+how are you?
+```
+
+
+Estos dos métodos de formato no requieren parámetros adicionales.
+
+Vale la pena señalar que estos métodos no cambian la cadena original.
+
+
+## Splitting Strings
+
