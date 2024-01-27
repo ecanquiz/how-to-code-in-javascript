@@ -245,5 +245,64 @@ Estos dos métodos de formato no requieren parámetros adicionales.
 Vale la pena señalar que estos métodos no cambian la cadena original.
 
 
-## Splitting Strings
+## Dividir Cadenas
 
+JavaScript tiene un método muy útil para dividir una cadena por un carácter y crear una nueva [matriz](./understanding-arrays-in-javascript.html) a partir de las secciones. Usaremos el método `split()` para separar la matriz mediante un carácter de espacio en blanco, representado por `" "`.
+
+
+
+```js
+const originalString = "How are you?";
+
+// Split string by whitespace character
+const splitString = originalString.split(" ");
+
+console.log(splitString);
+```
+
+
+```sh
+Output
+[ 'How', 'are', 'you?' ]
+```
+
+Ahora que tenemos una nueva matriz en la variable `splitString`, podemos acceder a cada sección con un número de índice.
+
+
+```js
+splitString[1];
+```
+
+```sh
+Output
+are
+```
+
+Si se proporciona un parámetro vacío, `split()` creará una matriz separada por comas con cada carácter de la cadena.
+
+Al dividir cadenas, puede determinar cuántas palabras hay en una oración y utilizar el método como una forma de determinar los nombres y apellidos de las personas, por ejemplo.
+
+
+## Recortar Espacios en Blanco
+
+El método JavaScript `trim()` elimina los espacios en blanco de ambos extremos de una cadena, pero no de ningún punto intermedio. Los espacios en blanco pueden ser tabulaciones o espacios.
+
+
+
+```js
+const tooMuchWhitespace = "     How are you?     ";
+
+const trimmed = tooMuchWhitespace.trim();
+
+console.log(trimmed);
+```
+
+```sh
+Output
+How are you?
+```
+
+El método `trim()` es una forma sencilla de realizar la tarea común de eliminar el exceso de espacios en blanco.
+
+
+## Finding and Replacing String Values
