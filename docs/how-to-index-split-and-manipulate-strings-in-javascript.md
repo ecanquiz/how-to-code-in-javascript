@@ -305,4 +305,55 @@ How are you?
 El método `trim()` es una forma sencilla de realizar la tarea común de eliminar el exceso de espacios en blanco.
 
 
-## Finding and Replacing String Values
+## Encontrar y Reemplazar Valores de Cadena
+
+Podemos buscar un valor en una cadena y reemplazarlo con un nuevo valor usando el método `replace()`. El primer parámetro será el valor que se encontrará y el segundo parámetro será el valor por el que se reemplazará.
+
+
+```js
+const originalString = "How are you?"
+
+// Replace the first instance of "How" with "Where"
+const newString = originalString.replace("How", "Where");
+
+console.log(newString);
+```
+
+
+```sh
+Output
+Where are you?
+```
+
+
+Además de poder reemplazar un valor con otro valor de cadena, también podemos usar [Expresiones Regulares](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) para hacer que `replace()` sea más poderoso. Por ejemplo, `replace()` solo afecta el primer valor, pero podemos usar el indicador `g` (global) para capturar todas las instancias de un valor y el indicador `i` (no distingue entre mayúsculas y minúsculas) para ignorar mayúsculas y minúsculas.
+
+
+
+```js
+const originalString = "Javascript is a programming language. I'm learning javascript."
+
+// Search string for "javascript" and replace with "JavaScript"
+const newString = originalString.replace(/javascript/gi, "JavaScript");
+
+console.log(newString);
+```
+
+
+```sh
+Output
+JavaScript is a programming language. I'm learning JavaScript.
+```
+
+
+Esta es una tarea muy común que utiliza expresiones regulares. Visite [Regexr](https://regexr.com/) para practicar más ejemplos de RegEx.
+
+
+## Conclusión
+
+Las cadenas son uno de los tipos de datos más utilizados y hay muchas cosas que podemos hacer con ellas.
+
+En este tutorial, aprendimos la diferencia entre la cadena primitiva y el objeto `String`, cómo se indexan las cadenas y cómo usar los métodos y propiedades integrados de las cadenas para acceder a caracteres, formatear texto y buscar y reemplazar valores.
+
+
+Para obtener una descripción más general de las cadenas, lea el tutorial ["Cómo Trabajar con Cadenas en JavaScript"](./how-to-work-with-strings-in-javascript.html).
