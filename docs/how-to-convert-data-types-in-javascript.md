@@ -65,4 +65,96 @@ Dado que el operador `+` es multiuso, los valores de cadena de `2` y `3`, a pesa
 
 Debido a que puede existir ambigüedad y, a veces, provocar resultados inesperados, suele ser mejor convertir explícitamente los tipos de datos en el código tanto como sea posible. Esto ayudará a gestionar las aportaciones de los usuarios y a gestionar los errores.
 
-## Converting Values to Strings
+## Convertir Valores en Cadenas
+
+Los valores se pueden convertir explícitamente en cadenas llamando a `String()` o `n.toString()`.
+
+Con la función `String()`, convertimos un [valor Booleano](./understanding-data-types.html#booleans) en una cadena pasando el valor `true` a los parámetros de `String()`.
+
+
+```js
+String(true);
+```
+
+Cuando hagamos esto, se devolverá la cadena literal `"true"`.
+
+
+```sh
+Output
+"true"
+```
+
+Alternativamente, podemos pasar un número a la función.
+
+
+```js
+String(49);
+```
+
+Se devolverá una cadena literal de ese número.
+
+
+```sh
+Output
+"49"
+```
+
+Usemos la función `String()` con una variable. Asignaremos un valor numérico a la variable `odyssey` y luego usaremos el operador `typeof` para verificar el tipo.
+
+
+```js
+let odyssey = 2001;
+console.log(typeof odyssey);
+```
+
+```sh
+Output
+number
+```
+
+En este punto, a la variable `odyssey` se le asigna el valor numérico de `2001`, que hemos confirmado que es un número.
+
+Ahora, reasignemos `odyssey` a su equivalente de cadena y luego usemos `typeof` para confirmar que hemos convertido exitosamente el valor de la variable de un número a una cadena.
+
+
+```js
+odyssey = String(odyssey);	// "2001"
+console.log(typeof odyssey);
+```
+
+```sh
+Output
+string
+```
+
+En el ejemplo anterior, hemos confirmado que `odyssey` fue reasignado para que sea equivalente a un valor de cadena después de la conversión del tipo de datos.
+
+Podemos usar `n.toString()` de forma similar. Podemos reemplazar `n` con una variable:
+
+
+```js
+let blows = 400;
+blows.toString();
+```
+
+La variable `blows` se devolverá como una cadena.
+
+
+```sh
+Output
+"400"
+```
+
+Alternativamente, podemos poner un valor entre paréntesis en lugar de una variable con `n.toString()`:
+
+
+```js
+(1776).toString();			// returns "1776"
+(false).toString();			// returns "false"
+(100 + 200).toString();		// returns "300"
+```
+
+Al usar `String()` o `n.toString()` podemos convertir explícitamente valores de Booleanos o [tipos de datos numéricos](./understanding-data-types.html#numbers) en valores de cadena para garantizar que nuestro código se comporte como anticipamos.
+
+## Converting Values to Numbers
+
