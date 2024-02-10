@@ -156,5 +156,106 @@ Alternativamente, podemos poner un valor entre paréntesis en lugar de una varia
 
 Al usar `String()` o `n.toString()` podemos convertir explícitamente valores de Booleanos o [tipos de datos numéricos](./understanding-data-types.html#numbers) en valores de cadena para garantizar que nuestro código se comporte como anticipamos.
 
-## Converting Values to Numbers
+## Convertir Valores a Números
 
+Al convertir valores a un tipo de datos numérico, usaremos el método `Number()`. Principalmente, convertiremos cadenas de texto numérico en números, pero también podemos convertir valores Booleanos.
+
+Podemos pasar una cadena de un número al método `Number()`:
+
+```js
+Number("1984");
+```
+
+La cadena se convertirá en un número y ya no estará entre comillas.
+
+
+```sh
+Output
+1984
+```
+
+También podemos asignar una cadena a una variable y luego convertirla.
+
+```js
+let dalmatians = "101";
+Number(dalmatians);
+```
+
+```sh
+Output
+101
+```
+
+La cadena literal `"101"` se convirtió al número `101` mediante su variable.
+
+Las cadenas de espacios en blanco o cadenas vacías se convertirán a `0`.
+
+
+```js
+Number(" ");	// returns 0
+Number("");		// returns 0
+```
+
+
+Tenga en cuenta que las cadenas que no son números se convertirán a `NaN`, que significa **N**ot **a** **N**umber. Esto incluye números separados por espacios.
+
+
+```js
+Number("twelve");	// returns NaN
+Number("20,000");	// returns NaN
+Number("2 3");		// returns NaN
+Number("11-11-11");	// returns NaN
+```
+
+Para tipos de datos Booleanos, `false` se evaluará como `0` y `true` se evaluará como `1`.
+
+
+```js
+Number(false);		// returns 0
+Number(true);		// returns 1
+```
+
+El método `Number()` convierte tipos de datos no numéricos en números.
+
+
+## Convertir Valores a Booleanos
+
+Para convertir números o cadenas a valores Booleanos, se utiliza el método `Boolean()`. Esto puede resultar útil para determinar si un usuario ingresó datos en un campo de texto o no, por ejemplo.
+
+Cualquier valor que se interprete como vacío, como el número `0`, una cadena vacía o valores indefinidos, `NaN` o `null`, se convierten en `false`.
+
+
+```js
+Boolean(0);			// returns false
+Boolean("");		// returns false
+Boolean(undefined);	// returns false
+Boolean(NaN);		// returns false
+Boolean(null);		// returns false
+```
+
+Otros valores se convertirán a `true`, incluidos los literales de cadena compuestos por espacios en blanco.
+
+
+```js
+Boolean(2000);		// returns true
+Boolean(" ");		// returns true
+Boolean("Maniacs");	// returns true
+```
+
+Tenga en cuenta que `"0"` como literal de cadena se convertirá en `true` ya que es un valor de cadena no vacío:
+
+
+```js
+Boolean("0");	// returns true
+```
+
+
+La conversión de números y cadenas a valores Booleanos puede permitirnos evaluar datos dentro de términos binarios y puede aprovecharse para controlar el flujo en nuestros programas.
+
+
+## Conclusión
+
+Este tutorial cubrió cómo JavaScript maneja la conversión de sus tipos de datos primitivos. Aunque debido a la coerción de tipos, los tipos de datos se convertirán implícitamente en muchos casos, es un buen hábito convertir tipos de datos explícitamente para garantizar que los programas funcionen como se espera.
+
+
+Para obtener más información sobre los tipos de datos de JavaScript, lea "[Comprender Tipos de Datos en JavaScript](./understanding-data-types.html)". 
