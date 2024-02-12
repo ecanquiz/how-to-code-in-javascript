@@ -27,7 +27,7 @@ export default defineConfig({
         { text: 'Cómo Trabajar con Cadenas', link: '/how-to-work-with-strings-in-javascript' },
         { text: 'Cómo Indexar, Dividir y Manipular Cadenas', link: '/how-to-index-split-and-manipulate-strings-in-javascript' },
         { text: 'Cómo Convertir Tipos de Datos', link: '/how-to-convert-data-types-in-javascript' },        
-        { text: 'Comprensión de Variables, Alcance y Elevación', link: '/understanding-variables-scope-and-hoisting' },
+        { text: 'Comprender Variables, Alcance y Elevación', link: '/understanding-variables-scope-and-hoisting' },
         { text: 'Cómo Hacer Matemáticas con Operadores', link: '/how-to-do-math-in-javascript-with-operators' },
         { text: 'Comprender Matrices', link: '/understanding-arrays-in-javascript' },
         { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' }
