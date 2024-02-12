@@ -1,4 +1,4 @@
-# Comprensión de Variables, Alcance y Elevación en JavaScript
+# Comprender Variables, Alcance y Elevación en JavaScript
 
 
 :::info
@@ -95,4 +95,18 @@ Output
 En un programa real, lo más probable es que una contraseña se almacene de forma segura en una base de datos. Este ejemplo, sin embargo, ilustra una situación en la que es posible que necesitemos actualizar el valor de una variable. El valor de `password` era `hunter2`, pero la reasignamos a `hunter3`, que es el valor que JavaScript reconoce a partir de ese momento.
 
 
-## Naming Variables
+## Nombrar Variables
+
+Los nombres de variables se conocen como _identificadores_ en JavaScript. Discutimos varias de las reglas para nombrar identificadores en [Comprender Sintaxis y Estructura del Código en JavaScript](./understanding-syntax-and-code-structure-in-javascript.html), que se resumen aquí:
+
+- Los nombres de las variables solo pueden constar de letras (`a-z`), números (`0-9`), símbolos de signo de dólar (`$`) y guiones bajos (`_`).
+- Los nombres de las variables no pueden contener espacios en blanco (tabulaciones o espacios).
+- Los números no pueden comenzar el nombre de ninguna variable.
+- Hay varias [palabras clave reservadas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Reserved_keywords_as_of_ECMAScript_2015) que no se pueden utilizar como nombre de una variable.
+- Los nombres de las variables distinguen entre mayúsculas y minúsculas.
+
+JavaScript también tiene la convención de usar camel case (a veces estilizado como camelCase) en los nombres de funciones y variables declaradas con `var` o `let`. Esta es la práctica de escribir la primera palabra en minúscula y luego poner en mayúscula la primera letra de cada palabra posterior sin espacios entre ellas. La mayoría de las variables que no son constantes seguirán esta convención, con algunas excepciones. Los nombres de las variables que son constantes, declaradas con la palabra clave `const`, normalmente se escriben todo en mayúsculas.
+
+Esto puede parecer un montón de reglas que aprender, pero muy rápidamente se convertirá en algo natural escribir nombres de variables válidos y convencionales.
+
+## Difference Between `var`, `let`, and `const`
