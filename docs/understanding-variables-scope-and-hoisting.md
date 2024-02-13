@@ -10,7 +10,7 @@ La fuente original (en ingles) de este tutorial se encuentra [aquí](https://www
 
 Las _variables_ son una parte fundamental de muchos lenguajes de programación y se encuentran entre los primeros y más importantes conceptos que deben aprender los codificadores novatos. Hay varias propiedades diferentes de las variables en JavaScript, así como varias reglas que se deben seguir al nombrarlas. En JavaScript, se utilizan tres palabras clave para declarar una variable (`var`, `let` y `const`) y cada una afecta la forma en que el código interpretará la variable de manera diferente.
 
-Este tutorial cubrirá qué son las variables, cómo declararlas y nombrarlas, y también analizará más de cerca la diferencia entre `var`, `let` y `const`. También revisaremos los efectos del hoisting y la importancia del alcance global y local para el comportamiento de una variable.
+Este tutorial cubrirá qué son las variables, cómo declararlas y nombrarlas, y también analizará más de cerca la diferencia entre `var`, `let` y `const`. También revisaremos los efectos de la elevación y la importancia del alcance global y local para el comportamiento de una variable.
 
 ## Comprender las Variables
 
@@ -109,4 +109,20 @@ JavaScript también tiene la convención de usar camel case (a veces estilizado 
 
 Esto puede parecer un montón de reglas que aprender, pero muy rápidamente se convertirá en algo natural escribir nombres de variables válidos y convencionales.
 
-## Difference Between `var`, `let`, and `const`
+## Diferencia Entre `var`, `let` y `const`
+
+JavaScript tiene tres palabras clave diferentes para declarar una variable, lo que añade una capa extra de complejidad al lenguaje. Las diferencias entre los tres se basan en el alcance, la elevación y la reasignación.
+
+
+|Palabra Clave|Alcance|Elevación|Puede Ser Reasignado|Can Be Redeclared|
+|-|-|-|-|-|
+|[`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)|Alcance de función|Sí|Sí|Sí|
+|[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)|Alcance de bloque|No|Sí|No|
+|[`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)|Alcance de bloque|No|No|No|
+
+
+
+Quizás te preguntes cuál de los tres deberías utilizar en tus propios programas. Una práctica comúnmente aceptada es usar `const` tanto como sea posible y `let` el caso de bucles y reasignaciones. Generalmente, `var` se puede evitar fuera de trabajar en código heredado.
+
+## Variable Scope
+
