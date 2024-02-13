@@ -122,7 +122,7 @@ JavaScript tiene tres palabras clave diferentes para declarar una variable, lo q
 
 
 
-Quizás te preguntes cuál de los tres deberías utilizar en tus propios programas. Una práctica comúnmente aceptada es usar `const` tanto como sea posible y `let` el caso de bucles y reasignaciones. Generalmente, `var` se puede evitar fuera de trabajar en código heredado.
+Quizás te preguntes cuál de los tres deberías utilizar en tus propios programas. Una práctica comúnmente aceptada es usar `const` tanto como sea posible y `let` en el caso de bucles y reasignaciones. Generalmente, `var` se puede evitar fuera de trabajar en código heredado.
 
 ## Variable Scope
 
