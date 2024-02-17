@@ -124,5 +124,101 @@ JavaScript tiene tres palabras clave diferentes para declarar una variable, lo q
 
 Quizás te preguntes cuál de los tres deberías utilizar en tus propios programas. Una práctica comúnmente aceptada es usar `const` tanto como sea posible y `let` en el caso de bucles y reasignaciones. Generalmente, `var` se puede evitar fuera de trabajar en código heredado.
 
-## Variable Scope
+## Alcance Variable
 
+El alcance en JavaScript se refiere al contexto actual del código, que determina la accesibilidad de las variables a JavaScript. Los dos tipos de alcance son _local_ y _global_:
+
+- Las **variables globales** son aquellas declaradas fuera de un bloque.
+- Las **variables locales** son aquellas declaradas dentro de un bloque.
+
+En el siguiente ejemplo, crearemos una variable global.
+
+
+```js
+// Initialize a global variable
+var creature = "wolf";
+```
+
+Aprendimos que las variables se pueden reasignar. Usando el alcance local, podemos crear nuevas variables con el mismo nombre que una variable en un alcance externo sin cambiar ni reasignar el valor original.
+
+En el siguiente ejemplo, crearemos una variable `species` global. Dentro de la función hay una variable local con el mismo nombre. Al enviarlos a la consola podemos ver como el valor de la variable es diferente según el alcance, y el valor original no cambia.
+
+
+```js
+// Initialize a global variable
+var species = "human";
+ 
+function transform() {
+  // Initialize a local, function-scoped variable
+  var species = "werewolf";
+  console.log(species);
+}
+
+// Log the global and local variable
+console.log(species);
+transform();
+console.log(species);
+```
+
+
+```sh
+Output
+human
+werewolf
+human
+```
+
+En este ejemplo, la variable local tiene un _alcance de función_. Las variables declaradas con la palabra clave `var` siempre tienen un alcance de función, lo que significa que reconocen que las funciones tienen un alcance separado. Por lo tanto, no se puede acceder a esta variable de alcance local desde el alcance global.
+
+
+Sin embargo, las nuevas palabras clave `let` y `const` tienen _alcance de bloque_. Esto significa que se crea un nuevo alcance local a partir de cualquier tipo de bloque, incluidos bloques de funciones, sentencias `if` y bucles `for` y `while`.
+
+Para ilustrar la diferencia entre variables con alcance de función y de bloque, asignaremos una nueva variable en un bloque `if` usando `let`.
+
+
+```js
+var fullMoon = true;
+
+// Initialize a global variable
+let species = "human";
+
+if (fullMoon) {
+  // Initialize a block-scoped variable
+  let species = "werewolf";
+  console.log(`It is a full moon. Lupin is currently a ${species}.`);
+}
+
+console.log(`It is not a full moon. Lupin is currently a ${species}.`);
+```
+
+```sh
+Output
+It is a full moon. Lupin is currently a werewolf.
+It is not a full moon. Lupin is currently a human.
+```
+
+En este ejemplo, la variable `species` tiene un valor global (`human`) y otro valor local (`werewolf`). Sin embargo, si usáramos `var`, el resultado sería diferente.
+
+
+```js
+// Use var to initialize a variable
+var species = "human";
+
+if (fullMoon) {
+  // Attempt to create a new variable in a block
+  var species = "werewolf";
+  console.log(`It is a full moon. Lupin is currently a ${species}.`);
+}
+
+console.log(`It is not a full moon. Lupin is currently a ${species}.`);
+```
+
+```sh
+Output
+It is a full moon. Lupin is currently a werewolf.
+It is not a full moon. Lupin is currently a werewolf.
+```
+
+En el resultado de este ejemplo, tanto la variable global como la variable de ámbito de bloque terminan con el mismo valor, `werewolf`. Esto se debe a que en lugar de crear una nueva variable local con `var`, estás reasignando la misma variable en el mismo alcance. `var` no reconoce `if` como parte de un alcance nuevo y diferente. Generalmente se recomienda declarar variables con alcance de bloque, ya que producen código que es menos probable que anule involuntariamente los valores de las variables.
+
+## Hoisting
