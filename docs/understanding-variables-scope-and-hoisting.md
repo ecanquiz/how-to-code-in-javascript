@@ -221,4 +221,138 @@ It is not a full moon. Lupin is currently a werewolf.
 
 En el resultado de este ejemplo, tanto la variable global como la variable de ámbito de bloque terminan con el mismo valor, `werewolf`. Esto se debe a que en lugar de crear una nueva variable local con `var`, estás reasignando la misma variable en el mismo alcance. `var` no reconoce `if` como parte de un alcance nuevo y diferente. Generalmente se recomienda declarar variables con alcance de bloque, ya que producen código que es menos probable que anule involuntariamente los valores de las variables.
 
-## Hoisting
+## Elevación
+
+En la mayoría de los ejemplos hasta ahora, hemos usado `var` para declarar una variable y la hemos _inicializado_ con un valor. Después de declarar e inicializar, podemos acceder o reasignar la variable.
+
+Si intentamos utilizar una variable antes de que haya sido declarada e inicializada, devolverá un valor `undefined`.
+
+```js
+// Attempt to use a variable before declaring it
+console.log(x);
+
+// Variable assignment
+var x = 100;
+```
+
+```sh
+Output
+undefined
+```
+
+Sin embargo, si omitimos la palabra clave `var`, ya no declaramos la variable, solo la inicializamos. Devolverá un `ReferenceError` y detendrá la ejecución del script.
+
+
+```js
+// Attempt to use a variable before declaring it
+console.log(x);
+
+// Variable assignment without var
+x = 100;
+```
+
+```sh
+Output
+ReferenceError: x is not defined
+```
+
+La razón de esto se debe a la elevación, un comportamiento de JavaScript en el que las declaraciones de variables y funciones se mueven a la parte superior de su alcance. Dado que solo se genera la declaración real, no la inicialización, el valor en el primer ejemplo devuelve `undefined`.
+
+Para demostrar este concepto más claramente, a continuación se muestra el código que escribimos y cómo JavaScript realmente lo interpretó.
+
+
+```js
+// The code we wrote
+console.log(x);
+var x = 100;
+
+// How JavaScript interpreted it
+var x;
+console.log(x);
+x = 100;
+```
+
+JavaScript guardó `x` en la memoria como una variable antes de la ejecución del script. Como todavía se llamó antes de definirlo, el resultado es `undefined` y no es `100`. Sin embargo, no provoca un `ReferenceError` ni detiene el script. Aunque la palabra clave `var` en realidad no cambió la ubicación de la `var`, esta es una representación útil de cómo funciona la elevación. Sin embargo, este comportamiento puede causar problemas porque el programador que escribió este código probablemente espera que la salida de `x` sea `100`, cuando en cambio es `undefined`.
+
+También podemos ver cómo la elevación puede generar resultados impredecibles en el siguiente ejemplo:
+
+
+```js
+// Initialize x in the global scope
+var x = 100;
+
+function hoist() {
+  // A condition that should not affect the outcome of the code
+  if (false) {
+    var x = 200;
+  }
+  console.log(x);
+}
+
+hoist();
+```
+
+```js
+Output
+undefined
+```
+
+En este ejemplo, declaramos que `x` es `100` globalmente. Dependiendo de una declaración `if`, `x` podría cambiar a `200`, pero como la condición era `false` no debería haber afectado el valor de `x`. En cambio, `x` se elevó a la parte superior de la función `hoist()` y el valor quedó `undefined`.
+
+Este tipo de comportamiento impredecible puede causar errores en un programa. Dado que `let` y `const` tienen un alcance de bloque, no se elevarán de esta manera, como se ve a continuación.
+
+
+```js
+// Initialize x in the global scope
+let x = true;
+
+function hoist() {
+  // Initialize x in the function scope
+  if (3 === 4) {
+    let x = false;
+  }
+  console.log(x);
+}
+
+hoist();
+```
+
+
+```sh
+Output
+true
+```
+
+La declaración duplicada de variables, que es posible con `var`, arrojará un error con `let` y `const`.
+
+
+```js
+// Attempt to overwrite a variable declared with var
+var x = 1;
+var x = 2;
+
+console.log(x);
+```
+
+
+```sh
+Output
+2
+```
+
+```js
+// Attempt to overwrite a variable declared with let
+let y = 1;
+let y = 2;
+
+console.log(y);
+```
+
+```sh
+Output
+Uncaught SyntaxError: Identifier 'y' has already been declared
+```
+
+En resumen, las variables introducidas con `var` tienen el potencial de verse afectadas por el levantamiento, un mecanismo en JavaScript en el que las declaraciones de variables se guardan en la memoria. Esto puede resultar en variables indefinidas en el código de uno. La introducción de `let` y `const` resuelve este problema generando un error al intentar utilizar una variable antes de declararla o al intentar declarar una variable más de una vez.
+
+## Constants
