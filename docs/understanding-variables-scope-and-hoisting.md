@@ -355,4 +355,78 @@ Uncaught SyntaxError: Identifier 'y' has already been declared
 
 En resumen, las variables introducidas con `var` tienen el potencial de verse afectadas por el levantamiento, un mecanismo en JavaScript en el que las declaraciones de variables se guardan en la memoria. Esto puede resultar en variables indefinidas en el código de uno. La introducción de `let` y `const` resuelve este problema generando un error al intentar utilizar una variable antes de declararla o al intentar declarar una variable más de una vez.
 
-## Constants
+## Constantes
+
+Muchos lenguajes de programación presentan _constantes_, que son valores que no se pueden modificar ni cambiar. En JavaScript, el identificador `const` se modela a partir de constantes y los valores asignados a una `const` no se pueden reasignar.
+
+Es una convención común escribir todos los identificadores `const` en mayúsculas. Esto los marca como fácilmente distinguibles de otros valores variables.
+
+En el siguiente ejemplo, inicializamos la variable `SPECIES` como una constante con la palabra clave `const`. Intentar reasignar la variable resultará en un error.
+
+
+```js
+// Assign value to const
+const SPECIES = "human"; 
+
+// Attempt to reassign value
+SPECIES = "werewolf";
+
+console.log(SPECIES);
+```
+
+
+```sh
+Output
+Uncaught TypeError: Assignment to constant variable.
+```
+
+Dado que los valores `const` no se pueden reasignar, deben declararse e inicializarse al mismo tiempo, o también generarán un error.
+
+
+```js
+// Declare but do not initialize a const
+const TODO;
+
+console.log(TODO);
+```
+
+
+```sh
+Output
+Uncaught SyntaxError: Missing initializer in const declaration
+```
+
+
+Los valores que no pueden cambiar en programación se conocen como _inmutables_, mientras que los valores que se pueden cambiar son _mutables_. Aunque los valores `const` no se pueden reasignar, son mutables ya que es posible modificar las propiedades de los objetos declarados con `const`.
+
+
+```js
+// Create a CAR object with two properties
+const CAR = {
+	color: "blue",
+	price: 15000
+}
+
+// Modify a property of CAR
+CAR.price = 20000;
+
+console.log(CAR);
+```
+
+
+```sh
+Output
+{ color: 'blue', price: 20000 }
+```
+
+Las constantes son útiles para dejarle claro a usted mismo y a otros programadores que trabajan en un proyecto con usted que la variable deseada no debe reasignarse. Si espera que una variable pueda modificarse en el futuro, probablemente desee utilizar `let` para declarar la variable.
+
+
+## Conclusión
+
+En este tutorial, repasamos qué es una variable, las reglas para nombrar una variable y cómo reasignar valores de variable. También aprendimos sobre el alcance y la elevación, algunas de las limitaciones de la palabra clave `var` original, así como cómo `let` y `const` rectifican esos problemas.
+
+
+
+
+
