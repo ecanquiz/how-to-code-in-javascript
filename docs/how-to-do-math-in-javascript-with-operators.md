@@ -150,4 +150,117 @@ En el ejemplo anterior, al hacer clic en una identificación, se desplazará a 6
 La suma y la resta son dos de las ecuaciones matemáticas más comunes que utilizarás en JavaScript.
 
 
-## Multiplication and Division
+## Multiplicación y División
+
+Los operadores de **multiplicación** y **división** también están disponibles en JavaScript y se utilizan para encontrar el producto y el cociente de valores numéricos.
+
+Se utiliza un asterisco (`*`) para representar el operador de multiplicación.
+
+
+```js
+// Assign values to x and y
+let x = 20;
+let y = 5;
+
+// Multiply x by y to get the product
+let z = x * y;
+
+console.log(z);
+```
+
+```sh
+Output
+100
+```
+
+La multiplicación se puede utilizar para calcular el precio de un artículo después de aplicar el impuesto sobre las ventas.
+
+
+```js
+const price = 26.5;    // Price of item before tax
+const taxRate = 0.082; // 8.2% tax rate
+
+// Calculate total after tax to two decimal places
+let totalPrice = price + (price * taxRate);
+let fixedPrice = totalPrice.toFixed(2);
+
+console.log("Total:", fixedPrice);
+```
+
+
+```sh
+Output
+Total: 28.67
+```
+
+Se utiliza una barra diagonal (`/`) para representar el operador de división.
+
+
+```js
+// Assign values to x and y
+let x = 20;
+let y = 5;
+
+// Divide y into x to get the quotient
+let z = x / y;
+
+console.log(z);
+```
+
+```sh
+Output
+4
+```
+
+La división es particularmente útil al calcular el tiempo, como encontrar la cantidad de horas en una cantidad de minutos, o al calcular el porcentaje de respuestas correctas completadas en una prueba.
+
+
+## Módulo
+
+Un operador aritmético que es un poco menos familiar es el operador de _modulo_ (a veces conocido como _modulus_), que calcula el resto de un cociente después de la división. El módulo está representado por un signo de porcentaje (`%`).
+
+Como ejemplo, sabemos que `3` cabe en `9` exactamente tres veces y no queda ningún resto.
+
+
+```js
+9 % 3;
+```
+
+```sh
+Output
+0
+```
+
+Podemos usar el operador de módulo para determinar si un número es par o impar, como se ve con esta función:
+
+
+```js
+// Initialize function to test if a number is even
+const isEven = x => {
+	// If the remainder after dividing by two is 0, return true
+	if (x % 2 === 0) {
+		return true;
+	}
+	// If the number is odd, return false
+	return false;
+}
+
+// Test the number
+isEven(12);
+```
+
+```sh
+Output
+true
+```
+
+En el ejemplo anterior, `12` se divide uniformemente entre `2`, por lo tanto, es un número par.
+
+
+A menudo, en programación, el módulo se utiliza junto con declaraciones condicionales para el control de flujo.
+
+
+## Exponentiation
+
+
+
