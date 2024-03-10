@@ -260,7 +260,45 @@ En el ejemplo anterior, `12` se divide uniformemente entre `2`, por lo tanto, es
 A menudo, en programación, el módulo se utiliza junto con declaraciones condicionales para el control de flujo.
 
 
-## Exponentiation
+## Exponenciación
+
+La exponenciación es uno de los operadores más nuevos en JavaScript y nos permite calcular la potencia de un número por su exponente. La sintaxis de la exponenciación es dos asteriscos seguidos (`**`).
+
+10 elevado a la quinta potencia, o 10^5, se escribe así:
+
+
+```js
+10 ** 5;
+```
+
+```sh
+Output
+100000
+```
+
+`10 ** 5` representa lo mismo que `10` multiplicado por `10` cinco veces:
+
+
+```js
+10 * 10 * 10 * 10 * 10;
+```
+
+Otra forma de escribir esto es con el método `Math.pow()`.
+
+
+```js
+Math.pow(10, 5);
+```
+
+```sh
+Output
+100000
+```
+
+Usar el operador de exponenciación es una forma concisa de encontrar la potencia de un número determinado, pero como siempre, es importante mantener la coherencia con el estilo de su código base al elegir entre un método y un operador.
+
+## Increment and Decrement
+
 
 
 
