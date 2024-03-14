@@ -297,8 +297,194 @@ Output
 
 Usar el operador de exponenciación es una forma concisa de encontrar la potencia de un número determinado, pero como siempre, es importante mantener la coherencia con el estilo de su código base al elegir entre un método y un operador.
 
-## Increment and Decrement
+## Incremento y Decremento
+
+Los operadores de incremento y decremento aumentan o reducen el valor numérico de una variable en uno. Están representados por dos signos más (`++`) o dos signos menos (`--`) y, a menudo, se utilizan con [bucles](./for-loops-for-of-loops-and-for-in-loops-in-javascript#bucle-for).
+
+Tenga en cuenta que los operadores de incremento y decremento sólo se pueden utilizar en variables; intentar usarlos en un número sin formato resultará en un error.
+
+```js
+7++
+```
+
+```sh
+Output
+Uncaught ReferenceError: Invalid left-hand side expression in postfix operation
+```
+
+Los operadores de incremento y decremento se pueden clasificar como operaciones de prefijo o postfijo, dependiendo de si el operador se coloca antes o después de la variable.
+
+Primero, podemos enviar un mensaje de texto con el incremento del prefijo, con `++x`.
+
+
+```js
+// Set a variable
+let x = 7;
+
+// Use the prefix increment operation
+let prefix = ++x;
+
+console.log(prefix);
+```
+
+
+```sh
+Output
+8
+```
+
+El valor de `x` se incrementó en uno. Para ver la diferencia, probaremos el incremento de postfix con `y++`.
+
+
+```js
+// Set a variable
+let y = 7;
+
+// Use the prefix increment operation
+let postfix = y++;
+
+console.log(postfix);
+```
+
+
+```sh
+Output
+7
+```
 
 
 
+El valor de `y` no aumentó en la operación _postfix_. Esto se debe a que el valor no se incrementará hasta que se haya evaluado la expresión.
 
+
+El operador de incremento o decremento se verá con mayor frecuencia en un bucle. En este ejemplo de bucle `for`, ejecutaremos la operación diez veces, comenzando con `0` y aumentando el valor en `1` con cada iteración.
+
+
+
+```js
+// Run a loop ten times
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+```
+
+
+```sh
+Output
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+
+El código anterior muestra una iteración a través de un bucle que se logra mediante el uso del operador de incremento.
+
+Podemos pensar en `x++` como una abreviatura de `x = x + 1`, y en `x--` como una abreviatura de `x = x - 1`.
+
+## Operadores de Asignación
+
+Uno de los operadores más utilizados es el operador de **asignación**, que ya hemos visto y está representado por un signo igual (`=`). Usamos `=` para asignar un valor de la derecha a una variable de la izquierda.
+
+
+```js
+// Assign 27 to age variable
+let age = 27;
+```
+
+Además del operador de asignación estándar, JavaScript tiene **operadores de asignación compuestos**, que combinan un operador aritmético con `=`.
+
+Por ejemplo, el operador de suma comenzará con el valor original y agregará un valor nuevo.
+
+```js
+// Assign 27 to age variable
+let age = 27;
+
+age += 3;
+
+console.log(age);
+```
+
+```sh
+Output
+30
+```
+
+En este caso, `age += 3` es lo mismo que escribir `age = age + 3`.
+
+Todos los operadores aritméticos se pueden combinar con la asignación para crear operadores de asignación compuestos. A continuación se muestra una tabla de referencia de operadores de asignación en JavaScript.
+
+|Operador|Sintaxis|
+|-|-|
+|Asignación|`=`|
+|Asignación de adición|`+=`|
+|Asignación de sustracción|`-=`|
+|Asignación de multiplicación|`*=`|
+|Asignación de división|`/=`|
+|Asignación de restante|`%=`|
+|Asignación de exponenciación|`**=`|
+
+Los operadores de asignación compuesta se utilizan a menudo con bucles, similares a los de incremento y decremento, y se utilizan cuando es necesario repetir o automatizar ecuaciones.
+
+## Precedencia del Operador
+
+Aunque leemos de izquierda a derecha, los operadores se evaluarán en orden de precedencia, tal como en las matemáticas normales.
+
+En el siguiente ejemplo, la multiplicación tiene mayor prioridad que la suma, lo que determina el resultado de la ecuación.
+
+
+```js
+// First multiply 3 by 5, then add 10
+10 + 3 * 5;
+```
+
+```sh
+Output
+25
+```
+
+
+Si en cambio quisiéramos ejecutar primero la operación de suma, deberíamos agruparla entre paréntesis, que siempre tiene la mayor prioridad.
+
+
+```js
+// First add 10 and 3, then multiply by 5
+(10 + 3) * 5;
+```
+
+```sh
+Output
+65
+```
+
+A continuación se muestra una tabla de referencia de precedencia de operadores aritméticos en JavaScript, de mayor a menor. Para incrementos y decrementos, el postfijo tiene mayor prioridad que el prefijo.
+
+El incremento/decremento, la multiplicación/división y la adición/subtración tienen el mismo nivel de prioridad.
+
+
+|Operador|Sintaxis|
+|-|-|
+|Paréntesis|`()`|
+|Incremento|`++`|
+|Decrementación|`--`|
+|Exponenciación|`**`|
+|Multiplicación|`*`|
+|División|`/`|
+|adición|`+`|
+|subtración|`-`|
+
+
+La precedencia de operadores incluye no sólo operadores aritméticos, sino también operadores de asignación, operadores lógicos, operadores condicionales y más. Para obtener una lista completa, consulte [la precedencia de operadores en Mozilla Developer Network (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence).
+
+
+## Conclusión
+
+En este artículo, cubrimos los operadores aritméticos y la sintaxis, incluidos muchos operadores matemáticos familiares y algunos que son específicos de la programación.
+
+Además, aprendimos cómo combinar aritmética y asignación para crear operadores de asignación compuestos y el orden de las operaciones en JavaScript.
