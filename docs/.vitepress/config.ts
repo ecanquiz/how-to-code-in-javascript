@@ -29,8 +29,11 @@ export default defineConfig({
         { text: 'Cómo Convertir Tipos de Datos', link: '/how-to-convert-data-types-in-javascript' },        
         { text: 'Comprender Variables, Alcance y Elevación', link: '/understanding-variables-scope-and-hoisting' },
         { text: 'Cómo Hacer Matemáticas con Operadores', link: '/how-to-do-math-in-javascript-with-operators' },
+        { text: 'Comprender los Operadores Lógicos y de Comparación', link: '/understanding-comparison-and-logical-operators-in-javascript' },
         { text: 'Comprender Matrices', link: '/understanding-arrays-in-javascript' },
-        { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' }
+        { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' },
+        { text: 'Bucles For, Bucles For...Of  y Bucles For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' }
+
       ]
     }],
     socialLinks: [
