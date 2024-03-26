@@ -128,7 +128,49 @@ Hay muchas aplicaciones potenciales de operadores de comparación en JavaScript 
 
 Ahora que tienes una base con algunos ejemplos para `==`, seremos un poco más breves en adelante.
 
-## Inequality
+## Desigualdad
+
+El operador `!=` prueba la desigualdad para determinar si los valores a ambos lados del operador no son iguales.
+
+Consideremos un ejemplo.
+
+
+```js
+let y = 8;
+
+y != 9;
+```
+
+Para este ejemplo, `8` no es igual a `9`, por lo que la expresión se evaluará como `true`:
+
+
+```sh
+Output
+true
+```
+
+Para que una afirmación de desigualdad se considere `false`, los dos valores de cada lado tendrían que ser realmente iguales, como se muestra a continuación.
+
+
+```js
+let y = 8;
+
+y != 8
+```
+
+```sh
+Output
+false
+```
+
+En este segundo ejemplo, los dos valores a cada lado del operador _son_ iguales, por lo que la expresión no es verdadera.
+
+
+## Identity
+
+
+
+
 
 
 
