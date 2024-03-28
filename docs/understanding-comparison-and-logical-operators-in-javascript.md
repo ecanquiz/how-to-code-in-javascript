@@ -166,13 +166,34 @@ false
 En este segundo ejemplo, los dos valores a cada lado del operador _son_ iguales, por lo que la expresión no es verdadera.
 
 
-## Identity
+## Identidad
+
+El operador `===` determina si dos valores son del mismo valor y del mismo tipo. Esto también se conoce como operador de igualdad estricta. Esto significa que no se pueden mezclar tipos de datos numéricos y de cadena.
+
+He aquí un ejemplo:
+
+```js
+let z = 4;
+
+z === 4;
+
+z === '4';
+```
+
+Recibiremos el siguiente resultado.
 
 
+```sh
+Output
+true
+
+false
+```
+
+El ejemplo indica que `z` es estrictamente igual a `4` (ya que se le asigna el valor numérico de `4`), pero que **no** es estrictamente igual a la cadena `'4'`.
 
 
+Debido a que este operador es estricto, deberá tener en cuenta que es posible que deba convertir los datos ingresados por el usuario de un tipo de datos a otro, por ejemplo, cuando trabaje con el operador de identidad. Esto puede ayudarle a mantener los tipos de datos consistentes en todo su programa.
 
 
-
-
-
+## Non Identity
