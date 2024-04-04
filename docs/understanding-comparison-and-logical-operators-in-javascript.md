@@ -196,4 +196,116 @@ El ejemplo indica que `z` es estrictamente igual a `4` (ya que se le asigna el v
 Debido a que este operador es estricto, deberá tener en cuenta que es posible que deba convertir los datos ingresados por el usuario de un tipo de datos a otro, por ejemplo, cuando trabaje con el operador de identidad. Esto puede ayudarle a mantener los tipos de datos consistentes en todo su programa.
 
 
-## Non Identity
+## No identidad
+
+Al igual que `===`, el operador `!==` evalúa una desigualdad estricta, que considera tanto el valor como el tipo de los operandos a cada lado del operador.
+
+Revisaremos los siguientes ejemplos.
+
+
+```js
+let a = 18;
+
+a !== 18;
+
+a !== '18';
+
+a !== 29;
+```
+
+La salida para lo anterior será la siguiente.
+
+
+```sh
+Output
+false 
+
+true
+
+true
+```
+
+
+En este ejemplo, dado que `a` es estrictamente igual a `18`, la primera expresión se evalúa como `false` ya que estamos probando la desigualdad. En los dos ejemplos siguientes, se determina que `a` no es igual a la cadena `'18'` y al número `29`, por lo que esas dos expresiones se evalúan como `true` (ya que _no_ son iguales).
+
+## Mayor que
+
+El símbolo mayor que en JavaScript puede resultarle familiar por las matemáticas: `>`. Esto evalúa si un valor (en el lado izquierdo de la expresión) es mayor que otro valor (en el lado derecho de la expresión).
+
+Al igual que el operador `==` anterior, el operador mayor que no es estricto y, por lo tanto, le permitirá mezclar cadenas y números.
+
+Consideremos los siguientes ejemplos.
+
+
+```js
+let f = 72;
+
+f > 80;
+
+f > '30';
+```
+
+Recibiremos la siguiente salida:
+
+
+```sh
+Output
+false
+
+true
+```
+
+En primera instancia, `72` es menor que `80`, por lo que la primera expresión se evalúa como `false`. En el segundo caso, `72` es de hecho mayor que `'30'` y al operador no le importa que el número sea una cadena, por lo que la expresión se evalúa como `true`.
+
+## Mayor o igual que
+
+De manera similar, el operador mayor o igual que evaluará si un operando alcanza el umbral del otro. Este operador se escribe como `>=` una especie de compuesto entre mayor que (`>`) y el signo igual (`=`).
+
+Nuestros ejemplos:
+
+
+```js
+let g = 102;
+
+g >= 90;
+
+g >= 103;
+```
+
+```sh
+Output
+true
+
+false
+```
+
+
+Dado que `102` es un número mayor que `90`, se considera mayor o igual que `90`. Dado que `102` es menor que `103`, es `false` afirmar que `102 >= 103`. Si `90` o `103` fueran un tipo de datos de cadena, las expresiones también evaluarían lo mismo.
+
+## Menor que
+
+El operador menor que aparece como la versión reflejada del operador mayor que: `<`.
+
+Considere los siguientes ejemplos como demostración.
+
+
+```js
+let w = 1066;
+
+w < 476;
+
+w < 1945;
+```
+
+```sh
+Output
+false
+
+true
+```
+
+
+Aquí, `1066` es mayor que `476`, por lo que la expresión se evalúa como `false`. Sin embargo, `1066` es menor que `1945`, por lo que la segunda afirmación se evalúa como `true`. Nuevamente, los valores `476` o `1945` también podrían ser cadenas.
+
+
+## Less than or equal
