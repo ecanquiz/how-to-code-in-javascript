@@ -343,6 +343,86 @@ Asegúrese de no confundir el operador menor o igual (`<=`) con la función de f
 
 Para comprender cómo estos operadores de comparación pueden trabajar juntos en un programa, consulte nuestro ejemplo de `grades.js` en nuestro tutorial [Cómo Escribir Declaraciones Condicionales en JavaScript](./how-to-write-conditional-statements-in-javascript#de-lo-contrario-si-la-declaracion).
 
-## Logical Operators
+## Operadores Lógicos
+
+En JavaScript, hay tres **operadores lógicos** que conectan dos o más declaraciones de programación para devolver un valor `true` (también llamado "truthy") o `false` ("falsy"). Se utilizan con mayor frecuencia con tipos Boolean (lógicos), pero se pueden aplicar a valores de cualquier tipo de datos.
+
+Estos operadores lógicos se resumen en la siguiente tabla.
+
+|Operador|Sintaxis|Descripción|
+|-|-|-|
+|AND|`&&`|Devuelve `true` si ambos operandos son `true`|
+|OR|`\|\|`|Devuelve `true` si cualquiera de los operandos es `true`|
+|NOT|`!`|Devuelve `true` si	el operando es `false`|
+
+Repasemos cada uno de estos operadores con más detalle.
+
+## AND
+
+El operador AND está representado por dos _ampersands_ — `&&` — devolverá `true` si los operandos de la izquierda y la derecha se evalúan como verdaderos.
+
+Por ejemplo, con AND podemos comprobar si algo es a la vez de alta calidad y tiene un precio bajo.
+
+```js
+// High quality and low price are true
+const highQuality = true;
+const lowPrice = true;
+
+(highQuality && lowPrice);
+```
+
+```sh
+Output
+true
+```
+
+Dado que ambas variables se evalúan como `true`, la operación AND dentro del paréntesis devuelve `true`. Si cualquiera de las variables se inicializara como `true`, la expresión `&&` se evaluaría como `false`.
+
+## OR
+
+El operador OR está representado por dos tubos — `||` — devolverá `true` si uno de los operandos es verdadero.
+
+En este ejemplo, comprobaremos si algo es `highQuality` o `lowPrice`.
+
+
+```js
+// Only low price is true
+const highQuality = false;
+const lowPrice = true;
+
+(highQuality || lowPrice);
+```
+
+```sh
+Output
+true
+```
+
+Dado que una de las dos condiciones (`highQuality` o `lowPrice`) era `true`, toda la operación resulta `true`. Esto sólo se evaluaría como `false` si _ambas_ condiciones fueran `false`.
+
+## NOT
+
+El operador NOT está representado por un signo de exclamación — `!` — devolverá `true` si el operando se establece en `false` y viceversa.
+
+```js
+const highQuality = true;
+
+!(highQuality);
+```
+
+```sh
+Output
+false
+```
+
+
+En la declaración anterior, `highQuality` tiene el valor `true`. Con el operador NOT, estamos verificando si `hiqhQuality` se evalúa como `false`. Si fuera `false`, el resultado devolvería `true`, pero como _es_ `true`, el resultado devolvería `false`.
+
+El operador NOT es un poco complicado de entender al principio. La parte importante a recordar es que NOT verifica si algo se evalúa como falso.
+
+
+## Conclusión
+
+Los operadores lógicos son los componentes básicos del control de flujo en la programación JavaScript. El uso eficaz de estos operadores le ayudará a desarrollar programas que evalúen declaraciones y pasen a la siguiente etapa en función de si una declaración es verdadera o falsa.
 
 
