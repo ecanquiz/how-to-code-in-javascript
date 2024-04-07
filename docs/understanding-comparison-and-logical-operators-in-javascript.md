@@ -308,4 +308,41 @@ true
 Aquí, `1066` es mayor que `476`, por lo que la expresión se evalúa como `false`. Sin embargo, `1066` es menor que `1945`, por lo que la segunda afirmación se evalúa como `true`. Nuevamente, los valores `476` o `1945` también podrían ser cadenas.
 
 
-## Less than or equal
+## Menor o igual que
+
+Lo opuesto a mayor o igual que, el operador menor o igual que — `<=` — evaluará si el valor en el lado izquierdo del operador es menor o igual que el valor en el lado derecho.
+
+Aquí están algunos ejemplos.
+
+
+```js
+let p = 2001;
+
+p <= 1968;
+
+p <= 2001;
+
+p <= 2020;
+```
+
+
+```sh
+Output
+false
+
+true
+
+true
+```
+
+La primera expresión se evalúa como `false` porque `2001` no es menor o igual que `1968`. En la segunda expresión, debido a que la variable y `2001` son valores iguales, el resultado es `true`. En la tercera expresión, el resultado también es `true` porque `2001` es menor que `2020`. Nuevamente, estos valores también podrían representarse como cadenas, como en `'2001'`, y se evaluarían de la misma manera.
+
+:::warning Nota
+Asegúrese de no confundir el operador menor o igual (`<=`) con la función de flecha (`=>`) en JavaScript. Obtenga más información sobre las funciones de flecha en nuestro tutorial [Comprender de Funciones de Flecha en JavaScript](./understanding-arrow-functions-in-javascript).
+:::
+
+Para comprender cómo estos operadores de comparación pueden trabajar juntos en un programa, consulte nuestro ejemplo de `grades.js` en nuestro tutorial [Cómo Escribir Declaraciones Condicionales en JavaScript](./how-to-write-conditional-statements-in-javascript#de-lo-contrario-si-la-declaracion).
+
+## Logical Operators
+
+

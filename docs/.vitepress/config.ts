@@ -33,8 +33,8 @@ export default defineConfig({
         { text: 'Comprender Matrices', link: '/understanding-arrays-in-javascript' },
         { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' },
         { text: 'Cómo Escribir Declaraciones Condicionales', link: '/how-to-write-conditional-statements-in-javascript' },
-        { text: 'Bucles For, Bucles For...Of  y Bucles For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' }
-
+        { text: 'Bucles For, Bucles For...Of  y Bucles For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' },
+        { text: 'Comprender las Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
       ]
     }],
     socialLinks: [
