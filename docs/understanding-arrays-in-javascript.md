@@ -54,4 +54,75 @@ Pacific
 
 En este tutorial, aprenderemos cómo crear matrices; cómo están indexados; cómo agregar, modificar, eliminar o acceder a elementos en una matriz; y cómo recorrer matrices.
 
-## Creating an Array
+## Creando una Matriz
+
+Hay dos formas de crear una matriz en JavaScript:
+
+- El literal de matriz, que utiliza corchetes.
+- El constructor de la matriz, que utiliza la palabra clave `new`.
+
+Demostremos cómo crear una matriz de especies de tiburones usando el literal de matriz, que se inicializa con `[]`.
+
+
+📃 sharks.js
+```js
+// Initialize array of shark species with array literal
+let sharks = [
+	"Hammerhead",
+	"Great White",
+	"Tiger",
+];
+```
+
+
+Ahora aquí están los mismos datos creados con el constructor de matriz, que se inicializa con `new Array()`.
+
+
+📃 sharks.js
+```js
+// Initialize array of shark species with array constructor
+let sharks = new Array(
+	"Hammerhead",
+	"Great White",
+	"Tiger",
+);
+```
+
+
+Ambos métodos crearán una matriz. Sin embargo, el método literal de matriz (corchetes) es mucho más común y preferido, ya que el método constructor `new Array()` puede tener inconsistencias y resultados inesperados. Es útil conocer este constructor de matriz en caso de que lo encuentre en el futuro.
+
+Podemos imprimir una matriz completa, que se mostrará igual que nuestra entrada.
+
+```js
+// Print out the entire sharks array
+sharks;
+```
+
+```sh
+Output
+[ 'Hammerhead', 'Great White', 'Tiger' ]
+```
+
+Las matrices se utilizan a menudo para agrupar listas de tipos de datos similares, pero técnicamente pueden contener cualquier valor o una combinación de valores, incluidas otras matrices.
+
+
+```js
+// Initialize array of mixed datatypes
+let mixedData = [
+	"String",
+	null,
+	7,
+	[
+		"another",
+		"array",
+	],
+];
+```
+
+Después de crear una matriz, podemos manipularla de muchas maneras, pero primero debemos entender cómo se indexan las matrices.
+
+:::warning Nota
+Es posible que vea el último elemento de una matriz con o sin una coma final. Esto se conoce como [coma final](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas). Es común verlos omitidos, pero en general se prefiere incluirlos en su código, ya que esto hace que las diferencias de control de versiones sean más claras y facilita agregar y eliminar elementos sin errores. Tenga en cuenta que las comas finales no están permitidas en [archivos JSON](https://www.digitalocean.com/community/tutorials/an-introduction-to-json).
+:::
+
+## Indexing Arrays
