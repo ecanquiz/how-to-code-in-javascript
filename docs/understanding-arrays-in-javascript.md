@@ -12,7 +12,7 @@ Las matrices son muy útiles ya que almacenan múltiples valores en una sola var
 
 Para demostrar cómo pueden resultar útiles las matrices, considere asignar los cinco océanos del mundo a sus propias variables.
 
-📃 oceans.js
+📃`oceans.js`
 ```js
 // Assign the five oceans to five variables
 const ocean1 = "Pacific";
@@ -26,7 +26,7 @@ Este método es muy detallado y rápidamente puede volverse difícil de mantener
 
 Usando matrices, podemos simplificar nuestros datos.
 
-📃 oceans.js
+📃`oceans.js`
 ```js
 let oceans = [
 	"Pacific",
@@ -64,7 +64,7 @@ Hay dos formas de crear una matriz en JavaScript:
 Demostremos cómo crear una matriz de especies de tiburones usando el literal de matriz, que se inicializa con `[]`.
 
 
-📃 sharks.js
+📃`sharks.js`
 ```js
 // Initialize array of shark species with array literal
 let sharks = [
@@ -78,7 +78,7 @@ let sharks = [
 Ahora aquí están los mismos datos creados con el constructor de matriz, que se inicializa con `new Array()`.
 
 
-📃 sharks.js
+📃`sharks.js`
 ```js
 // Initialize array of shark species with array constructor
 let sharks = new Array(
@@ -125,4 +125,72 @@ Después de crear una matriz, podemos manipularla de muchas maneras, pero primer
 Es posible que vea el último elemento de una matriz con o sin una coma final. Esto se conoce como [coma final](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas). Es común verlos omitidos, pero en general se prefiere incluirlos en su código, ya que esto hace que las diferencias de control de versiones sean más claras y facilita agregar y eliminar elementos sin errores. Tenga en cuenta que las comas finales no están permitidas en [archivos JSON](https://www.digitalocean.com/community/tutorials/an-introduction-to-json).
 :::
 
-## Indexing Arrays
+## Matrices de Indexación
+
+Si ha aprendido a [indexar y manipular cadenas en JavaScript](/how-to-index-split-and-manipulate-strings-in-javascript.html), es posible que ya esté familiarizado con el concepto de indexación de matrices, ya que una cadena es similar a una matriz.
+
+Las matrices no tienen pares nombre/valor. En cambio, están indexados con valores enteros que comienzan con `0`. Aquí hay una matriz de ejemplo, asignada a `seaCreatures`.
+
+📃`seacreatures.js`
+
+
+```js
+let seaCreatures = [
+  "octopus",
+  "squid",
+  "shark",
+  "seahorse",
+  "starfish",
+];
+```
+
+A continuación se muestra un desglose de cómo se indexa cada elemento de la matriz `seaCreatures`.
+
+|octopus|squid|shark|seahorse|starfish|
+|-|-|-|-|-|
+|0|1|2|3|4|
+
+El primer elemento de la matriz es `octopus`, que está indexado en `0`. El último elemento es `starfish`, que está indexada en `4`. El conteo comienza con `0` en los índices, lo que va en contra de nuestra intuición natural de comenzar a contar en 1, por lo que se debe tener especial cuidado. Hay que tener cuidado de recordar esto hasta que se vuelva natural.
+
+Podemos averiguar cuántos elementos hay en una matriz con la propiedad `length`.
+
+```js
+seaCreatures.length;
+```
+
+```
+Output
+5
+```
+
+Aunque los índices de `seaCreatures` constan de `0` a `4`, la propiedad `length` generará la cantidad real de elementos en la matriz, comenzando con 1.
+
+Si queremos averiguar el número de índice de un elemento específico en una matriz, como el `seahorse`, podemos usar el método `indexOf()`.
+
+
+```js
+seaCreatures.indexOf("seahorse");
+```
+
+```sh
+Output
+3
+```
+
+Si no se encuentra un número de índice, como por ejemplo un valor que no existe, la consola devolverá `-1`.
+
+
+```js
+seaCreatures.indexOf("cuttlefish");
+```
+
+```sh
+Output
+-1
+```
+
+Con números de índice que corresponden a elementos dentro de una matriz, podemos acceder a cada elemento de forma discreta para trabajar con esos elementos.
+
+
+## Accessing Items in an Array
+
