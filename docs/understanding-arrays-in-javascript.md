@@ -54,7 +54,7 @@ Pacific
 
 En este tutorial, aprenderemos cómo crear matrices; cómo están indexados; cómo agregar, modificar, eliminar o acceder a elementos en una matriz; y cómo recorrer matrices.
 
-## Creando una Matriz
+## Crear una Matriz
 
 Hay dos formas de crear una matriz en JavaScript:
 
@@ -191,6 +191,424 @@ Output
 
 Con números de índice que corresponden a elementos dentro de una matriz, podemos acceder a cada elemento de forma discreta para trabajar con esos elementos.
 
-
 ## Accessing Items in an Array
+## Acceder a Elementos en una Matriz
 
+Se accede a un elemento en una matriz de JavaScript haciendo referencia al número de índice del elemento entre corchetes.
+
+
+```js
+seaCreatures[1];
+```
+
+```sh
+Output
+squid
+```
+
+Sabemos que `0` siempre generará el primer elemento de una matriz. También podemos encontrar el último elemento de una matriz realizando una operación en la propiedad `length` y aplicándola como el nuevo número de índice.
+
+
+```js
+const lastIndex = seaCreatures.length - 1;
+
+seaCreatures[lastIndex];
+```
+
+```sh
+Output
+starfish
+```
+
+Intentar acceder a un elemento que no existe devolverá un valor `undefined`.
+
+
+```js
+seaCreatures[10];
+```
+
+```sh
+Output
+undefined
+```
+
+Para acceder a elementos en una matriz anidada, debe agregar otro número de índice que corresponda a la matriz interna.
+
+
+```js
+let nestedArray = [
+  [
+    "salmon",
+    "halibut"
+  ],
+  [
+    "coral",
+    "reef"
+  ]
+];
+
+nestedArray[1][0];
+```
+
+```sh
+Output
+coral
+```
+
+En el ejemplo anterior, accedemos a la matriz en la posición `1` de la variable `nestedArray`, luego al elemento en la posición `0` en la matriz interna.
+
+
+## Agregar un Elemento a una Matriz
+
+En nuestra variable `seaCreatures` teníamos cinco elementos, que consistían en índices del `0` al `4`. Si queremos agregar un nuevo elemento a la matriz, podemos asignar un valor al siguiente índice.
+
+
+```js
+seaCreatures[5] = "whale";
+
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale'
+]
+```
+
+Si agregamos un elemento y accidentalmente omitimos un índice, se creará un elemento indefinido en la matriz.
+
+
+```js
+seaCreatures[7] = "pufferfish";
+
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  ,
+  'pufferfish'
+]
+```
+
+Intentar acceder al elemento de matriz adicional devolverá un valor `undefined`.
+
+
+```js
+seaCreatures[6]
+```
+
+```sh
+Output
+undefined
+```
+
+Problemas como ese se pueden evitar utilizando el método `push()`, que agrega un elemento al final de una matriz.
+
+
+```js
+// Append lobster to the end of the seaCreatures array
+seaCreatures.push("lobster");
+
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  ,
+  'whale',
+  'pufferfish',
+  'lobster'
+]
+```
+
+En el otro extremo del espectro, el método `unshift()` agregará un elemento al comienzo de una matriz.
+
+
+```js
+// Append dragonfish to the beginning of the seaCreatures array
+seaCreatures.unshift("dragonfish");
+
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'dragonfish',
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  ,
+  'pufferfish',
+  'lobster'
+]
+```
+
+Entre `push()` y `unshift()` podrá agregar elementos al principio y al final de una matriz.
+
+
+## Eliminar un Elemento de una Matriz
+
+Cuando queremos eliminar un elemento específico de una matriz, usamos el método `splice()`. En la matriz `seaCreatures`, accidentalmente creamos un elemento de matriz indefinido anteriormente, así que eliminémoslo ahora.
+
+
+```js
+seaCreatures.splice(7, 1);
+
+seaCreatures;
+```
+
+
+```sh
+Output
+[
+  'dragonfish',
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  'pufferfish',
+  'lobster'
+]
+```
+
+En el método `splice()`, el primer parámetro representa el número de índice que se eliminará (en este caso, `7`) y el segundo parámetro es cuántos elementos se deben eliminar. Ponemos `1`, lo que significa que solo se eliminará un elemento.
+
+El método `splice()` cambiará la variable original. Si desea que la variable original permanezca sin cambios, use `slice()` y asigne el resultado a una nueva variable. Aquí asignaremos dos variables, una que usa `slice()` para almacenar la matriz `seaCreatures` desde el primer elemento hasta la `whale`, y una segunda variable para almacenar los elementos `pufferfish` y `lobster`. Para unir las dos matrices, usaremos el método `concat()` para devolver la nueva matriz.
+
+
+```js
+let firstArray = seaCreatures.slice(0, 7);
+let secondArray = seaCreatures.slice(8, 10); 
+
+firstArray.concat(secondArray);
+
+```
+
+```sh
+Output
+[
+  'dragonfish',
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  'pufferfish',
+  'lobster'
+]
+```
+
+Observe que al llamar a la variable `seaCreatures`, los elementos de la matriz permanecen sin cambios.
+
+
+```js
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'dragonfish',
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  'pufferfish',
+  'lobster'
+]
+```
+
+El método `pop()` eliminará el último elemento de una matriz.
+
+
+```js
+// Remove the last item from the seaCreatures array
+seaCreatures.pop();
+
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'dragonfish',
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  'pufferfish'
+]
+```
+
+`lobster` se ha eliminado como último elemento de la matriz. Para eliminar el primer elemento de la matriz, usaremos el método `shift()`.
+
+
+```js
+// Remove the first item from the seaCreatures array
+seaCreatures.shift();
+
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'octopus',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  'pufferfish'
+]
+```
+
+Al usar `pop()` y `shift()`, podemos eliminar elementos del principio y del final de las matrices. Se prefiere usar `pop()` siempre que sea posible, ya que el resto de los elementos de la matriz conservan sus números de índice originales.
+
+
+## Modificar Elementos en Matrices
+
+Podemos sobrescribir cualquier valor en una matriz asignando un nuevo valor usando el operador de asignación, tal como lo haríamos con una variable normal.
+
+
+```js
+// Assign manatee to the first item in the seaCreatures array
+seaCreatures[0] = "manatee";
+
+seaCreatures;
+```
+
+```sh
+Output
+[
+  'manatee',
+  'squid',
+  'shark',
+  'seahorse',
+  'starfish',
+  'whale',
+  'pufferfish'
+]
+```
+
+Otra forma de modificar un valor es utilizar el método `splice()` con un nuevo parámetro. Si quisiéramos cambiar el valor de `seahorse`, que es el elemento en el índice `3`, podríamos eliminarlo y agregar un nuevo elemento en su lugar.
+
+
+```js
+// Replace seahorse with sea lion using splice method
+seaCreatures.splice(3, 1, "sea lion");
+
+seaCreatures();
+```
+
+```sh
+Output
+[
+  'manatee',
+  'squid',
+  'shark',
+  'sea lion',
+  'starfish',
+  'whale',
+  'pufferfish'
+]
+```
+
+En el ejemplo anterior, eliminamos `seahorse` de la matriz e insertamos un nuevo valor en el índice `3`.
+
+
+## Bucle a Través de una Matriz
+
+
+Podemos recorrer toda la matriz con la palabra clave `for`, aprovechando la propiedad de `length`. En este ejemplo, podemos crear una matriz de `shellfish` e imprimir cada número de índice y cada valor en la consola.
+
+
+```js
+// Create an array of shellfish species
+let shellfish = [
+  "oyster",
+  "shrimp",
+  "clam",
+  "mussel"
+];
+
+// Loop through the length of the array
+for (let i = 0; i < shellfish.length; i++) {
+  console.log(i, shellfish[i]);
+}
+```
+
+```sh
+Output
+0 'oyster'
+1 'shrimp'
+2 'clam'
+3 'mussel'
+```
+
+También podemos usar el bucle `for...of`, una característica más nueva de JavaScript.
+
+
+```js
+// Create an array of aquatic mammals
+let mammals = [
+  "dolphin",
+  "whale",
+  "manatee",
+];
+
+// Loop through each mammal
+for (let mammal of mammals) {
+  console.log(mammal);
+}
+```
+
+
+```sh
+Output
+dolphin
+whale
+manatee
+```
+
+El bucle `for...of` no recupera el número de índice de los elementos de la matriz, pero generalmente es una forma más sencilla y concisa de recorrer una matriz.
+
+El uso de bucles es extremadamente útil para imprimir el valor completo de una matriz, como cuando se muestran los elementos de una base de datos en un sitio web.
+
+
+## Conclusión
+
+Los matrices son una parte extremadamente versátil y fundamental de la programación en JavaScript. En este tutorial, aprendimos cómo crear una matriz, cómo se indexan las matrices y algunas de las tareas más comunes al trabajar con matrices, como crear, eliminar y modificar elementos. También aprendimos dos métodos para recorrer matrices, que se utilizan como método común para mostrar datos.
+
+Puede leer más sobre otros tipos de datos en JavaScript leyendo nuestro tutorial "[Comprender Tipos de Datos en JavaScript](./understanding-data-types.html)".
