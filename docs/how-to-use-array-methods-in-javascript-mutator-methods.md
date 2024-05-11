@@ -238,7 +238,7 @@ Output
 [ 'piranha', 'manta ray', 'eel' ]
 ```
 
-`splice()` es un método poderoso para modificar cualquier parte de una matriz. Tenga en cuenta que `splice()` no debe confundirse con `slice()`, una matriz de acceso que hará una copia de una sección de una matriz.
+`splice()` es un método poderoso para modificar cualquier parte de una matriz. Tenga en cuenta que `splice()` no debe confundirse con [`slice()`](./how-to-use-array-methods-in-javascript-accessor-methods.html#slice), una matriz de acceso que hará una copia de una sección de una matriz.
 
 
 ## reverse()
