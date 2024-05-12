@@ -12,7 +12,7 @@ Para aprovechar al máximo este tutorial, debe estar familiarizado con la creaci
 
 Este tutorial repasará métodos que concatenarán matrices, convertirán matrices en cadenas, copiarán partes de una matriz en una nueva matriz y encontrarán los índices de las matrices.
 
-:::warning Nota
+:::info Nota
 Los métodos de Matrices se escriben correctamente como `Array.prototype.method()`, ya que `Array.prototype` se refiere al objeto `Array` en sí. Para simplificar, simplemente enumeraremos el nombre como `method()`.
 :::
 
