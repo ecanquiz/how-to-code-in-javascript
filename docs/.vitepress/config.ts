@@ -33,10 +33,7 @@ export default defineConfig({
         { text: 'Comprender Matrices', link: '/understanding-arrays-in-javascript' },
         { text: 'Cómo Utilizar Métodos de Matriz: Métodos Mutadores', link: '/how-to-use-array-methods-in-javascript-mutator-methods' },
         { text: 'Cómo Utilizar Métodos de Matriz: Métodos de Acceso', link: '/how-to-use-array-methods-in-javascript-accessor-methods' },
-        { text: 'Cómo utilizar Métodos de Matriz: Métodos de Iteración', link: '/how-to-use-array-methods-in-javascript-iteration-methods' },
-        
-        
-           
+        { text: 'Cómo utilizar Métodos de Matriz: Métodos de Iteración', link: '/how-to-use-array-methods-in-javascript-iteration-methods' },           
         { text: 'Comprender Objetos', link: '/understanding-objects-in-javascript' },
         { text: 'Cómo Escribir Declaraciones Condicionales', link: '/how-to-write-conditional-statements-in-javascript' },
         { text: 'Bucles For, Bucles For...Of  y Bucles For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' },
