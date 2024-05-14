@@ -54,4 +54,49 @@ var example = parameter1 => {
 A lo largo de los ejemplos de este tutorial, utilizaremos la sintaxis de la función de flecha. Para leer y comprender más sobre las funciones en JavaScript, lea la [referencia de Funciones en Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions).
 
 
+## forEach()
+
+El método `forEach()` llama a una función para cada elemento de una matriz.
+
+Comencemos con la siguiente matriz asignada a la variable `fish`:
+
+
+```js
+let fish = [ "piranha", "barracuda", "cod", "eel" ];
+```
+
+Podemos usar `forEach()` para imprimir cada elemento de la matriz `fish` en la consola.
+
+
+```js
+// Print out each item in the array
+fish.forEach(individualFish => {
+	console.log(individualFish);
+})
+```
+
+Una vez que lo hagamos, recibiremos el siguiente resultado:
+
+
+```sh
+Output
+piranha
+barracuda
+cod
+eel
+```
+
+Otra forma de hacer esto es usar la palabra clave del [bucle `for`](./for-loops-for-of-loops-and-for-in-loops-in-javascript.html) y probarla con la propiedad de longitud de la matriz.
+
+
+```js
+//Loop through the length of the array
+for (let i = 0; i < fish.length; i++) {
+console.log(fish[i]);
+}
+```
+
+El código anterior tendrá el mismo resultado que usar el método `forEach()`. Como método de iteración diseñado específicamente para usarse con matrices, `forEach()` es más conciso y directo para esta tarea en particular.
+
+## map()
 
