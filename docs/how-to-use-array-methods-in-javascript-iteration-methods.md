@@ -100,3 +100,51 @@ El código anterior tendrá el mismo resultado que usar el método `forEach()`. 
 
 ## map()
 
+El método `map()` crea una nueva matriz con los resultados de una llamada de función en cada elemento de la matriz.
+
+Para ver un ejemplo de cómo utilizar el método de iteración `map()`, podemos imprimir cada iteración de un bucle en la consola. `map()` no muta la matriz original, sino que devuelve un nuevo valor de matriz.
+
+
+```js
+let fish = [ "piranha", "barracuda", "cod", "eel" ];
+
+// Print out each item in the array
+let printFish = fish.map(individualFish => {
+	console.log(individualFish);
+});
+
+printFish;
+```
+
+```sh
+Output
+piranha
+barracuda
+cod
+eel
+```
+
+También podemos usar `map()` para cambiar los valores de cada elemento en una matriz. Para demostrar esto, agregaremos una `s` al final de cada elemento en la matriz `fish` para pluralizar cada palabra.
+
+
+```js
+// Pluralize all items in the fish array
+let pluralFish = fish.map(individualFish => {
+	return `${individualFish}s`;
+});
+
+pluralFish;
+```
+
+```sh
+Output
+[ 'piranhas', 'barracudas', 'cods', 'eels' ]
+```
+
+La variable `fish` original no ha cambiado, pero `pluralFish` ahora contiene una versión modificada de la variable original.
+
+
+## filter()
+
+
+
