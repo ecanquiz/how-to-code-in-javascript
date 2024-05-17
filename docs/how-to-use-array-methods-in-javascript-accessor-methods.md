@@ -4,7 +4,7 @@
 La fuente original (en ingles) de este tutorial se encuentra [aquí](https://www.digitalocean.com/community/tutorials/how-to-use-array-methods-in-javascript-accessor-methods)
 :::
 
-Introducción
+## Introducción
 
 La matriz de JavaScript es un tipo de datos que consta de una lista de elementos. Existen muchos métodos integrados útiles para trabajar con matrices en JavaScript. Los métodos que modifican la matriz original se conocen como métodos **mutadores** y los métodos que devuelven un nuevo valor o representación se conocen como métodos de **acceso**. En este tutorial, nos centraremos en los métodos de acceso.
 
