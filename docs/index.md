@@ -18,38 +18,43 @@ hero:
       link: https://ecanquiz.github.io/
 
 features:  
-  - title: Cómo Utilizar la Consola de Desarrollo de JavaScript
-    details: Este tutorial explicará cómo trabajar con la Consola en JavaScript dentro del contexto de un navegador y brindará una descripción general de otras herramientas de desarrollo integradas que puede usar como parte de su proceso de desarrollo web.
+  - title: Cómo Utilizar la Consola para Desarrolladores de JavaScript
+    details: Este tutorial explicará cómo trabajar con la Consola en JavaScript dentro del contexto de un navegador y brindará una descripción general de otras herramientas de desarrollo integradas que puede utilizar como parte de su proceso de desarrollo web.
   - title: Cómo Agregar JavaScript a HTML
     details: Este tutorial explicará cómo incorporar JavaScript en sus archivos web, tanto en línea en un documento HTML como en un archivo separado.
   - title: Cómo Escribir Su Primer Programa de JavaScript
-    details: Este tutorial lo guiará a través de la creación de un programa "¡Hola, mundo!" en JavaScript. Para hacer el programa más interesante, modificaremos el tradicional programa "¡Hola, mundo!" para que pregunte al usuario por su nombre. Luego usaremos el nombre en un saludo. Cuando haya terminado con este tutorial, tendrá un programa "¡Hola, mundo!" interactivo.
-  - title: Comprender la sintaxis y la estructura del código en JavaScript
+    details: Este tutorial le guiará en la creación de un mensaje "Hello, World!" programa en JavaScript. Para hacer el programa más interesante, modificaremos el tradicional programa "Hello, World!" para que pida al usuario su nombre. Luego usaremos el nombre en un saludo. Cuando haya terminado con este tutorial, tendrá un mensaje interactivo programa "Hello, World!".
+  - title: Comprender Sintaxis y Estructura del Código en JavaScript
     details: En este tutorial, repasaremos muchas de las reglas y convenciones de la sintaxis y la estructura del código de JavaScript.
-  - title: Cómo escribir comentarios en JavaScript
-    details: Los comentarios de JavaScript son anotaciones en el código fuente de un programa que el intérprete ignora y, por lo tanto, no tienen efecto en la salida real del código. Los comentarios pueden ser de gran ayuda para explicar la intención de lo que su código está o debería estar haciendo.
-  - title: Comprender los tipos de datos en JavaScript
+  - title: Cómo Escribir Comentarios en Javascript
+    details: Los comentarios de JavaScript son anotaciones en el código fuente de un programa que el intérprete ignora y, por lo tanto, no tienen ningún efecto en la salida real del código. Los comentarios pueden ser de gran ayuda para explicar la intención de lo que es o debería hacer su código.
+  - title: Comprender Tipos de Datos en JavaScript
     details: En este tutorial, repasaremos cómo funcionan los tipos de datos en JavaScript, así como los tipos de datos importantes nativos del lenguaje.
-  - title: Cómo trabajar con cadenas en JavaScript
+  - title: Cómo Trabajar con Cadenas en JavaScript
     details: Una cadena es una secuencia de uno o más caracteres que pueden consistir en letras, números o símbolos. Las cadenas en JavaScript son tipos de datos primitivos e inmutables, lo que significa que no cambian. Como las cadenas son la forma en que mostramos y trabajamos con el texto, y el texto es nuestro principal...
-  - title: Cómo indexar, dividir y manipular cadenas en JavaScript
-    details: En este tutorial, aprenderemos la diferencia entre las primitivas de cadena y el objeto String, cómo se indexan las cadenas, cómo acceder a los caracteres de una cadena y las propiedades y métodos comunes que se usan en las cadenas.
-  - title: Cómo convertir tipos de datos en JavaScript
-    details: Este tutorial lo guiará a través de la conversión de tipos de datos primitivos de JavaScript, incluidos números, cadenas y booleanos.
-  - title: Comprender las variables, el alcance y el levantamiento en JavaScript
+  - title: Cómo Indexar, Dividir y Manipular Cadenas en JavaScript
+    details: En este tutorial, aprenderemos la diferencia entre las primitivas de cadena y el objeto String, cómo se indexan las cadenas, cómo acceder a los caracteres de una cadena y las propiedades y métodos comunes utilizados en las cadenas.
+  - title: Cómo Convertir Tipos de Datos en JavaScript
+    details: Este tutorial lo guiará a través de la conversión de los tipos de datos primitivos de JavaScript, incluidos números, cadenas y booleanos.
+  - title: Comprender Variables, Alcance y Elevación en JavaScript
     details: Este tutorial cubre qué son las variables, cómo declararlas y nombrarlas, y también analiza más de cerca la diferencia entre var, let y const. También repasa los efectos de elevación y la importancia del alcance global y local para el comportamiento de una variable.
-  - title: Cómo hacer matemáticas en JavaScript con operadores
-    details: En este tutorial de JavaScript, repasaremos los operadores aritméticos, los operadores de asignación y el orden de las operaciones que se utilizan con los tipos de datos numéricos.
-  - title: Comprender la comparación y los operadores lógicos en JavaScript
-    details: El campo de la informática tiene muchos fundamentos en la lógica matemática. Si está familiarizado con la lógica, sabe que involucra tablas de verdad, álgebra booleana y comparaciones para determinar la igualdad o la diferencia. El lenguaje de programación JavaScript utiliza operadores…
-  - title: Comprender las matrices en JavaScript
-    details: En este tutorial, aprenderemos a crear arreglos; cómo se indexan; cómo agregar, modificar, eliminar o acceder a elementos en una matriz; y cómo recorrer matrices.
-  - title: Cómo usar métodos de matriz en JavaScript; métodos mutadores
-    details: JavaScript tiene muchos métodos incorporados útiles para trabajar con arreglos. Los métodos que modifican la matriz original se conocen como métodos mutadores, y los métodos que devuelven un nuevo valor o representación se conocen como métodos de acceso. En este tutorial, nos centraremos en los métodos mutadores.
-  - title: How To Use Array Methods in JavaScript; Accessor Methods
-    details: This tutorial will go over methods that will concatenate arrays, convert arrays to strings, copy portions of an array to a new array, and find the indices of arrays.
-
+  - title: Cómo Hacer Matemáticas en JavaScript con Operadores
+    details: En este tutorial de JavaScript, repasaremos los operadores aritméticos, los operadores de asignación y el orden de las operaciones utilizadas con tipos de datos numéricos.
+  - title: Comprender los Operadores Lógicos y de Comparación en JavaScript
+    details: El campo de la informática tiene muchos fundamentos en la lógica matemática. Si está familiarizado con la lógica, sabrá que implica tablas de verdad, álgebra booleana y comparaciones para determinar la igualdad o la diferencia. El lenguaje de programación JavaScript utiliza operadores...
+  - title: Comprender Matrices en JavaScript
+    details: En este tutorial, aprenderemos cómo crear matrices; cómo están indexados; cómo agregar, modificar, eliminar o acceder a elementos en una matriz; y cómo recorrer matrices.
+  - title: Cómo Utilizar Métodos de Matriz en JavaScript; Métodos Mutadores
+    details: JavaScript tiene muchos métodos integrados útiles para trabajar con matrices. Los métodos que modifican la matriz original se conocen como métodos mutadores y los métodos que devuelven un nuevo valor o representación se conocen como métodos de acceso. En este tutorial, nos centraremos en los métodos mutadores.
+  - title: Cómo Utilizar Métodos de Matriz en Javascript; Métodos de Acceso
+    details: Este tutorial repasará métodos que concatenarán matrices, convertirán matrices en cadenas, copiarán partes de una matriz en una nueva matriz y encontrarán los índices de las matrices.
+  - title: Cómo Utilizar Métodos de Matriz en JavaScript; Métodos de Iteración
+    details: En JavaScript, el tipo de datos de matriz consta de una lista de elementos. Hay muchos métodos integrados útiles disponibles para que los desarrolladores de JavaScript trabajen con matrices. En este tutorial, usaremos métodos de iteración para recorrer matrices, realizar funciones en cada elemento de una matriz, filtrar los resultados deseados de una matriz, reducir los elementos de la matriz a un solo valor y buscar en matrices para encontrar valores o índices.
+  - title: Comprender Objetos en JavaScript
+    details: Los objetos son un aspecto integral y fundamental de la mayoría de los programas JavaScript. Por ejemplo, un objeto de cuenta de usuario puede contener datos como nombres de usuario, contraseñas y direcciones de correo electrónico. Otro caso de uso común es el carrito de compras de una plataforma de compras web que podría consistir en una serie de muchos objetos que contienen toda la información pertinente para cada artículo, como el nombre, el precio y el peso para la información de envío. Una lista de tareas pendientes es otra aplicación común que puede consistir en objetos.
+  - title: Comprender la Fecha y la Hora en JavaScript
+    details: JavaScript viene con el objeto Date integrado y métodos relacionados. Este tutorial explicará cómo formatear y usar la fecha y la hora en JavaScript.
     
-footer: MIT Licensed | Copyleft © 2022-present Ernesto Canquiz
+footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
 
