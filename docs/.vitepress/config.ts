@@ -35,7 +35,7 @@ export default defineConfig({
         { text: 'Métodos de Matriz: Acceder', link: '/how-to-use-array-methods-in-javascript-accessor-methods' },
         { text: 'Métodos de Matriz: Iterar', link: '/how-to-use-array-methods-in-javascript-iteration-methods' },           
         { text: 'Objetos', link: '/understanding-objects-in-javascript' },
-        { text: 'Fecha y la Hora', link: '/understanding-date-and-time-in-javascript' },
+        { text: 'La Fecha y la Hora', link: '/understanding-date-and-time-in-javascript' },
         { text: 'Declaraciones Condicionales', link: '/how-to-write-conditional-statements-in-javascript' },
         { text: 'Bucles For, For...Of  y For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' },
         { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
