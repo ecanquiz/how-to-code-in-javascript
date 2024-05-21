@@ -78,4 +78,8 @@ Los objetos son un aspecto integral y fundamental de la mayoría de los programa
 
 JavaScript viene con el objeto Date integrado y métodos relacionados. Este tutorial explicará cómo formatear y usar la fecha y la hora en JavaScript.
 
+## [Comprender Eventos en JavaScript](/understanding-events-in-javascript.html)
+
+Los eventos son acciones que tienen lugar en el navegador y que pueden ser iniciadas por el usuario o por el propio navegador. En este artículo de JavaScript, repasaremos los controladores de eventos, los detectores de eventos y los objetos de eventos. También repasaremos tres formas diferentes de escribir código para manejar eventos y algunos de los eventos más comunes. Al conocer los eventos, podrá crear una experiencia web más interactiva para los usuarios finales.
+
 

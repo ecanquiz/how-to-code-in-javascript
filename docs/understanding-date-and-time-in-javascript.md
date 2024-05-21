@@ -106,5 +106,149 @@ Notarás que el método de marca de tiempo tiene un número negativo; cualquier 
 
 En el método de fecha y hora, nuestros segundos y milisegundos se establecen en `0`. Si falta algún número en la creación del `Date`, el valor predeterminado será `0`. Sin embargo, el orden no se puede cambiar, así que téngalo en cuenta si decide omitir un número. También notarás que el mes de julio está representado por el `6`, no por el habitual `7`. Esto se debe a que los números de fecha y hora comienzan desde `0`, como lo hace la mayoría de los conteos en programación. Consulte la siguiente sección para obtener un cuadro más detallado.
 
-## Retrieving the Date with get
+## Recuperar la Fecha con `get`
 
+Una vez que tenemos una fecha, podemos acceder a todos los componentes de la fecha con varios métodos integrados. Los métodos devolverán cada parte de la fecha relativa a la zona horaria local. Cada uno de estos métodos comienza con `get` y devolverá el número relativo. A continuación se muestra una tabla detallada de los métodos `get` del objeto `Date`.
+
+|Fecha/Hora|Método|Rango|Ejemplo|
+|-|-|-|-|
+|Año|`getFullYear()`|YYYY|1970|
+|Mes|`getMonth()`|0-11|0 = Enero|
+|Día (del mes)|`getDate()`|1-31|1 = 1° del mes|
+|Día (de la semana)|`getDay()`|0-6|0 = Domingo|
+|Hora|`getHours()`|0-23|0 = medianoche|
+|Minuto|`getMinutes()`|0-59||
+|Second|`getSeconds()`|0-59||
+|Milisegundo|`getMilliseconds()`|0-999||
+|Marca de tiempo|`getTime()`|Milisegundos desde el tiempo de Época||
+
+
+Hagamos una nueva fecha, basada en el 31 de julio de 1980, y asignémosla a una variable.
+
+
+📃`harryPotter.js`
+```js
+// Initialize a new birthday instance
+const birthday = new Date(1980, 6, 31);
+```
+
+Ahora podemos usar todos nuestros métodos para obtener cada componente de fecha, desde año hasta milisegundo.
+
+
+📃`getDateComponents.js`
+```js
+birthday.getFullYear();      // 1980
+birthday.getMonth();         // 6
+birthday.getDate();          // 31
+birthday.getDay();           // 4
+birthday.getHours();         // 0
+birthday.getMinutes();       // 0
+birthday.getSeconds();       // 0
+birthday.getMilliseconds();  // 0
+birthday.getTime();          // 333849600000 (for GMT)
+```
+
+A veces puede ser necesario extraer sólo una parte de una fecha, y los métodos `get` integrados son la herramienta que utilizará para lograrlo.
+
+Como ejemplo de esto, podemos comparar la fecha actual con el día y mes del 3 de octubre para ver si es 3 de octubre o no.
+
+📃`oct3.js`
+```js
+// Get today's date
+const today = new Date();
+
+// Compare today with October 3rd
+if (today.getDate() === 3 && today.getMonth() === 9) {
+  console.log("It's October 3rd.");
+} else {
+  console.log("It's not October 3rd.");
+}
+```
+
+```sh
+Output
+It's not October 3rd.
+```
+
+Dado que, al momento de escribir este artículo, no es el 3 de octubre, la consola lo refleja.
+
+Los métodos `Date` integrados que comienzan con `get` nos permiten acceder a componentes de fecha que devuelven el número asociado con lo que estamos recuperando del objeto instanciado.
+
+## Modificando la Fecha con `set`
+
+Para todos los métodos `get` que aprendimos anteriormente, existe un método `set` correspondiente. Donde `get` se usa para recuperar un componente específico de una fecha, `set` se usa para modificar componentes de una fecha. A continuación se muestra un cuadro detallado de los métodos `set` del objeto `Date`.
+
+
+|Fecha/Hora|Método|Rango|Ejemplo|
+|-|-|-|-|
+|Año|`setFullYear()`|YYYY|1970|
+|Mes|`setMonth()`|0-11|0 = Enero|
+|Día (del mes)|`setDate()`|1-31|1 = 1° del mes|
+|Día (de la semana)|`setDay()`|0-6|0 = Domingo|
+|Hora|`setHours()`|0-23|0 = medianoche|
+|Minuto|`setMinutes()`|0-59||
+|Second|`setSeconds()`|0-59||
+|Milisegundo|`setMilliseconds()`|0-999||
+|Marca de tiempo|`setTime()`|Milisegundos desde el tiempo de Época||
+
+
+Podemos utilizar estos métodos `set` para modificar uno, más o todos los componentes de una fecha. Por ejemplo, podemos cambiar el año de nuestra variable `birthday` anterior para que sea `1997` en lugar de `1980`.
+
+
+📃`harryPotter.js`
+```js
+// Change year of birthday date
+birthday.setFullYear(1997);
+
+birthday;
+```
+
+
+```sh
+Output
+Thu Jul 31 1997 00:00:00 GMT+0000 (UTC)
+```
+
+Vemos en el ejemplo anterior que cuando llamamos a la variable `birthday` recibimos el año nuevo como parte del resultado.
+
+Los métodos integrados que comienzan con `set` nos permiten modificar diferentes partes de un objeto `Date`.
+
+## Métodos Fecha con UTC
+
+Los métodos `get` discutidos anteriormente recuperan los componentes de fecha según la configuración de zona horaria local del usuario. Para un mayor control sobre las fechas y horas, puede utilizar los métodos `getUTC`, que son exactamente iguales a los métodos `get`, excepto que calculan la hora basándose en el estándar [UTC (Tiempo Universal Coordinado)](https://en.wikipedia.org/wiki/Coordinated_Universal_Time). A continuación se muestra una tabla de los métodos UTC para el objeto `Date` de JavaScript.
+
+
+|Fecha/Hora|Método|Rango|Ejemplo|
+|-|-|-|-|
+|Año|`getUTCFullYear()`|YYYY|1970|
+|Mes|`getUTCMonth()`|0-11|0 = Enero|
+|Día (del mes)|`getUTCDate()`|1-31|1 = 1° del mes|
+|Día (de la semana)|`getUTCDay()`|0-6|0 = Domingo|
+|Hora|`getUTCHours()`|0-23|0 = medianoche|
+|Minuto|`getUTCMinutes()`|0-59||
+|Second|`getUTCSeconds()`|0-59||
+|Milisegundo|`getUTCMilliseconds()`|0-999||
+
+
+Para probar la diferencia entre los métodos `get` local y UTC, podemos ejecutar el siguiente código.
+
+
+📃`UTC.js`
+```js
+// Assign current time to a variable
+const now = new Date();
+
+// Print local and UTC timezones
+console.log(now.getHours());
+console.log(now.getUTCHours());
+```
+
+Al ejecutar este código se imprimirá la hora actual y la hora de la zona horaria UTC. Si actualmente se encuentra en la zona horaria UTC, los números que se obtienen al ejecutar el programa anterior serán los mismos.
+
+UTC es útil porque proporciona una referencia estándar de hora internacional y, por lo tanto, puede mantener su código consistente en todas las zonas horarias si eso es aplicable a lo que está desarrollando.
+
+## Conclusión
+
+En este tutorial, aprendimos cómo crear una instancia del objeto `Date` y usar sus métodos integrados para acceder y modificar componentes de una fecha específica. Para obtener una vista más detallada de las fechas y horas en JavaScript, puede leer la [referencia de Fecha en Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
+
+Saber cómo trabajar con fechas es esencial para muchas tareas comunes en JavaScript, ya que esto puede permitirle hacer muchas cosas, desde configurar un informe repetido hasta mostrar fechas y programaciones en la zona horaria correcta.
