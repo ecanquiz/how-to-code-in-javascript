@@ -54,6 +54,8 @@ features:
     details: Los objetos son un aspecto integral y fundamental de la mayoría de los programas JavaScript. Por ejemplo, un objeto de cuenta de usuario puede contener datos como nombres de usuario, contraseñas y direcciones de correo electrónico. Otro caso de uso común es el carrito de compras de una plataforma de compras web que podría consistir en una serie de muchos objetos que contienen toda la información pertinente para cada artículo, como el nombre, el precio y el peso para la información de envío. Una lista de tareas pendientes es otra aplicación común que puede consistir en objetos.
   - title: Comprender la Fecha y la Hora en JavaScript
     details: JavaScript viene con el objeto Date integrado y métodos relacionados. Este tutorial explicará cómo formatear y usar la fecha y la hora en JavaScript.
+  - title: Comprender Eventos en JavaScript
+    details: Los eventos son acciones que tienen lugar en el navegador y que pueden ser iniciadas por el usuario o por el propio navegador. En este artículo de JavaScript, repasaremos los controladores de eventos, los detectores de eventos y los objetos de eventos. También repasaremos tres formas diferentes de escribir código para manejar eventos y algunos de los eventos más comunes. Al conocer los eventos, podrá crear una experiencia web más interactiva para los usuarios finales.
     
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
