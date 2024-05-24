@@ -23,4 +23,194 @@ Al codificar respuestas de JavaScript que se ejecutan ante un evento, los desarr
 
 En este artículo, repasaremos los controladores de eventos, los detectores de eventos y los objetos de eventos. También repasaremos tres formas diferentes de escribir código para manejar eventos y algunos de los eventos más comunes. Al conocer los eventos, podrá crear una experiencia web más interactiva para los usuarios finales.
 
-## Event Handlers and Event Listeners
+## Manejadores de Eventos y Detector de Eventos
+
+Cuando un usuario hace clic en un botón o presiona una tecla, se activa un evento. Estos se denominan eventos de clic o eventos de pulsación de tecla, respectivamente.
+
+Un **manejador de eventos** es una función de JavaScript que se ejecuta cuando se activa un evento.
+
+Un **detector de eventos** adjunta una interfaz receptiva a un elemento, lo que permite que ese elemento en particular espere y "detecte" hasta que se active el evento determinado.
+
+Hay tres formas de asignar eventos a elementos:
+
+- Manejadores de eventos en línea
+- Propiedades del manejador de eventos
+- Detectores de eventos
+
+Repasaremos los tres métodos para asegurarnos de que esté familiarizado con cada forma en que se puede desencadenar un evento y luego discutiremos los pros y los contras de cada método.
+
+## Atributos del Manejador de Eventos en Línea
+
+Para comenzar a aprender sobre los manejadores de eventos, primero consideraremos el **manejador de eventos en línea**. Comencemos con un ejemplo muy básico que consta de un elemento `button` y un elemento `p`. Queremos que el usuario haga clic en el `button` para cambiar el contenido del texto de la `p`.
+
+Comencemos con una página HTML con un botón en el _body_. Haremos referencia a un archivo JavaScript al que agregaremos código en un momento.
+
+
+📃`events.html`
+```html
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<title>Events</title>
+</head>
+
+<body>
+
+  <!-- Add button -->
+  <button>Click me</button>
+
+  <p>Try to change me.</p>
+
+</body>
+
+<!-- Reference JavaScript file -->
+<script src="js/events.js"></script>
+
+</html>
+```
+
+Directamente en el `button`, agregaremos un atributo llamado `onclick`. El valor del atributo será una función que creamos llamada `changeText()`.
+
+
+📃`events.html`
+```html
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<title>Events</title>
+</head>
+
+<body>
+
+	<button onclick="changeText()">Click me</button>
+
+	<p>Try to change me.</p>
+
+</body>
+
+<script src="js/events.js"></script>
+
+</html>
+```
+
+Creemos nuestro archivo `events.js`, que colocamos aquí en el directorio `js/`. Dentro de él, crearemos la función `changeText()`, que modificará el `textContent` del elemento `p`.
+
+
+
+
+📃`js/events.js`
+```js
+// Function to modify the text content of the paragraph
+const changeText = () => {
+	const p = document.querySelector('p');
+
+	p.textContent = "I changed because of an inline event handler.";
+}
+```
+
+Cuando cargues `events.html` por primera vez, verás una página similar a esta:
+
+
+![events](./img/events-1.png)
+
+
+Sin embargo, cuando usted u otro usuario hacen clic en el botón, el texto de la etiqueta `p` cambiará de `Try to change me.`  a `I changed because of an inline event handler.`:
+
+
+![events](./img/events-2.png)
+
+
+
+Los manejadores de eventos en línea son una forma sencilla de comenzar a comprender los eventos, pero generalmente no deben usarse más allá de fines educativos y de prueba.
+
+
+Puede comparar manejadores de eventos en línea con estilos CSS en línea en un elemento HTML. Es mucho más práctico mantener una hoja de estilos de clases separada que crear estilos en línea en cada elemento, del mismo modo que es más factible mantener JavaScript que se maneja completamente a través de un archivo de script separado que agregar manejadores a cada elemento.
+
+## Propiedades del Manejador de Eventos
+
+El siguiente paso desde un manejador de eventos en línea es la **propiedad del manejador de eventos**. Esto funciona de manera muy similar a un manejador en línea, excepto que configuramos la propiedad de un elemento en JavaScript en lugar del atributo en HTML.
+
+La configuración será la misma aquí, excepto que ya no incluimos `onclick="changeText()"` en el marcado:
+
+
+📃`events.html`
+```html
+<body>
+
+	<button>Click me</button>
+
+	<p>I will change.</p>
+
+</body>
+```
+
+
+Nuestra función también seguirá siendo similar, excepto que ahora necesitamos acceder al elemento del `button` en JavaScript. Simplemente podemos acceder al `onclick` tal como accederíamos al `style` o `id` o cualquier otra propiedad de elemento, luego asignar la referencia de la función.
+
+
+📃`js/events.js`
+```js
+// Function to modify the text content of the paragraph
+const changeText = () => {
+	const p = document.querySelector('p');
+
+	p.textContent = "I changed because of an event handler property.";
+}
+
+// Add event handler as a property of the button element
+const button = document.querySelector('button');
+button.onclick = changeText;
+```
+
+:::info Nota
+Los manejadores de eventos no siguen la convención _camelCase_ a la que se adhiere la mayoría del código JavaScript. Observe que el código es `onclick`, no `onClick`.
+:::
+
+Cuando cargue la página por primera vez, el navegador mostrará lo siguiente:
+
+![events](./img/events-3.png)
+
+Ahora, cuando hagas clic en el botón, tendrá un efecto similar al anterior:
+
+![events](./img/events-4.png)
+
+
+Tenga en cuenta que al pasar una referencia de función a la propiedad `onclick`, no incluimos paréntesis, ya que no estamos invocando la función en ese momento, sino que solo le pasamos una referencia.
+
+
+La propiedad del manejador de eventos es un poco más fácil de mantener que el manejador en línea, pero aún sufre algunos de los mismos obstáculos. Por ejemplo, intentar establecer varias propiedades `onclick` separadas provocará que todas menos la última se sobrescriban, como se demuestra a continuación.
+
+
+📃`js/events.js`
+```js
+const p = document.querySelector('p');
+const button = document.querySelector('button');
+
+const changeText = () => {
+	p.textContent = "Will I change?";
+}
+
+const alertText = () => {
+	alert('Will I alert?');
+}
+
+// Events can be overwritten
+button.onclick = changeText;
+button.onclick = alertText;
+```
+
+En el ejemplo anterior, hacer clic en el `button` solo mostraría una alerta y no cambiaría el texto `p`, ya que el código `alert()` fue el último agregado a la propiedad.
+
+
+![events](./img/events-5.png)
+
+
+Una vez que comprendamos tanto los manejadores de eventos en línea como las propiedades del manejador de eventos, pasemos a los detectores de eventos.
+
+
+## Event Listeners
+
+
+
