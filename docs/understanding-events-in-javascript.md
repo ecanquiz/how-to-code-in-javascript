@@ -39,7 +39,7 @@ Hay tres formas de asignar eventos a elementos:
 
 Repasaremos los tres métodos para asegurarnos de que esté familiarizado con cada forma en que se puede desencadenar un evento y luego discutiremos los pros y los contras de cada método.
 
-## Atributos del Manejador de Eventos en Línea
+### Atributos del Manejador de Eventos en Línea
 
 Para comenzar a aprender sobre los manejadores de eventos, primero consideraremos el **manejador de eventos en línea**. Comencemos con un ejemplo muy básico que consta de un elemento `button` y un elemento `p`. Queremos que el usuario haga clic en el `button` para cambiar el contenido del texto de la `p`.
 
@@ -128,7 +128,7 @@ Los manejadores de eventos en línea son una forma sencilla de comenzar a compre
 
 Puede comparar manejadores de eventos en línea con estilos CSS en línea en un elemento HTML. Es mucho más práctico mantener una hoja de estilos de clases separada que crear estilos en línea en cada elemento, del mismo modo que es más factible mantener JavaScript que se maneja completamente a través de un archivo de script separado que agregar manejadores a cada elemento.
 
-## Propiedades del Manejador de Eventos
+### Propiedades del Manejador de Eventos
 
 El siguiente paso desde un manejador de eventos en línea es la **propiedad del manejador de eventos**. Esto funciona de manera muy similar a un manejador en línea, excepto que configuramos la propiedad de un elemento en JavaScript en lugar del atributo en HTML.
 
@@ -210,7 +210,100 @@ En el ejemplo anterior, hacer clic en el `button` solo mostraría una alerta y n
 Una vez que comprendamos tanto los manejadores de eventos en línea como las propiedades del manejador de eventos, pasemos a los detectores de eventos.
 
 
-## Event Listeners
+### Detectores de Eventos
+
+La última incorporación a los manejadores de eventos de JavaScript son los detectores de eventos. Un **detector de eventos** busca un evento en un elemento. En lugar de asignar el evento directamente a una propiedad del elemento, usaremos el método `addEventListener()` para escuchar el evento.
+
+`addEventListener()` toma dos parámetros obligatorios: el evento que se va a escuchar y la función de devolución de llamada del detector.
+
+
+El HTML de nuestro detector de eventos será el mismo que el del ejemplo anterior.
+
+
+📃`events.html`
+```html
+...
+	<button>Click me</button>
+
+	<p>I will change.</p>
+...
+```
+
+Seguiremos usando la misma función `changeText()` que antes. Adjuntaremos el método `addEventListener()` al botón.
 
 
 
+📃`js/events.js`
+```js
+// Function to modify the text content of the paragraph
+const changeText = () => {
+	const p = document.querySelector('p');
+
+	p.textContent = "I changed because of an event listener.";
+}
+
+// Listen for click event
+const button = document.querySelector('button');
+button.addEventListener('click', changeText);
+```
+
+Tenga en cuenta que con los dos primeros métodos, un evento de clic se denominaba `onclick`, pero con los detectores de eventos se denomina `click`. Cada detector de eventos elimina la palabra `on`. En la siguiente sección, veremos más ejemplos de otros tipos de eventos.
+
+Cuando recargas la página con el código JavaScript anterior, recibirás el siguiente resultado:
+
+
+![events](./img/events-6.png)
+
+
+A primera vista, los detectores de eventos parecen muy similares a las propiedades del manejador de eventos, pero tienen algunas ventajas. Podemos configurar varios detectores de eventos en el mismo elemento, como se demuestra en el siguiente ejemplo.
+
+
+📃`js/events.js`
+```js
+const p = document.querySelector('p');
+const button = document.querySelector('button');
+
+const changeText = () => {
+	p.textContent = "Will I change?";
+}
+
+const alertText = () => {
+	alert('Will I alert?');
+}
+
+// Multiple listeners can be added to the same event and element
+button.addEventListener('click', changeText);
+button.addEventListener('click', alertText);
+```
+
+
+En este ejemplo, ambos eventos se activarán y proporcionarán al usuario una alerta y un texto modificado una vez que haga clic para salir de la alerta.
+
+
+A menudo, se utilizarán funciones anónimas en lugar de una referencia de función en un detector de eventos. Las funciones anónimas son funciones que no tienen nombre.
+
+
+```js
+// An anonymous function on an event listener
+button.addEventListener('click', () => {
+	p.textContent = "Will I change?";
+});
+```
+
+
+También es posible utilizar la función `removeEventListener()` para eliminar uno o todos los eventos de un elemento.
+
+
+```js
+// Remove alert function from button element
+button.removeEventListener('click', alertText);
+```
+
+
+Además, puede utilizar `addEventListener()` en el `document` y el objeto `window`.
+
+
+Los detectores de eventos son actualmente la forma más común y preferida de manejar eventos en JavaScript.
+
+
+## Common Events
