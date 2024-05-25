@@ -306,4 +306,84 @@ Además, puede utilizar `addEventListener()` en el `document` y el objeto `windo
 Los detectores de eventos son actualmente la forma más común y preferida de manejar eventos en JavaScript.
 
 
-## Common Events
+## Eventos Comunes
+
+Hemos aprendido sobre los manejadores de eventos en línea, las propiedades del manejador de eventos y los detectores de eventos mediante el evento click, pero hay muchos más eventos en JavaScript. A continuación repasaremos algunos de los eventos más comunes.
+
+### Eventos del Mouse
+
+Los eventos de mouse se encuentran entre los eventos más utilizados. Se refieren a eventos que implican hacer clic en botones del mouse o pasar el cursor y mover el puntero del mouse. Estos eventos también corresponden a la acción equivalente en un dispositivo táctil.
+
+|Evento|Descripción|
+|-|-|
+|`click`|Se activa cuando se presiona y suelta el mouse sobre un elemento|
+|`dblclick`|Se activa cuando se hace clic dos veces en un elemento|
+|`mouseenter`|Se activa cuando un puntero ingresa a un elemento|
+|`mouseleave`|Se activa cuando un puntero abandona un elemento|
+|`mousemove`|Se activa cada vez que un puntero se mueve dentro de un elemento|
+
+Un `click` es un evento compuesto que se compone de eventos combinados de `mousedown` y `mouseup`, que se activan cuando se presiona o levanta el botón del mouse, respectivamente.
+
+El uso de `mouseenter` y `mouseleave` en conjunto recrea un efecto de desplazamiento que dura mientras el puntero del mouse esté sobre el elemento.
+
+### Eventos de Formulario
+
+Los eventos de formulario son acciones que pertenecen a formularios, como la selección o anulación de selección de elementos `input` y el envío de formularios.
+
+|Evento|Descripción|
+|-|-|
+|`submit`|Se activa cuando se envía un formulario|
+|`focus`|Se activa cuando un elemento (como una entrada) recibe el foco|
+|`blur`|Se dispara cuando un elemento pierde el foco|
+
+El _enfoque_ se logra cuando se selecciona un elemento, por ejemplo, mediante un clic del mouse o navegando hasta él mediante la tecla `TAB`.
+
+JavaScript se utiliza a menudo para enviar formularios y enviar los valores a un lenguaje de backend. La ventaja de usar JavaScript para enviar formularios es que no requiere recargar la página para enviar el formulario, y JavaScript se puede usar para validar los campos de entrada requeridos.
+
+### Eventos de Teclado
+
+Los eventos de teclado se utilizan para manejar acciones del teclado, como presionar una tecla, levantar una tecla y mantener presionada una tecla.
+
+|Evento|Descripción|
+|-|-|
+|`keydown`|Se dispara una vez cuando se presiona una tecla|
+|`keyup`|Se dispara una vez cuando se suelta una tecla|
+|`keypress`|Se dispara continuamente mientras se presiona una tecla|
+
+Aunque parecen similares, los eventos `keydown` y `keypress` no acceden exactamente a las mismas teclas. Si bien `keydown` reconocerá cada tecla que se presione, `keypress` omitirá las teclas que no producen un carácter, como `SHIFT`, `ALT` o `DELETE`.
+
+Los eventos de teclado tienen propiedades específicas para acceder a teclas individuales.
+
+Si un parámetro, conocido como objeto `event`, se pasa al detector de eventos, podemos acceder a más información sobre la acción que tuvo lugar. Dos propiedades que pertenecen a los objetos del teclado incluyen `key` y `code`.
+
+Por ejemplo, si el usuario presiona la letra `a` en su teclado, aparecerán las siguientes propiedades relacionadas con esa tecla:
+
+
+|Propiedad|Descripción|Ejemplo|
+|-|-|-|
+|`key`|Representa el nombre del caracter|a|
+|`code`|Representa la tecla física que se presiona|KeyA|
+
+Para mostrar cómo recopilar esa información a través de la consola JavaScript, podemos escribir las siguientes líneas de código.
+
+```js
+// Test the key and code properties
+document.addEventListener('keydown', event => {
+	console.log('key: ' + event.key);
+	console.log('code: ' + event.code);
+});
+```
+
+Una vez que presionamos `ENTER` en la Consola, ahora podemos presionar una tecla en el teclado; en este ejemplo, presionaremos `a`.
+
+```sh
+Output
+key: a
+code: KeyA
+```
+
+La propiedad `key` es el nombre del carácter — que puede cambiar, por ejemplo, presionar `a` con `SHIFT` daría como resultado un `key`de `A`. La propiedad `code` representa la tecla física en el teclado.
+
+Para obtener más información, puede ver la [lista completa de eventos en Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Events).
+
+## Event Objects
