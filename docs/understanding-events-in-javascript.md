@@ -386,4 +386,115 @@ La propiedad `key` es el nombre del carácter — que puede cambiar, por ejemplo
 
 Para obtener más información, puede ver la [lista completa de eventos en Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Events).
 
-## Event Objects
+## Objetos de Evento
+
+El objeto `Event` consta de propiedades y métodos a los que todos los eventos pueden acceder. Además del objeto `Event` genérico, cada tipo de evento tiene sus propias extensiones, como `KeyboardEvent` y `MouseEvent`.
+
+El objeto `Event` se pasa a través de una función detectora como parámetro. Suele escribirse como `event` o `e`. Podemos acceder a la propiedad `code` del evento `keydown` para replicar los controles del teclado de un juego de PC.
+
+Para probarlo, cree un archivo HTML básico con etiquetas `<p>` y cárguelo en un navegador.
+
+
+📃`event-test-p.html`
+```html
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Events</title>
+</head>
+<body>
+
+  <p></p>
+
+</body>
+</html>
+```
+
+Luego, escriba el siguiente código JavaScript en la [Consola de Desarrolladores](./how-to-use-the-js-dev-console.html) de su navegador.
+
+
+```js
+// Pass an event through to a listener
+document.addEventListener('keydown', event => {
+	var element = document.querySelector('p');
+
+	// Set variables for keydown codes
+	var a = 'KeyA';
+	var s = 'KeyS';
+	var d = 'KeyD';
+	var w = 'KeyW';
+
+	// Set a direction for each code
+	switch (event.code) {
+		case a:
+			element.textContent = 'Left';
+			break;
+		case s:
+			element.textContent = 'Down';
+			break;
+		case d:
+			element.textContent = 'Right';
+			break;
+		case w:
+			element.textContent = 'Up';
+			break;
+	}
+});
+```
+
+Cuando presiona una de las teclas — `a`, `s`, `d` o `w` —, verá un resultado similar al siguiente:
+
+
+![events](./img/events-7.png)
+
+
+A partir de aquí, puede continuar desarrollando cómo responderá el navegador y si el usuario presiona esas teclas, y puede crear un sitio web más dinámico.
+
+A continuación, repasaremos una de las propiedades de eventos más utilizadas: la propiedad `target`. En el siguiente ejemplo, tenemos tres elementos `div` dentro de una `section`.
+
+
+📃`event-test-div.html`
+```html
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Events</title>
+</head>
+<body>
+
+  <section>
+  	<div id="one">One</div>
+  	<div id="two">Two</div>
+  	<div id="three">Three</div>
+  </section>
+
+</body>
+</html>
+```
+
+Usando `event.target` con JavaScript en la Consola de Desarrolladores de nuestro navegador, podemos colocar un detector de eventos en el elemento `section` exterior y obtener el elemento anidado más profundamente.
+
+
+```js
+const section = document.querySelector('section');
+
+// Print the selected target
+section.addEventListener('click', event => {
+	console.log(event.target);
+});
+```
+
+Al hacer clic en cualquiera de esos elementos, se devolverá la salida del elemento específico relevante a la consola usando `event.target`. Esto es extremadamente útil, ya que le permite colocar solo un detector de eventos que puede usarse para acceder a muchos elementos anidados.
+
+
+![events](./img/events-8.png)
+
+
+Con el objeto `Event`, podemos configurar respuestas relacionadas con todos los eventos, incluidos eventos genéricos y extensiones más específicas.
+
+
+## Conclusión
+
+Los eventos son acciones que tienen lugar en un sitio web, como hacer clic, desplazarse, enviar un formulario, cargar una página o presionar una tecla en el teclado. JavaScript se vuelve verdaderamente interactivo y dinámico cuando podemos hacer que los sitios web respondan a las acciones que ha realizado el usuario.
+
+En este tutorial, aprendimos qué son los eventos, ejemplos de eventos comunes, la diferencia entre manejadores y detectores de eventos y cómo acceder al objeto `Event`. Con este conocimiento, podrá comenzar a crear aplicaciones y sitios web dinámicos.

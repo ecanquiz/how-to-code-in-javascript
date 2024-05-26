@@ -56,6 +56,8 @@ features:
     details: JavaScript viene con el objeto Date integrado y métodos relacionados. Este tutorial explicará cómo formatear y usar la fecha y la hora en JavaScript.
   - title: Comprender Eventos en JavaScript
     details: Los eventos son acciones que tienen lugar en el navegador y que pueden ser iniciadas por el usuario o por el propio navegador. En este artículo de JavaScript, repasaremos los controladores de eventos, los detectores de eventos y los objetos de eventos. También repasaremos tres formas diferentes de escribir código para manejar eventos y algunos de los eventos más comunes. Al conocer los eventos, podrá crear una experiencia web más interactiva para los usuarios finales.
+  - title: Cómo Trabajar con JSON en JavaScript
+    details: Este tutorial proporciona una introducción al trabajo con JSON en JavaScript. Algunos casos de uso generales de JSON incluyen; almacenar datos, generar datos a partir de la entrada del usuario, transferir datos del servidor al cliente y viceversa, configurar y verificar datos.
     
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
