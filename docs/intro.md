@@ -6,11 +6,11 @@ La fuente original (en ingles) de este tutorial se encuentra [aquí](https://www
 JavaScript es un lenguaje de secuencias de comandos dinámico, basado en objetos y de alto nivel, popular como herramienta para hacer que las páginas web sean interactivas.
 
 
-## [Cómo Utilizar la Consola para Desarrolladores de JavaScript](./how-to-use-the-js-dev-console)
+## [Cómo Utilizar la Consola para Desarrolladores de JavaScript](./how-to-use-the-js-dev-console.html)
 
 Este tutorial explicará cómo trabajar con la Consola en JavaScript dentro del contexto de un navegador y brindará una descripción general de otras herramientas de desarrollo integradas que puede utilizar como parte de su proceso de desarrollo web.
 
-## [Cómo Agregar JavaScript a HTML](./how-to-add-javascript-to-html)
+## [Cómo Agregar JavaScript a HTML](./how-to-add-javascript-to-html.html)
 
 Este tutorial explicará cómo incorporar JavaScript en sus archivos web, tanto en línea en un documento HTML como en un archivo separado.
 
@@ -82,8 +82,10 @@ JavaScript viene con el objeto Date integrado y métodos relacionados. Este tuto
 
 Los eventos son acciones que tienen lugar en el navegador y que pueden ser iniciadas por el usuario o por el propio navegador. En este artículo de JavaScript, repasaremos los controladores de eventos, los detectores de eventos y los objetos de eventos. También repasaremos tres formas diferentes de escribir código para manejar eventos y algunos de los eventos más comunes. Al conocer los eventos, podrá crear una experiencia web más interactiva para los usuarios finales.
 
-## [Cómo Trabajar con JSON en JavaScript](./how-to-work-with-json-in-javascript)
+## [Cómo Trabajar con JSON en JavaScript](./how-to-work-with-json-in-javascript.html)
 
 Este tutorial proporciona una introducción al trabajo con JSON en JavaScript. Algunos casos de uso generales de JSON incluyen: almacenar datos, generar datos a partir de la entrada del usuario, transferir datos del servidor al cliente y viceversa, configurar y verificar datos.
 
+## [Cómo Escribir Declaraciones Condicionales en JavaScript](./how-to-write-conditional-statements-in-javascript.html)
 
+En programación, habrá muchas ocasiones en las que querrás ejecutar diferentes bloques de código dependiendo de la entrada del usuario u otros factores. Como ejemplo, es posible que desee enviar un formulario si cada campo se completa correctamente, pero es posible que desee evitar que ese formulario...
