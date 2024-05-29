@@ -58,7 +58,8 @@ features:
     details: Los eventos son acciones que tienen lugar en el navegador y que pueden ser iniciadas por el usuario o por el propio navegador. En este artículo de JavaScript, repasaremos los controladores de eventos, los detectores de eventos y los objetos de eventos. También repasaremos tres formas diferentes de escribir código para manejar eventos y algunos de los eventos más comunes. Al conocer los eventos, podrá crear una experiencia web más interactiva para los usuarios finales.
   - title: Cómo Trabajar con JSON en JavaScript
     details: Este tutorial proporciona una introducción al trabajo con JSON en JavaScript. Algunos casos de uso generales de JSON incluyen; almacenar datos, generar datos a partir de la entrada del usuario, transferir datos del servidor al cliente y viceversa, configurar y verificar datos.
-    
+  - title: Cómo Escribir Declaraciones Condicionales en JavaScript
+    details: En programación, habrá muchas ocasiones en las que querrás ejecutar diferentes bloques de código dependiendo de la entrada del usuario u otros factores. Como ejemplo, es posible que desee enviar un formulario si cada campo se completa correctamente, pero es posible que desee evitar que ese formulario...
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
 
