@@ -78,7 +78,50 @@ if (phone <= balance) {
 
 Este ejemplo no tendrá resultados, ya que `phone <= balance` se evalúa como `false`. El bloque de código simplemente será ignorado y el programa pasará a la siguiente línea.
 
-## Else Statement
+## Declaración `Else` 
+
+Con las declaraciones `if`, solo ejecutamos código cuando una declaración se evalúa como `true`, pero a menudo querremos que suceda algo más si la condición falla.
+
+Por ejemplo, es posible que queramos mostrar un mensaje que le indique al usuario qué campos se completaron correctamente si un formulario no se envió correctamente. En este caso, utilizaríamos la instrucción `else`, que es el código que se ejecutará si la condición original no se cumple.
+
+La declaración `else` se escribe después de la declaración `if` y no tiene ninguna condición entre paréntesis. Aquí está la sintaxis de una declaración básica `if...else`.
 
 
-## De lo contrario, si la declaración
+```js
+if (condition) {
+	// code that will execute if condition is true
+} else {
+	// code that will execute if condition is false
+}
+```
+
+Usando el mismo ejemplo anterior, podemos agregar un mensaje para mostrar si los fondos en la cuenta son demasiado bajos.
+
+📃`shop.js`
+```js
+// Set balance and price of item
+const balance = 500;
+const phone = 600;
+
+// Check if there is enough funds to purchase item
+if (phone <= balance) {
+	console.log("You have enough money to purchase the item!");
+} else {
+	console.log("You do not have enough money in your account to purchase this item.");
+}
+```
+
+
+```sh
+Output
+You do not have enough money in your account to purchase this item.
+```
+
+Dado que la condición `if` no tuvo éxito, el código pasa a lo que hay en la declaración `else`.
+
+Esto puede resultar muy útil para mostrar advertencias o permitirle al usuario saber qué acciones tomar para seguir adelante. Por lo general, se requerirá una acción tanto en caso de éxito como de fracaso, por lo que `if...else` es más común que una declaración `if` en solitario.
+
+
+
+
+## Declaración `Else if`
