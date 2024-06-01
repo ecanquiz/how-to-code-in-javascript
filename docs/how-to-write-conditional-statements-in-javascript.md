@@ -125,3 +125,69 @@ Esto puede resultar muy útil para mostrar advertencias o permitirle al usuario 
 
 
 ## Declaración `Else if`
+
+Con `if` y `else` podemos ejecutar bloques de código dependiendo de si una condición es `true` o `false`. Sin embargo, a veces podemos tener múltiples condiciones y resultados posibles y necesitar más de dos opciones. Una forma de hacerlo es con la declaración `else if`, que puede evaluar más de dos resultados posibles.
+
+A continuación se muestra un ejemplo básico de un bloque de código que contiene una declaración `if`, varias declaraciones `else if` y una declaración `else` en caso de que ninguna de las condiciones se evalúe como `true`.
+
+
+```js
+if (condition a) {
+	// code that will execute if condition a is true
+} else if (condition b) {
+	// code that will execute if condition b is true
+} else if (condition c) {
+	// code that will execute if condition c is true
+} else {
+	// code that will execute if all above conditions are false
+}
+```
+
+
+JavaScript intentará ejecutar todas las declaraciones en orden y, si ninguna de ellas tiene éxito, utilizará de forma predeterminada el bloque `else`.
+
+Puede tener tantas declaraciones como sea necesario. En el caso de muchas otras declaraciones `if`, podría preferirse la [declaración `switch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) para facilitar la lectura.
+
+Como ejemplo de varias declaraciones `else if`, podemos crear una aplicación de calificación que generará una calificación con letras basada en una puntuación de 100.
+
+Los requisitos de esta aplicación son los siguientes:
+
+- La calificación de 90 y superior es una A
+- La calificación de 80 a 89 es una B.
+- La calificación de 70 a 79 es una C.
+- La calificación de 60 a 69 es una D
+- Una calificación de 59 o menos es una F
+
+A continuación, crearemos un conjunto simple de declaraciones `if`, `else` y `else if`, y las probaremos con una calificación determinada.
+
+
+📃`grades.js`
+```js
+// Set the current grade of the student
+let grade = 87;
+
+// Check if grade is an A, B, C, D, or F
+if (grade >= 90) {
+  console.log("A");
+} else if (grade >= 80) {
+  console.log("B");
+} else if (grade >= 70) {
+  console.log("C");
+} else if (grade >= 60) {
+  console.log("D");
+} else {
+  console.log("F");
+}
+```
+
+```sh
+Output
+B
+```
+
+En nuestro ejemplo, primero comprobamos la puntuación más alta, que será mayor o igual a `90`. Después de eso, las declaraciones `else if` comprobarán si hay más de `80`, `70` y `60` hasta llegar al valor predeterminado `els`e de una calificación reprobatoria. .
+
+Aunque nuestro valor de calificación de `87` también es válido técnicamente para `C`, `D` y `F`, las afirmaciones se detendrán en el primero que tenga éxito. Por lo tanto, obtenemos una salida de `B`, que es la primera coincidencia.
+
+## Ternary Operator
+
