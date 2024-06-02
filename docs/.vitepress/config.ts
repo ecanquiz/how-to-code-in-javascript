@@ -40,6 +40,7 @@ export default defineConfig({
         { text: 'Una Introducción a JSON', link: '/an-introduction-to-json' },
         { text: 'Trabajar con JSON', link: '/how-to-work-with-json-in-javascript' },        
         { text: 'Declaraciones Condicionales', link: '/how-to-write-conditional-statements-in-javascript' },
+        { text: 'Declaración Switch', link: '/how-to-use-the-switch-statement-in-javascript' },
         { text: 'Bucles For, For...Of  y For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' },
         { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
       ]

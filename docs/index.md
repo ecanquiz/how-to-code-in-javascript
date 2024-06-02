@@ -60,6 +60,8 @@ features:
     details: Este tutorial proporciona una introducción al trabajo con JSON en JavaScript. Algunos casos de uso generales de JSON incluyen; almacenar datos, generar datos a partir de la entrada del usuario, transferir datos del servidor al cliente y viceversa, configurar y verificar datos.
   - title: Cómo Escribir Declaraciones Condicionales en JavaScript
     details: En programación, habrá muchas ocasiones en las que querrás ejecutar diferentes bloques de código dependiendo de la entrada del usuario u otros factores. Como ejemplo, es posible que desee enviar un formulario si cada campo se completa correctamente, pero es posible que desee evitar que ese formulario...
+  - title: Cómo Utilizar la Declaración Switch en JavaScript
+    details: Las declaraciones condicionales se encuentran entre las características más útiles y comunes de todos los lenguajes de programación. "Cómo escribir declaraciones condicionales en JavaScript" describe cómo utilizar...
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
 
