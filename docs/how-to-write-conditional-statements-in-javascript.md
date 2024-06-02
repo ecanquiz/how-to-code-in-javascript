@@ -189,5 +189,49 @@ En nuestro ejemplo, primero comprobamos la puntuación más alta, que será mayo
 
 Aunque nuestro valor de calificación de `87` también es válido técnicamente para `C`, `D` y `F`, las afirmaciones se detendrán en el primero que tenga éxito. Por lo tanto, obtenemos una salida de `B`, que es la primera coincidencia.
 
-## Ternary Operator
+## Operador Ternario
+
+El **operador ternario**, también conocido como operador condicional, se utiliza como abreviatura de una declaración `if...else`.
+
+Un operador ternario se escribe con la sintaxis de un signo de interrogación (`?`) seguido de dos puntos (`:`), como se muestra a continuación.
+
+
+```js
+(condition) ? expression on true : expression on false
+```
+
+En la declaración anterior, la condición se escribe primero, seguida de `?`. La primera expresión se ejecutará en caso de `true` y la segunda expresión se ejecutará en caso de `false`. Es muy similar a una declaración `if...else`, con una sintaxis más compacta.
+
+En este ejemplo, crearemos un programa que verifique si un usuario tiene `21` años o más. Si es así, imprimirá `"You may enter."` en la consola. Si no es así, imprimirá `"You may not enter."` en la consola.
+
+
+📃`age.js`
+```js
+// Set age of user
+let age = 20;
+
+// Place result of ternary operation in a variable
+const oldEnough = (age >= 21) ? "You may enter." : "You may not enter.";
+
+// Print output
+oldEnough;
+```
+
+
+```sh
+Output
+'You may not enter.'
+```
+
+
+Dado que la `age` del usuario era menor de `21` años, el mensaje fallido se envió a la consola. El equivalente `if...else` a esto sería `"You may enter."` en la declaración `if` y `"You may not enter."` en la declaración `else`.
+
+
+## Conclusión
+
+Las declaraciones condicionales nos proporcionan control de flujo para determinar el resultado de nuestros programas. Son uno de los pilares fundamentales de la programación y se pueden encontrar en prácticamente todos los lenguajes de programación.
+
+En este artículo, aprendimos cómo usar las palabras clave `if`, `else` y `else if`, y cubrimos el anidamiento de declaraciones y el uso del operador ternario.
+
+
 

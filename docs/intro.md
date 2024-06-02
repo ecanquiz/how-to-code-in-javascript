@@ -89,3 +89,7 @@ Este tutorial proporciona una introducción al trabajo con JSON en JavaScript. A
 ## [Cómo Escribir Declaraciones Condicionales en JavaScript](./how-to-write-conditional-statements-in-javascript.html)
 
 En programación, habrá muchas ocasiones en las que querrás ejecutar diferentes bloques de código dependiendo de la entrada del usuario u otros factores. Como ejemplo, es posible que desee enviar un formulario si cada campo se completa correctamente, pero es posible que desee evitar que ese formulario...
+
+## [Cómo Utilizar la Declaración Switch en JavaScript](./how-to-use-the-switch-statement-in-javascript.html)
+
+Las declaraciones condicionales se encuentran entre las características más útiles y comunes de todos los lenguajes de programación. "Cómo escribir declaraciones condicionales en JavaScript" describe cómo utilizar...
