@@ -152,11 +152,11 @@ Como ejemplo de varias declaraciones `else if`, podemos crear una aplicación de
 
 Los requisitos de esta aplicación son los siguientes:
 
-- La calificación de 90 y superior es una A
-- La calificación de 80 a 89 es una B.
-- La calificación de 70 a 79 es una C.
-- La calificación de 60 a 69 es una D
-- Una calificación de 59 o menos es una F
+- Calificación de 90 y superior es una A
+- Calificación de 80 a 89 es una B
+- Calificación de 70 a 79 es una C
+- Calificación de 60 a 69 es una D
+- Calificación de 59 o menos es una F
 
 A continuación, crearemos un conjunto simple de declaraciones `if`, `else` y `else if`, y las probaremos con una calificación determinada.
 

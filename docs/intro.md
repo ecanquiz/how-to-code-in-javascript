@@ -93,3 +93,8 @@ En programación, habrá muchas ocasiones en las que querrás ejecutar diferente
 ## [Cómo Utilizar la Declaración Switch en JavaScript](./how-to-use-the-switch-statement-in-javascript.html)
 
 Las declaraciones condicionales se encuentran entre las características más útiles y comunes de todos los lenguajes de programación. "Cómo escribir declaraciones condicionales en JavaScript" describe cómo utilizar...
+
+## [Usando Bucles While y Bucles Do...While en JavaScript](./using-while-loops-and-do-while-loops-in-javascript.html)
+
+La automatización es la técnica de hacer que un sistema funcione automáticamente; En programación, utilizamos bucles para automatizar tareas repetitivas. Los bucles son una de las características más útiles de los lenguajes de programación, y en este artículo aprenderemos sobre while y do… while…
+
