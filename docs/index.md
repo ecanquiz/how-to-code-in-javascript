@@ -64,6 +64,9 @@ features:
     details: Las declaraciones condicionales se encuentran entre las características más útiles y comunes de todos los lenguajes de programación. "Cómo escribir declaraciones condicionales en JavaScript" describe cómo utilizar...
   - title: Usando Bucles While y Bucles Do...While en JavaScript
     details: La automatización es la técnica de hacer que un sistema funcione automáticamente; En programación, utilizamos bucles para automatizar tareas repetitivas. Los bucles son una de las características más útiles de los lenguajes de programación, y en este artículo aprenderemos sobre while y do... while...
+  - title: Bucles For, Bucles For...Of  y Bucles For...In en JavaScript
+    details: Los bucles se utilizan en programación para automatizar tareas repetitivas. En este tutorial, aprenderemos sobre la declaración for, incluidas las declaraciones for…of y for…in, que son elementos esenciales del lenguaje de programación JavaScript.
+    
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
 
