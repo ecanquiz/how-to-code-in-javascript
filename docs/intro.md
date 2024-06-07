@@ -98,3 +98,6 @@ Las declaraciones condicionales se encuentran entre las características más ú
 
 La automatización es la técnica de hacer que un sistema funcione automáticamente; En programación, utilizamos bucles para automatizar tareas repetitivas. Los bucles son una de las características más útiles de los lenguajes de programación, y en este artículo aprenderemos sobre while y do… while…
 
+## [Bucles For, Bucles For...Of  y Bucles For...In en JavaScript](./for-loops-for-of-loops-and-for-in-loops-in-javascript.html)
+
+Los bucles se utilizan en programación para automatizar tareas repetitivas. En este tutorial, aprenderemos sobre la declaración for, incluidas las declaraciones for…of y for…in, que son elementos esenciales del lenguaje de programación JavaScript.
