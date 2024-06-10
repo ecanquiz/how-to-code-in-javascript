@@ -106,5 +106,178 @@ En nuestro ejemplo, incrementamos la variable en uno, con `i++`. Esto es lo mism
 
 A diferencia de las expresiones de inicialización y condición, la expresión final no termina con punto y coma.
 
-### Putting it Together
+### Poniéndolo Junto
 
+Ahora que hemos revisado nuestras tres expresiones contenidas en el bucle `for`, podemos volver a echar un vistazo al bucle completo.
+
+
+```js
+// Initialize a for statement with 5 iterations
+for (let i = 0; i < 4; i++) {
+	console.log(i);
+}
+```
+
+Primero, declaramos `i` y lo configuramos en `0`. Luego, establecemos una condición para que el bucle se ejecute hasta que `i` sea menor que `4`. Finalmente, incrementamos `i` en un 1 en cada iteración. Nuestro bloque de código imprime el valor de `i` en la consola, por lo que nuestro resultado es `0`, `1`, `2` y `3` como salida.
+
+
+### Expresiones Opcionales
+
+
+Las tres expresiones del bucle `for` son opcionales. Por ejemplo, podemos escribir la misma declaración `for` sin la expresión de inicialización inicializando la variable fuera del bucle.
+
+
+```js
+// Declare variable outside the loop
+let i = 0;
+
+// Initialize the loop
+for (; i < 4; i++) {
+	console.log(i);
+}
+```
+
+```sh
+Output
+0
+1
+2
+3
+```
+
+En este caso, el primer `;` es necesario para indicar si la declaración se refiere a inicialización, condición o expresión final, incluso cuando se omite.
+
+A continuación, también podemos eliminar la condición del bucle. Usaremos una declaración `if` combinada con `break` para indicarle al bucle que deje de ejecutarse una vez que `i` sea mayor que `3`, que es lo contrario de la condición `true`.
+
+
+```js
+// Declare variable outside the loop
+let i = 0;
+
+// Omit initialization and condition
+for (; ; i++) {
+	if (i > 3) {
+		break;
+	}
+	console.log(i);
+}
+```
+
+
+```sh
+Output
+0
+1
+2
+3
+```
+
+:::warning Advertencia
+La declaración `break` _debe_ incluirse si se omite la condición; de lo contrario, el bucle se ejecutará indefinidamente como un [bucle infinito](./using-while-loops-and-do-while-loops-in-javascript.html#bucles-infinitos) y potencialmente bloqueará el navegador.
+:::
+
+Por último, la expresión final se puede eliminar colocándola al final del bucle. Aún se deben incluir ambos puntos y coma o el bucle no funcionará.
+
+
+
+```js
+// Declare variable outside the loop
+let i = 0;
+
+// Omit all statements
+for (; ;) {
+	if (i > 3) {
+		break;
+	}
+	console.log(i);
+	i++;
+}
+```
+
+
+```sh
+Output
+0
+1
+2
+3
+```
+
+
+Como podemos ver en los ejemplos anteriores, incluir las tres declaraciones generalmente produce el código más conciso y legible. Sin embargo, es útil saber que las declaraciones se pueden omitir en caso de que surja este problema en el futuro.
+
+
+### Modificando una Matriz
+
+Podemos usar bucles `for` para modificar una [matriz](./understanding-arrays-in-javascript.html).
+
+En el siguiente ejemplo, crearemos una matriz vacía y la rellenaremos con la variable del contador de bucle.
+
+
+📃`modifyArray.json`
+```js
+// Initialize empty array
+let arrayExample = [];
+
+// Initialize loop to run 3 times
+for (let i = 0; i < 3; i++) {
+	// Update array with variable value
+	arrayExample.push(i);
+	console.log(arrayExample);
+}
+```
+
+
+La ejecución del código JavaScript anterior dará como resultado el siguiente resultado.
+
+
+
+```sh
+Output
+[ 0 ]
+[ 0, 1 ]
+[ 0, 1, 2 ]
+```
+
+
+Establecemos un bucle que se ejecuta hasta que `i < 3` ya no sea `true`, y le decimos a la consola que imprima la matriz `arrayExample` en la consola al final de cada iteración. Con este método podemos ver cómo la matriz se actualiza con los nuevos valores.
+
+
+
+### Longitud de una Matriz
+
+
+A veces, es posible que queramos que un bucle se ejecute varias veces sin estar seguros de cuál será el número de iteraciones. En lugar de declarar un número estático, como hicimos en ejemplos anteriores, podemos utilizar la [propiedad `length`](./understanding-arrays-in-javascript.html#matrices-de-indexacion) de una matriz para que el bucle se ejecute tantas veces como elementos haya en la matriz.
+
+
+📃`loopThroughArray.json`
+```js
+// Declare array with 3 items
+let fish = [ "flounder", "salmon", "pike" ];
+
+// Initalize for loop to run for the total length of an array
+for (let i = 0; i < fish.length; i++) {
+	// Print each item to the console
+	console.log(fish[i]);
+}
+```
+
+Recibiremos el siguiente resultado.
+
+
+```sh
+Output
+flounder
+salmon
+pike
+```
+
+
+
+En este ejemplo, incrementamos a través de cada índice de la matriz con `fish[i]` (por ejemplo, el bucle se incrementará a través de `fish[0]`, `fish[1]`, etc.). Esto hace que el índice se actualice dinámicamente con cada iteración.
+
+
+Más detalles sobre la declaración `for` están disponibles en [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for).
+
+
+## Bucle For...In
