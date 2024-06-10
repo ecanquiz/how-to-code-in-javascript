@@ -71,4 +71,40 @@ Sin el bucle, el bloque de código es repetitivo y consta de más líneas. Si ne
 Repasemos cada expresión del bucle para comprenderlas completamente.
 
 
-### Initialization
+### Inicialización
+
+Nuestra primera expresión es la **inicialización**. Esto es lo que parece.
+
+
+```js
+let i = 0;
+```
+
+Estamos declarando una variable llamada `i` con la palabra clave `let` (también se puede usar la palabra clave `var`) y le damos un valor de `0`. Si bien la variable puede tener cualquier nombre, `i` se usa con mayor frecuencia. La variable `i` representa iteración, es consistente y mantiene el código compacto.
+
+### Condición
+
+Tal como vimos en los bucles `while` y `do... while`, los bucles `for` generalmente contienen una **condición**. Aquí está nuestra declaración de condición.
+
+
+```js
+i < 4;
+```
+
+Ya establecimos que nuestra variable de iteración, `i`, representa `0` para empezar. Ahora decimos que la condición es `true` siempre que `i` sea menor que `4` en este ejemplo.
+
+### Expresión Final
+
+La **expresión final** es una declaración que se ejecuta al final de cada bucle. Se utiliza con mayor frecuencia para incrementar o disminuir un valor, pero puede usarse para cualquier propósito.
+
+
+```js
+i++
+```
+
+En nuestro ejemplo, incrementamos la variable en uno, con `i++`. Esto es lo mismo que ejecutar `i = i + 1`.
+
+A diferencia de las expresiones de inicialización y condición, la expresión final no termina con punto y coma.
+
+### Putting it Together
+
