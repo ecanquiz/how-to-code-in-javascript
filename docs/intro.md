@@ -105,3 +105,8 @@ Los bucles se utilizan en programación para automatizar tareas repetitivas. En 
 ## [Cómo Definir Funciones en JavaScript](./how-to-define-functions-in-javascript.html)
 
 Una función es un bloque de código que realiza una acción o devuelve un valor. Las funciones son códigos personalizados definidos por programadores que son reutilizables y, por lo tanto, pueden hacer que sus programas sean más modulares y eficientes. En este tutorial, aprenderemos varias formas de definir un…
+
+## [Comprensión de Prototipos y Herencia en JavaScript](./understanding-prototypes-and-inheritance-in-javascript.html)
+
+JavaScript es un lenguaje basado en prototipos, lo que significa que las propiedades y métodos de los objetos se pueden compartir a través de objetos generalizados que tienen la capacidad de clonarse y ampliarse. Esto se conoce como herencia prototípica y difiere de la herencia de clases. Entre los populares…
+
