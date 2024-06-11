@@ -29,7 +29,7 @@ En la sintaxis anterior hay tres expresiones dentro de la declaración `for`: la
 
 Usemos un ejemplo básico para demostrar lo que hace cada una de estas declaraciones.
 
-📃`forExample.json`
+📃`forExample.js`
 ```js
 // Initialize a for statement with 5 iterations
 for (let i = 0; i < 4; i++) {
@@ -54,7 +54,7 @@ En el ejemplo anterior, inicializamos el bucle `for` con `let i = 0`, que comien
 Sin usar un bucle, podríamos haber logrado el mismo resultado usando el siguiente código.
 
 
-📃`noLoop.json`
+📃`noLoop.js`
 ```js
 // Set initial variable to 0
 let i = 0;
@@ -214,7 +214,7 @@ Podemos usar bucles `for` para modificar una [matriz](./understanding-arrays-in-
 En el siguiente ejemplo, crearemos una matriz vacía y la rellenaremos con la variable del contador de bucle.
 
 
-📃`modifyArray.json`
+📃`modifyArray.js`
 ```js
 // Initialize empty array
 let arrayExample = [];
@@ -250,7 +250,7 @@ Establecemos un bucle que se ejecuta hasta que `i < 3` ya no sea `true`, y le de
 A veces, es posible que queramos que un bucle se ejecute varias veces sin estar seguros de cuál será el número de iteraciones. En lugar de declarar un número estático, como hicimos en ejemplos anteriores, podemos utilizar la [propiedad `length`](./understanding-arrays-in-javascript.html#matrices-de-indexacion) de una matriz para que el bucle se ejecute tantas veces como elementos haya en la matriz.
 
 
-📃`loopThroughArray.json`
+📃`loopThroughArray.js`
 ```js
 // Declare array with 3 items
 let fish = [ "flounder", "salmon", "pike" ];
@@ -281,3 +281,166 @@ Más detalles sobre la declaración `for` están disponibles en [Mozilla Develop
 
 
 ## Bucle For...In
+
+La declaración `for...in` itera sobre las propiedades de un objeto. Para demostrarlo, haremos un objeto `shark` simple con algunos pares de _nombre:valor_.
+
+📃`shark.js`
+```js
+const shark = {
+  species: "great white",
+  color: "white",
+  numberOfTeeth: Infinity
+}
+```
+
+
+Usando el bucle `for...in`, podemos acceder fácilmente a cada uno de los nombres de propiedad.
+
+
+```js
+// Print property names of object
+for (attribute in shark) {
+	console.log(attribute);
+}
+```
+
+```sh
+Output
+species
+color
+numberOfTeeth
+```
+
+También podemos acceder a los valores de cada propiedad utilizando el nombre de la propiedad como valor de índice del objeto.
+
+
+```js
+// Print property values of object
+for (attribute in shark) {
+	console.log(shark[attribute]);
+}
+```
+
+
+```sh
+Output
+great white
+white
+Infinity
+```
+
+Juntándolos, podemos acceder a todos los nombres y valores de un objeto.
+
+
+
+```js
+// Print names and values of object properties
+for (attribute in shark) {
+	console.log(`${attribute}`.toUpperCase() + `: ${shark[attribute]}`);
+}
+```
+
+
+```sh
+Output
+SPECIES: great white
+COLOR: white
+NUMBEROFTEETH: Infinity
+```
+
+
+Usamos el método `toUpperCase()` para modificar el nombre de la propiedad y luego el valor de la propiedad. `for...in` es una forma extremadamente útil de iterar a través de las propiedades de un objeto.
+
+Revise [`for...in` en Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in) para obtener información más detallada.
+
+
+## Bucle For...Of
+
+
+La declaración `for...in` es útil para iterar sobre propiedades de objetos, pero para iterar sobre objetos iterables como [matrices](./understanding-data-types.html#arrays) y [cadenas](./understanding-data-types.html#strings), podemos usar la declaración `for...of`. La declaración `for...of` es una característica más nueva a partir de [ECMAScript 6](http://es6-features.org/). ECMAScript (o ES) es una especificación de lenguaje de secuencias de comandos creada para estandarizar JavaScript.
+
+En este ejemplo de un bucle `for...of`, crearemos una matriz e imprimiremos cada elemento de la matriz en la consola.
+
+
+📃`sharks.js`
+```js
+// Initialize array of shark species
+let sharks = [ "great white", "tiger", "hammerhead" ];
+
+// Print out each type of shark
+for (let shark of sharks) {
+	console.log(shark);
+}
+```
+
+
+Recibiremos lo siguiente como resultado de la declaración `for...of`.
+
+
+```sh
+Output
+great white
+tiger
+hammerhead
+```
+
+
+También es posible imprimir el índice asociado con los elementos del índice utilizando el método `entries()`.
+
+
+📃`sharks.js`
+```js
+...
+// Loop through both index and element
+for (let [index, shark] of sharks.entries()) {
+	console.log(index, shark);
+}
+```
+
+```sh
+Output
+0 'great white'
+1 'tiger'
+2 'hammerhead'
+```
+
+
+Una cadena se puede iterar de la misma manera que una matriz.
+
+
+📃`sharkString.js`
+```js
+// Assign string to a variable
+let sharkString = "sharks";
+
+// Iterate through each index in the string
+for (let shark of sharkString) {
+	console.log(shark);
+}
+```
+
+
+```sh
+Output
+s
+h
+a
+r
+k
+s
+```
+
+En este caso, recorrimos cada carácter de la cadena e imprimimos en orden secuencial.
+
+
+Para obtener una descripción más detallada de las diferencias entre [for...in] y [for...of], lea acerca de [bucles `for...of` en Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of).
+
+
+
+## Conclusión
+
+En este tutorial, aprendimos cómo construir bucles `for` en JavaScript, que consisten en declaraciones `for`, `for...of` y `for...in`.
+
+Los bucles son una parte integral de la programación en JavaScript y se utilizan para automatizar tareas repetitivas y hacer que el código sea más conciso y eficiente.
+
+

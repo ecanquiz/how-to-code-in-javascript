@@ -42,7 +42,8 @@ export default defineConfig({
         { text: 'Declaraciones Condicionales', link: '/how-to-write-conditional-statements-in-javascript' },
         { text: 'Declaración Switch', link: '/how-to-use-the-switch-statement-in-javascript' },
         { text: 'Bucles While y Do...While', link: '/using-while-loops-and-do-while-loops-in-javascript' },
-        { text: 'Bucles For, For...Of y For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' },        
+        { text: 'Bucles For, For...Of y For...In', link: '/for-loops-for-of-loops-and-for-in-loops-in-javascript' },
+        { text: 'Definir Funciones', link: '/how-to-define-functions-in-javascript' },      
         { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
       ]
     }],
