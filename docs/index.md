@@ -66,6 +66,8 @@ features:
     details: La automatización es la técnica de hacer que un sistema funcione automáticamente; En programación, utilizamos bucles para automatizar tareas repetitivas. Los bucles son una de las características más útiles de los lenguajes de programación, y en este artículo aprenderemos sobre while y do... while...
   - title: Bucles For, Bucles For...Of  y Bucles For...In en JavaScript
     details: Los bucles se utilizan en programación para automatizar tareas repetitivas. En este tutorial, aprenderemos sobre la declaración for, incluidas las declaraciones for…of y for…in, que son elementos esenciales del lenguaje de programación JavaScript.
+  - title: Cómo Definir Funciones en JavaScript
+    details: Una función es un bloque de código que realiza una acción o devuelve un valor. Las funciones son códigos personalizados definidos por programadores que son reutilizables y, por lo tanto, pueden hacer que sus programas sean más modulares y eficientes. En este tutorial, aprenderemos varias formas de definir un…
     
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
