@@ -71,7 +71,9 @@ features:
   - title: Comprensión de Prototipos y Herencia en JavaScript
     details: JavaScript es un lenguaje basado en prototipos, lo que significa que las propiedades y métodos de los objetos se pueden compartir a través de objetos generalizados que tienen la capacidad de clonarse y ampliarse. Esto se conoce como herencia prototípica y difiere de la herencia de clases. Entre los populares…
   - title: Comprender las Clases en JavaScript
-    details: Comprender la herencia prototípica es fundamental para ser un desarrollador de JavaScript eficaz. Estar familiarizado con las clases es extremadamente útil, ya que las bibliotecas de JavaScript populares como React hacen uso frecuente de la sintaxis de clases.
+    details: Comprender la herencia prototípica es fundamental para ser un desarrollador de JavaScript eficaz. Estar familiarizado con las clases es extremadamente útil, ya que las bibliotecas de JavaScript populares como React hacen uso frecuente de la sintaxis de clases.   
+  - title: Cómo Usar Métodos de Objeto en JavaScript
+    details: Los objetos en JavaScript son colecciones de pares clave/valor. Los valores pueden consistir en propiedades y métodos, y pueden contener todos los demás tipos de datos de JavaScript, como cadenas,...
     
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
