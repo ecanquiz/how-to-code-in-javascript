@@ -192,6 +192,224 @@ function Hero(name, level) {
 }
 ```
 
+Hemos creado una función constructora llamada `Hero` con dos parámetros: `name` y `level`. Dado que cada personaje tendrá un nombre y un nivel, tiene sentido que cada personaje nuevo tenga estas propiedades. La palabra clave `this` se referirá a la nueva instancia que se crea, por lo que establecer `this.name` en el parámetro `name` garantiza que el nuevo objeto tendrá una propiedad `name` establecida.
+
+Ahora podemos crear una nueva instancia con `new`.
 
 
 
+```js
+let hero1 = new Hero('Bjorn', 1);
+```
+
+Si mostramos por la consola el resultado de `hero1`, veremos que se ha creado un nuevo objeto con las nuevas propiedades configuradas como se esperaba.
+
+
+```sh
+Output
+Hero {name: "Bjorn", level: 1}
+```
+
+Ahora, si obtenemos el `[[Prototype]]` de `hero1`, podremos ver el `constructor` como `Hero()`. (Recuerde, esto tiene la misma entrada que `hero1.__proto__`, pero es el método adecuado a utilizar).
+
+
+```js
+Object.getPrototypeOf(hero1);
+```
+
+```sh
+Output
+constructor: ƒ Hero(name, level)
+```
+
+Puede notar que solo hemos definido propiedades y no métodos en el constructor. Es una práctica común en JavaScript definir métodos en el prototipo para aumentar la eficiencia y la legibilidad del código.
+
+
+Podemos agregar un método a `Hero` usando `prototype`. Crearemos un método `greet()`.
+
+📃`characterSelect.js`
+```js
+...
+// Add greet method to the Hero prototype
+Hero.prototype.greet = function () {
+  return `${this.name} says hello.`;
+}
+```
+
+Dado que `greet()` está en el `prototype` de `Hero` y `hero1` es una instancia de `Hero`, el método está disponible para `hero1`.
+
+
+
+```js
+hero1.greet();
+```
+
+```sh
+Output
+"Bjorn says hello."
+```
+
+Si inspeccionas el `[[Prototype]]` de `Hero`, verás `greet()` como una opción disponible ahora.
+
+
+Esto es bueno, pero ahora queremos crear clases de personajes para que las utilicen los héroes. No tendría sentido poner todas las habilidades de cada clase en el constructor `Hero`, porque diferentes clases tendrán diferentes habilidades. Queremos crear nuevas funciones constructoras, pero también queremos que estén conectadas al `Hero` original.
+
+Podemos usar el método [`call()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) para copiar propiedades de un constructor a otro constructor. Creemos un constructor _Warrior_ y _Healer_.
+
+
+
+📃`characterSelect.js`
+```js
+...
+// Initialize Warrior constructor
+function Warrior(name, level, weapon) {
+  // Chain constructor with call
+  Hero.call(this, name, level);
+
+  // Add a new property
+  this.weapon = weapon;
+}
+
+// Initialize Healer constructor
+function Healer(name, level, spell) {
+  Hero.call(this, name, level);
+
+  this.spell = spell;
+}
+```
+
+Ambos nuevos constructores ahora tienen las propiedades de `Hero` y algunas más únicas. Agregaremos el método `attack()` a `Warrior` y el método `heal()` a `Healer`.
+
+
+📃`characterSelect.js`
+```js
+...
+Warrior.prototype.attack = function () {
+  return `${this.name} attacks with the ${this.weapon}.`;
+}
+
+Healer.prototype.heal = function () {
+  return `${this.name} casts ${this.spell}.`;
+}
+```
+
+En este punto, crearemos nuestros personajes con las dos nuevas clases de personajes disponibles.
+
+
+📃`characterSelect.js`
+```js
+const hero1 = new Warrior('Bjorn', 1, 'axe');
+const hero2 = new Healer('Kanin', 1, 'cure');
+```
+
+`hero1` ahora es reconocido como un `Warrior` con las nuevas propiedades.
+
+
+```sh
+Output
+Warrior {name: "Bjorn", level: 1, weapon: "axe"}
+```
+
+Podemos utilizar los nuevos métodos que establecimos en el prototipo de `Warrior`.
+
+
+```js
+hero1.attack();
+```
+
+```sh
+Console
+"Bjorn attacks with the axe."
+```
+
+Pero, ¿qué sucede si intentamos utilizar métodos más abajo en la cadena del prototipo?
+
+
+```js
+hero1.greet();
+```
+
+```sh
+Output
+Uncaught TypeError: hero1.greet is not a function
+```
+
+Las propiedades y métodos del prototipo no se vinculan automáticamente cuando usa `call()` para encadenar constructores. Usaremos `Object.setPropertyOf()` para vincular las propiedades en el constructor `Hero` con los constructores `Warrior` y `Healer`, asegurándonos de colocarlo antes de cualquier método adicional.
+
+
+📃`characterSelect.js`
+```js
+...
+Object.setPrototypeOf(Warrior.prototype, Hero.prototype);
+Object.setPrototypeOf(Healer.prototype, Hero.prototype);
+
+// All other prototype methods added below
+...
+```
+
+
+Ahora podemos utilizar con éxito métodos prototipo de `Hero` en una instancia de `Warrior` o `Healer`.
+
+
+```js
+hero1.greet();
+```
+
+```sh
+Output
+"Bjorn says hello."
+```
+
+Aquí está el código completo de nuestra página de creación de personajes.
+
+
+📃`characterSelect.js`
+```js
+// Initialize constructor functions
+function Hero(name, level) {
+  this.name = name;
+  this.level = level;
+}
+
+function Warrior(name, level, weapon) {
+  Hero.call(this, name, level);
+
+  this.weapon = weapon;
+}
+
+function Healer(name, level, spell) {
+  Hero.call(this, name, level);
+
+  this.spell = spell;
+}
+
+// Link prototypes and add prototype methods
+Object.setPrototypeOf(Warrior.prototype, Hero.prototype);
+Object.setPrototypeOf(Healer.prototype, Hero.prototype);
+
+Hero.prototype.greet = function () {
+  return `${this.name} says hello.`;
+}
+
+Warrior.prototype.attack = function () {
+  return `${this.name} attacks with the ${this.weapon}.`;
+}
+
+Healer.prototype.heal = function () {
+  return `${this.name} casts ${this.spell}.`;
+}
+
+// Initialize individual character instances
+const hero1 = new Warrior('Bjorn', 1, 'axe');
+const hero2 = new Healer('Kanin', 1, 'cure');
+```
+
+
+Con este código creamos nuestro constructor `Hero` con las propiedades base, creamos dos constructores de personajes llamados `Warrior` y `Healer` a partir del constructor original, agregamos métodos a los prototipos y creamos instancias de personajes individuales.
+
+
+## Conclusión
+
+JavaScript es un lenguaje basado en prototipos y funciona de manera diferente al paradigma tradicional basado en clases que utilizan muchos otros lenguajes orientados a objetos.
+
+En este tutorial, aprendimos cómo funcionan los prototipos en JavaScript y cómo vincular propiedades y métodos de objetos a través de la propiedad oculta `[[Prototype]]` que comparten todos los objetos. También aprendimos cómo crear funciones de constructor personalizadas y cómo funciona la herencia de prototipos para transmitir valores de propiedades y métodos.

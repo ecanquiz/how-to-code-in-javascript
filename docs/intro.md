@@ -110,3 +110,8 @@ Una función es un bloque de código que realiza una acción o devuelve un valor
 
 JavaScript es un lenguaje basado en prototipos, lo que significa que las propiedades y métodos de los objetos se pueden compartir a través de objetos generalizados que tienen la capacidad de clonarse y ampliarse. Esto se conoce como herencia prototípica y difiere de la herencia de clases. Entre los populares…
 
+## [Comprender las Clases en JavaScript](./understanding-classes-in-javascript.html)
+
+Comprender la herencia prototípica es fundamental para ser un desarrollador de JavaScript eficaz. Estar familiarizado con las clases es extremadamente útil, ya que las bibliotecas de JavaScript populares como React hacen uso frecuente de la sintaxis de clases.
+
+
