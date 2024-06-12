@@ -114,4 +114,6 @@ JavaScript es un lenguaje basado en prototipos, lo que significa que las propied
 
 Comprender la herencia prototípica es fundamental para ser un desarrollador de JavaScript eficaz. Estar familiarizado con las clases es extremadamente útil, ya que las bibliotecas de JavaScript populares como React hacen uso frecuente de la sintaxis de clases.
 
+## [Cómo Usar Métodos de Objeto en JavaScript](./how-to-use-object-methods-in-javascript)
 
+Los objetos en JavaScript son colecciones de pares clave/valor. Los valores pueden consistir en propiedades y métodos, y pueden contener todos los demás tipos de datos de JavaScript, como cadenas,...

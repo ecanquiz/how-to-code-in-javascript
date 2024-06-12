@@ -174,7 +174,7 @@ Estos prototipos se pueden encadenar y cada objeto adicional heredará todo a lo
 
 ## Funciones Constructoras
 
-Las funciones constructoras son funciones que se utilizan para construir nuevos objetos. El [operador `new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) se utiliza para crear nuevas instancias basadas en una función constructora. Hemos visto algunos constructores de JavaScript integrados, como `new Array()` y `new Date()`, pero también podemos crear nuestras propias plantillas personalizadas a partir de las cuales construir nuevos objetos.
+Las **funciones constructoras** son funciones que se utilizan para construir nuevos objetos. El [operador `new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) se utiliza para crear nuevas instancias basadas en una función constructora. Hemos visto algunos constructores de JavaScript integrados, como `new Array()` y `new Date()`, pero también podemos crear nuestras propias plantillas personalizadas a partir de las cuales construir nuevos objetos.
 
 Como ejemplo, digamos que estamos creando un juego de rol muy simple basado en texto. Un usuario puede seleccionar un personaje y luego elegir qué clase de personaje tendrá, como guerrero, sanador, ladrón, etc.
 

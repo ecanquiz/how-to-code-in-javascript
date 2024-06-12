@@ -46,6 +46,7 @@ export default defineConfig({
         { text: 'Definir Funciones', link: '/how-to-define-functions-in-javascript' },
         { text: 'Prototipos y Herencia', link: '/understanding-prototypes-and-inheritance-in-javascript' },
         { text: 'Clases', link: '/understanding-classes-in-javascript' },
+        { text: 'Métodos de Objeto', link: '/how-to-use-object-methods-in-javascript' },
         { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
       ]
     }],
