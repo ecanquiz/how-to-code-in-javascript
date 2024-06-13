@@ -74,6 +74,8 @@ features:
     details: Comprender la herencia prototípica es fundamental para ser un desarrollador de JavaScript eficaz. Estar familiarizado con las clases es extremadamente útil, ya que las bibliotecas de JavaScript populares como React hacen uso frecuente de la sintaxis de clases.   
   - title: Cómo Usar Métodos de Objeto en JavaScript
     details: Los objetos en JavaScript son colecciones de pares clave/valor. Los valores pueden consistir en propiedades y métodos, y pueden contener todos los demás tipos de datos de JavaScript, como cadenas,...
+  - title: Comprender This, Bind, Call y Apply en JavaScript
+    details: La palabra clave this es un concepto muy importante en JavaScript y también particularmente confuso tanto para los nuevos desarrolladores como para aquellos que tienen experiencia en otros lenguajes de programación. En JavaScript, this es una referencia a un objeto. En este artículo, aprenderá a qué se refiere this según el contexto y cómo puede usar los métodos bind, call y apply para determinar explícitamente el valor de this.
     
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---
