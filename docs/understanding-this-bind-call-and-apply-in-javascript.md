@@ -20,9 +20,9 @@ Hay cuatro contextos principales en los que se puede inferir implícitamente el 
 - el contexto global
 - como método dentro de un objeto
 - como constructor de una función o clase
-- como controlador de eventos DOM
+- como manejador de eventos DOM
 
-## Global
+### Global
 
 En el contexto global, `this` se refiere al [objeto global](https://developer.mozilla.org/en-US/docs/Glossary/Global_object). Cuando estás trabajando en un navegador, el contexto global sería `window`. Cuando trabajas en Node.js, el contexto global es `global`.
 
@@ -91,6 +91,330 @@ Generalmente, es más seguro utilizar el modo estricto para reducir la probabili
 >Para obtener más información sobre el modo estricto y los cambios que realiza con respecto a errores y seguridad, lea la documentación del [Modo Estricto](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode) en MDN.
 
 
-### An Object Method
+### Un Método de Objeto
 
+Un [método](./understanding-objects-in-javascript.html#propiedades-y-metodos) es una función de un objeto o una tarea que un objeto puede realizar. Un método usa `this` para referirse a las propiedades del objeto.
+
+
+```js
+const america = {
+  name: 'The United States of America',
+  yearFounded: 1776,
+
+  describe() {
+    console.log(`${this.name} was founded in ${this.yearFounded}.`)
+  },
+}
+
+america.describe()
+```
+
+
+```sh
+Output
+"The United States of America was founded in 1776."
+```
+
+En este ejemplo, `this` es lo mismo que `america`.
+
+En un objeto anidado, `this` se refiere al alcance del objeto actual del método. En el siguiente ejemplo, `this.symbol` dentro del objeto `details` hace referencia a `details.symbol`.
+
+
+```js
+const america = {
+  name: 'The United States of America',
+  yearFounded: 1776,
+  details: {
+    symbol: 'eagle',
+    currency: 'USD',
+    printDetails() {
+      console.log(`The symbol is the ${this.symbol} and the currency is ${this.currency}.`)
+    },
+  },
+}
+
+america.details.printDetails()
+```
+
+
+```sh
+Output
+"The symbol is the eagle and the currency is USD."
+```
+
+
+Otra forma de pensarlo es que `this` se refiere al objeto en el lado izquierdo del punto cuando se llama a un método.
+
+
+### Un Constructor de Funciones
+
+Cuando usa la palabra clave [`new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new), crea una instancia de una función o clase constructora. Los constructores de funciones eran la forma estándar de inicializar un objeto definido por el usuario antes de que se introdujera la sintaxis `class` en la actualización de ECMAScript 2015 a JavaScript. En [Comprender las Clases en JavaScript](./understanding-classes-in-javascript.html), aprenderá cómo crear un constructor de funciones y un constructor de clases equivalente.
+
+
+```js
+function Country(name, yearFounded) {
+  this.name = name
+  this.yearFounded = yearFounded
+
+  this.describe = function() {
+    console.log(`${this.name} was founded in ${this.yearFounded}.`)
+  }
+}
+
+const america = new Country('The United States of America', 1776)
+
+america.describe()
+```
+
+
+```sh
+Output
+"The United States of America was founded in 1776."
+```
+
+En este contexto, `this` ahora está vinculado a la instancia de `Country`, que está contenida en la constante `america`.
+
+
+### Un Constructor de Clase
+
+Un constructor de una clase actúa igual que un constructor de una función. Lea más sobre las similitudes y diferencias entre los constructores de funciones y las clases de ES6 en [Comprender las Clases en JavaScript](./understanding-classes-in-javascript.html).
+
+
+```js
+class Country {
+  constructor(name, yearFounded) {
+    this.name = name
+    this.yearFounded = yearFounded
+  }
+
+  describe() {
+    console.log(`${this.name} was founded in ${this.yearFounded}.`)
+  }
+}
+
+const america = new Country('The United States of America', 1776)
+
+america.describe()
+```
+
+`this` en el método `describe` se refiere a la instancia de `Country`, que es `america`.
+
+
+```sh
+Output
+"The United States of America was founded in 1776."
+```
+
+### Un Manejador de Eventos DOM
+
+En el navegador, hay un contexto especial `this` para los manejadores de eventos. En un manejador de eventos llamado por `addEventListener`, `this` hará referencia a `event.currentTarget`. La mayoría de las veces, los desarrolladores simplemente usarán `event.target` o `event.currentTarget` según sea necesario para acceder a elementos en el DOM, pero dado que la referencia `this` cambia en este contexto, es importante saberlo.
+
+En el siguiente ejemplo, crearemos un botón, le agregaremos texto y lo agregaremos al [DOM](https://ecanquiz.github.io/understanding-the-dom/). Cuando registramos el valor de `this` dentro del manejador de eventos, imprimirá el objetivo.
+
+
+```js
+const button = document.createElement('button')
+button.textContent = 'Click me'
+document.body.append(button)
+
+button.addEventListener('click', function(event) {
+  console.log(this)
+})
+```
+
+```sh
+Output
+<button>Click me</button>
+```
+
+Una vez que pegue esto en su navegador, verá un botón adjunto a la página que dice "Click me". Si hace clic en el botón, verá aparecer `<button>Click me</button>` en su consola, ya que al hacer clic en el botón se registra el elemento, que es el botón en sí. Por lo tanto, como puede ver, `this` se refiere al elemento objetivo, que es el elemento al que agregamos un detector de eventos.
+
+
+## Contexto Explícito
+
+En todos los ejemplos anteriores, el valor de `this` estuvo determinado por su contexto: ya sea global, en un objeto, en una función o clase construida, o en un manejador de eventos DOM. Sin embargo, al utilizar `call`, `apply` o `bind`, puede determinar explícitamente a qué debe referirse `this`.
+
+
+Es difícil definir exactamente cuándo usar `call`, `apply` o `bind`, ya que dependerá del contexto de su programa. `bind` puede ser particularmente útil cuando desea utilizar eventos para acceder a las propiedades de una clase dentro de otra clase. Por ejemplo, si tuviera que escribir un juego simple, podría separar la interfaz de usuario y las E/S en una clase, y la lógica y el estado del juego en otra. Dado que la lógica del juego necesitaría acceder a la entrada, como presionar una tecla y hacer clic, querrás hacer `bind` (vincular) en los eventos para acceder al valor `this` de la clase de lógica del juego.
+
+Lo importante es saber determinar a qué objeto se refiere `this`, lo cual puedes hacer de manera implícita con lo aprendido en las secciones anteriores, o explícitamente con los tres métodos que aprenderás a continuación.
+
+
+### Call y Apply
+
+
+`call` y `apply` son muy similares — invocan una función con un contexto `this` específico, y argumentos opcionales. La única diferencia entre `call` y `apply` es que `call` requiere que los argumentos se pasen uno por uno, y `apply` toma los argumentos como una matriz.
+
+En este ejemplo, crearemos un objeto y crearemos una función que haga referencia a `this` pero que no tenga contexto `this`.
+
+
+
+```js
+const book = {
+  title: 'Brave New World',
+  author: 'Aldous Huxley',
+}
+
+function summary() {
+  console.log(`${this.title} was written by ${this.author}.`)
+}
+
+summary()
+```
+
+
+```sh
+Output
+"undefined was written by undefined"
+```
+
+
+Dado que `summary` y `book` no tienen conexión, invocar `summary` por sí solo solo imprimirá `undefined`, ya que busca esas propiedades en el objeto global.
+
+
+:::info Nota
+Intentar esto en modo estricto daría como resultado `Uncaught TypeError: Cannot read property 'title' of undefined`, ya que `this` en sí mismo seía `undefined`.
+:::
+
+Sin embargo, puede usar `call` y `apply` para invocar el contexto `this` de `book` en la función.
+
+
+```js
+summary.call(book)
+// or:
+summary.apply(book)
+```
+
+
+```sh
+Output
+"Brave New World was written by Aldous Huxley."
+```
+
+
+Ahora existe una conexión entre `book` y `summary` cuando se aplican estos métodos. Confirmemos exactamente qué es `this`.
+
+
+```js
+function whatIsThis() {
+  console.log(this)
+}
+
+whatIsThis.call(book)
+// or:
+whatIsThis.apply(book)
+```
+
+```sh
+Output
+{title: "Brave New World", author: "Aldous Huxley"}
+```
+
+
+En este caso, `this` en realidad se convierte en el objeto pasado como argumento.
+
+Así es como `call` y `apply` son lo mismo, pero hay una pequeña diferencia. Además de poder pasar el contexto `this` como primer argumento, también puede pasar argumentos adicionales.
+
+
+
+```js
+function longerSummary(genre, year) {
+  console.log(
+    `${this.title} was written by ${this.author}. It is a ${genre} novel written in ${year}.`
+  )
+}
+```
+
+
+Con `call`, cada valor adicional que desea pasar se envía como un argumento adicional.
+
+
+
+```js
+longerSummary.call(book, 'dystopian', 1932)
+```
+
+
+```sh
+Output
+"Brave New World was written by Aldous Huxley. It is a dystopian novel written in 1932."
+```
+
+
+Si intentas enviar exactamente los mismos argumentos con `apply`, esto es lo que sucede:
+
+
+```js
+longerSummary.apply(book, 'dystopian', 1932)
+```
+
+
+```sh
+Output
+Uncaught TypeError: CreateListFromArrayLike called on non-object at <anonymous>:1:15
+```
+
+
+En cambio, para `apply`, debes pasar todos los argumentos en una matriz.
+
+
+```js
+longerSummary.apply(book, ['dystopian', 1932])
+```
+
+```sh
+Output
+"Brave New World was written by Aldous Huxley. It is a dystopian novel written in 1932."
+```
+
+La diferencia entre pasar los argumentos individualmente o en una matriz es sutil, pero es importante tenerla en cuenta. Podría ser más simple y conveniente usar `apply`, ya que no requeriría cambiar la llamada a la función si cambiaran algunos detalles de los parámetros.
+
+
+
+### Bind
+
+
+Tanto `call` como `apply` son métodos de uso único; si llama al método con el contexto `this`, lo tendrá, pero la función original permanecerá sin cambios.
+
+A veces, es posible que necesites usar un método una y otra vez con el contexto `this` de otro objeto, y en ese caso podrías usar el método `bind` para crear una función completamente nueva con un `this` vinculado explícitamente.
+
+
+
+```js
+const braveNewWorldSummary = summary.bind(book)
+
+braveNewWorldSummary()
+```
+
+
+```sh
+Output
+"Brave New World was written by Aldous Huxley"
+```
+
+
+En este ejemplo, cada vez que llame a `braveNewWorldSummary`, siempre devolverá el valor original `this` vinculado a él. Intentar vincular un nuevo contexto `this` fallará, por lo que siempre puedes confiar en que una función vinculada devolverá el valor `this` que esperas.
+
+
+
+```js
+const braveNewWorldSummary = summary.bind(book)
+
+braveNewWorldSummary() // Brave New World was written by Aldous Huxley.
+
+const book2 = {
+  title: '1984',
+  author: 'George Orwell',
+}
+
+braveNewWorldSummary.bind(book2)
+
+braveNewWorldSummary() // Brave New World was written by Aldous Huxley.
+```
+
+
+Aunque este ejemplo intenta vincular `braveNewWorldSummary` una vez más, conserva el contexto original `this` de la primera vez que se vinculó.
+
+
+## Arrow Functions
 
