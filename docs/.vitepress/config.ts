@@ -48,6 +48,7 @@ export default defineConfig({
         { text: 'Clases', link: '/understanding-classes-in-javascript' },
         { text: 'Métodos de Objeto', link: '/how-to-use-object-methods-in-javascript' },
         { text: 'This, Bind, Call y Apply', link: '/understanding-this-bind-call-and-apply-in-javascript' },
+        { text: 'Map y Set  de Objetos', link: '/understanding-map-and-set-objects-in-javascript' },
         { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
       ]
     }],

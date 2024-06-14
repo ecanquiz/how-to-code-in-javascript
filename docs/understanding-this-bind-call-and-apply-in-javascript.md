@@ -416,5 +416,56 @@ braveNewWorldSummary() // Brave New World was written by Aldous Huxley.
 Aunque este ejemplo intenta vincular `braveNewWorldSummary` una vez más, conserva el contexto original `this` de la primera vez que se vinculó.
 
 
-## Arrow Functions
+## Funciones de Flecha
 
+
+Las [funciones de flecha](./how-to-define-functions-in-javascript.html#funciones-de-flecha) no tienen su propia vinculación `this`. En cambio, pasan al siguiente nivel de ejecución.
+
+
+```js
+const whoAmI = {
+  name: 'Leslie Knope',
+  regularFunction: function() {
+    console.log(this.name)
+  },
+  arrowFunction: () => {
+    console.log(this.name)
+  },
+}
+
+whoAmI.regularFunction() // "Leslie Knope"
+whoAmI.arrowFunction() // undefined
+```
+
+
+Puede resultar útil utilizar la función de flecha en los casos en los que realmente desee que `this` se refiera al contexto externo. Por ejemplo, si tuviera un detector de eventos dentro de una clase, probablemente querrá que `this` haga referencia a algún valor de la clase.
+
+En este ejemplo, creará y agregará un botón al DOM como antes, pero la clase tendrá un detector de eventos que cambiará el valor del texto del botón cuando se haga clic.
+
+
+
+```js
+const button = document.createElement('button')
+button.textContent = 'Click me'
+document.body.append(button)
+
+class Display {
+  constructor() {
+    this.buttonText = 'New text'
+
+    button.addEventListener('click', event => {
+      event.target.textContent = this.buttonText
+    })
+  }
+}
+
+new Display()
+```
+
+
+Si hace clic en el botón, el contenido del texto cambiará al valor de `buttonText`. Si no hubiera usado una función de flecha aquí, `this` sería igual a `event.currentTarget` y no podría usarlo para acceder a un valor dentro de la clase sin vincularlo explícitamente. Esta táctica se usa a menudo en métodos de clase en marcos como React.
+
+
+## Conclusión
+
+En este artículo, aprendió sobre `this` en JavaScript y los diferentes valores que puede tener según el enlace implícito en tiempo de ejecución y el enlace explícito mediante `bind`, `call` y `apply`. También aprendió cómo la falta del vínculo `this` en las funciones de flecha se puede utilizar para hacer referencia a un contexto diferente. Con este conocimiento, debería poder determinar el valor de `this` en sus programas.

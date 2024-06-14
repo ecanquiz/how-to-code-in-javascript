@@ -121,3 +121,7 @@ Los objetos en JavaScript son colecciones de pares clave/valor. Los valores pued
 ## [Comprender This, Bind, Call y Apply en JavaScript](./understanding-this-bind-call-and-apply-in-javascript)
 
 La palabra clave `this` es un concepto muy importante en JavaScript y también particularmente confuso tanto para los nuevos desarrolladores como para aquellos que tienen experiencia en otros lenguajes de programación. En JavaScript, `this` es una referencia a un objeto. En este artículo, aprenderá a qué se refiere `this` según el contexto y cómo puede usar los métodos `bind`, `call` y `apply` para determinar explícitamente el valor de `this`.
+
+## [Comprender Map y Set  de Objetos en JavaScript](./understanding-map-and-set-objects-in-javascript.html)
+
+Introducidos en ECMAScript 2015, los mapas en JavaScript son colecciones ordenadas de pares clave/valor, y los conjuntos son colecciones de valores únicos. En este artículo, repasará los objetos Map y Set, qué los hace similares o diferentes a Objects y Arrays, las propiedades y métodos disponibles para ellos y ejemplos de algunos usos prácticos.
