@@ -10,7 +10,7 @@ En JavaScript, los desarrolladores suelen dedicar mucho tiempo a decidir la estr
 
 En este artículo, repasará los objetos Map y Set, qué los hace similares o diferentes a Objects y Arrays, las propiedades y métodos disponibles para ellos y ejemplos de algunos usos prácticos. 
 
-## Maps
+## _Maps_
 
 Un _Map_ es una colección de pares clave/valor que puede utilizar cualquier [tipo de datos](./understanding-data-types.html) como clave y puede mantener el orden de sus entradas. Los _Maps_ tienen elementos tanto de _Objects_ (una colección única de pares clave/valor) como de _Arrays_ (una colección ordenada), pero conceptualmente son más similares a los _Objects_. Esto se debe a que, aunque el tamaño y el orden de las entradas se conservan como un _Array_, las entradas en sí son pares clave/valor como los _Objects_.
 
@@ -125,7 +125,309 @@ Output
   ['occupation', 'Jedi Knight'] ]
 ```
 
-### Map Keys
+### Claves de _Map_
+
+Los _Map_ aceptan cualquier tipo de datos como clave y no permiten valores de clave duplicados. Podemos demostrar esto creando un _Map_ y usando valores que no sean cadenas como claves, además de establecer dos valores para la misma clave.
+
+Primero, inicialicemos un _Map_ con claves que no sean cadenas:
+
+
+```js
+const map = new Map()
+
+map.set('1', 'String one')
+map.set(1, 'This will be overwritten')
+map.set(1, 'Number one')
+map.set(true, 'A Boolean')
+```
+
+Aunque es una creencia común que un objeto JavaScript normal ya puede manejar números, valores booleanos y otros tipos de datos primitivos como claves, en realidad este no es el caso, porque los objetos convierten todas las claves en cadenas.
+
+Como ejemplo, inicialice un objeto con una clave numérica y compare el valor de una clave numérica `1` y una clave `"1"` en cadena:
+
+
+```js
+// Initialize an object with a numerical key
+const obj = { 1: 'One' }
+
+// The key is actually a string
+obj[1] === obj['1']  // true
+```
+
+Es por eso que si intenta utilizar un _Object_ como clave, en su lugar imprimirá la cadena `object Object`.
+
+
+Como ejemplo, cree un _Object_ y luego utilícelo como clave de otro _Object_:
+
+
+```js
+// Create an object
+const objAsKey = { foo: 'bar' }
+
+// Use this object as the key of another object
+const obj = {
+  [objAsKey]: 'What will happen?'
+}
+```
+
+Esto producirá lo siguiente:
+
+
+```sh
+Output
+{[object Object]: "What will happen?"}
+```
+
+Este no es el caso de _Map_. Intente crear un _Object_ y configurarlo como clave de un _Map_:
+
+
+```js
+// Create an object
+const objAsKey = { foo: 'bar' }
+
+const map = new Map()
+
+// Set this object as the key of a Map
+map.set(objAsKey, 'What will happen?')
+```
+
+La clave del elemento _Map_ ahora es el objeto que creamos.
+
+
+```js
+Output
+key: {foo: "bar"}
+value: "What will happen?"
+```
+
+Hay una cosa importante a tener en cuenta sobre el uso de un _Object_ o _Array_ como clave: el _Map_ usa la referencia al _Object_ para comparar la igualdad, no el valor literal del Objeto. En JavaScript `{} === {}` devuelve `false`, porque los dos _Object_ no son los mismos dos _Object_, a pesar de tener el mismo valor (vacío).
+
+Eso significa que agregar dos _Objects_ únicos con el mismo valor creará un _Map_ con dos entradas:
+
+
+```js
+// Add two unique but similar objects as keys to a Map
+map.set({}, 'One')
+map.set({}, 'Two')
+```
+
+
+Esto producirá lo siguiente:
+
+
+```js
+Output
+Map(2) {{…} => "One", {…} => "Two"}
+```
+
+Pero usar la misma referencia de _Object_ dos veces creará un _Map_ con una entrada.
+
+
+```js
+// Add the same exact object twice as keys to a Map
+const obj = {}
+
+map.set(obj, 'One')
+map.set(obj, 'Two')
+```
+
+
+Lo que resultará en lo siguiente:
+
+
+```sh
+Output
+Map(1) {{…} => "Two"}
+```
+
+
+El segundo `set()` actualiza exactamente la misma clave que el primero, por lo que terminamos con un _Map_ que solo tiene un valor.
+
+
+### Obtener y Remover Elementos de un _Map_
+
+Una de las desventajas de trabajar con _Object_ es que puede resultar difícil enumerarlos o trabajar con todas las claves o valores. La estructura del _Map_, por el contrario, tiene muchas propiedades integradas que hacen que trabajar con sus elementos sea más directo.
+
+Podemos inicializar un nuevo _Map_ para demostrar los siguientes métodos y propiedades: `delete()`, `has()`, `get()` y `size`.
+
+
+
+```js
+// Initialize a new Map
+const map = new Map([
+  ['animal', 'otter'],
+  ['shape', 'triangle'],
+  ['city', 'New York'],
+  ['country', 'Bulgaria'],
+])
+```
+
+Utilice el método `has()` para comprobar la existencia de un elemento en un _Map_. `has()` devolverá un valor Booleano.
+
+
+```js
+// Check if a key exists in a Map
+map.has('shark') // false
+map.has('country') // true
+```
+
+Utilice el método `get()` para recuperar un valor por clave.
+
+
+```js
+// Get an item from a Map
+map.get('animal') // "otter"
+```
+
+
+Un beneficio particular que tienen los _Maps_ sobre los _Objects_ es que puedes encontrar el tamaño de un _Map_ en cualquier momento, como puedes hacerlo con un _Array_. Puede obtener el recuento de elementos en un _Maps_ con la propiedad `size`. Esto implica menos pasos que convertir un _Object_ en un _Array_ para encontrar la longitud.
+
+
+```js
+// Get the count of items in a Map
+map.size // 4
+```
+
+Utilice el método `delete()` para eliminar un elemento de un _Map_ mediante clave. El método devolverá un valor Booleano— `true` si existía un elemento y se eliminó, y `false` si no coincidía con ningún elemento.
+
+
+```js
+// Delete an item from a Map by key
+map.delete('city') // true
+```
+
+Esto dará como resultado el siguiente _Map_:
+
+
+```sh
+Output
+Map(3) {"animal" => "otter", "shape" => "triangle", "country" => "Bulgaria"}
+```
+
+Finalmente, se pueden borrar todos los valores de un _Map_ con `map.clear()`.
+
+
+```js
+// Empty a Map
+map.clear()
+```
+
+Esto producirá:
+
+
+```sh
+Output
+Map(0) {}
+```
+
+### Claves, Valores y Entradas para _Maps_
+
+
+Los _Objects_ pueden recuperar claves, valores y entradas utilizando las propiedades del constructor `Object`. _Maps_, por otro lado, tiene métodos prototipo que nos permiten obtener las claves, valores y entradas de la instancia de _Map_ directamente.
+
+Los métodos `keys()`, `values()` y `entries()` devuelven un `MapIterator`, que es similar a un _Array_ en el sentido de que puedes usar `for...of` para recorrer los valores.
+
+
+Aquí hay otro ejemplo de un _Map_, que podemos usar para demostrar estos métodos:
+
+
+```js
+const map = new Map([
+  [1970, 'bell bottoms'],
+  [1980, 'leg warmers'],
+  [1990, 'flannel'],
+])
+```
+
+
+El método `keys()` devuelve las claves:
+
+
+```js
+map.keys()
+```
+
+```sh
+Output
+MapIterator {1970, 1980, 1990}
+```
+
+El método `values()` devuelve los valores:
+
+
+```js
+map.values()
+```
+
+```sh
+Output
+MapIterator {"bell bottoms", "leg warmers", "flannel"}
+```
+
+
+El método `entries()` devuelve una matriz de pares clave/valor:
+
+
+```js
+map.entries()
+```
+
+```sh
+Output
+MapIterator {1970 => "bell bottoms", 1980 => "leg warmers", 1990 => "flannel"}
+```
+
+### Iteración con _Map_
+
+
+_Map_ tiene un método `forEach` incorporado, similar a un _Array_, para iteración incorporada. Sin embargo, hay una pequeña diferencia en lo que iteran. La devolución de llamada `forEach` de un _Map_ itera a través del `value`, la `key` y el `map` en sí, mientras que la versión _Array_ itera a través del `item`, el `index` y el `array` en sí.
+
+
+```js
+// Map 
+Map.prototype.forEach((value, key, map) = () => {})
+
+// Array
+Array.prototype.forEach((item, index, array) = () => {})
+```
+
+Esta es una gran ventaja para los _Maps_ sobre los _Objects_, ya que los _Objects_ deben convertirse con `keys()`, `values()` o `entries()`, y no existe una forma sencilla de recuperar las propiedades de un _Object_ sin convertirlo.
+
+Para demostrar esto,  iteremos a través de nuestro _Map_ y registremos los pares clave/valor en la consola:
+
+
+
+```js
+// Log the keys and values of the Map with forEach
+map.forEach((value, key) => {
+  console.log(`${key}: ${value}`)
+})
+```
+
+
+Esto dará:
+
+
+```sh
+Output
+1970: bell bottoms
+1980: leg warmers
+1990: flannel
+```
+
+Dado que un bucle `for...of` itera sobre iterables como _Map_ y _Array_, podemos obtener exactamente el mismo resultado desestructurando la matriz de elementos del _Map_:
+
+
+```js
+// Destructure the key and value out of the Map item
+for (const [key, value] of map) {
+  // Log the keys and values of the Map with for...of
+  console.log(`${key}: ${value}`)
+}
+```
+
+
+### Map Properties and Methods
 
 
 
