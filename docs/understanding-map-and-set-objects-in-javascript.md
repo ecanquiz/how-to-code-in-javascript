@@ -427,7 +427,38 @@ for (const [key, value] of map) {
 ```
 
 
-### Map Properties and Methods
+### Propiedades y Métodos del _Map_
+
+La siguiente tabla muestra una lista de propiedades y métodos de _Map_ para referencia rápida:
+
+|Propiedades/Métodos|Descripción|Devoluciones|
+|-|-|-|
+|[`set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set)|Agrega un par clave/valor a un _Map_|`Map` Object|
+|[`delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete)|Elimina un par clave/valor de un _Map_ por clave|Boolean|
+|[`get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get)|Devuelve un valor por clave|
+|[`has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has)|Comprueba la presencia de un elemento en un _Map_ por clave|Boolean|
+|[`clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear)|Elimina todos los elementos de un _Map_|N/A|
+|[`keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys)|Devuelve todas las claves en un _Map_|`MapIterator` object|
+|[`values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values)|Devuelve todos los valores en un _Map_|`MapIterator` object|
+|[`entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries)|Devuelve todas las claves y valores en un _Map_ como `[key, value]`|`MapIterator` object|
+|[`forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach)|Itera a través del _Map_ en orden de inserción.|N/A
+|[`size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size)|Devuelve el número de elementos en un _Map_|Number|
 
 
+### Cuándo Utilizar _Map_
 
+En resumen, los _Maps_ son similares a los _Objects_ en el sentido de que contienen pares clave/valor, pero los _Maps_ tienen varias ventajas sobre los _Objects_:
+
+- **Tamaño** - Los _Maps_ tienen una propiedad `size`, mientras que los _Objects_ no tienen una forma integrada de recuperar su tamaño.
+- **Iteración** - Los _Maps_ se pueden iterar directamente, mientras que los _Objects_ no.
+- **Flexibilidad** - Los _Maps_ pueden tener cualquier tipo de datos (primitivo u objeto) como clave de un valor, mientras que los _Objects_ solo pueden tener cadenas.
+- **Ordenado** - Los _Maps_ conservan su orden de inserción, mientras que los _Objects_ no tienen un orden garantizado.
+
+Debido a estos factores, los _Maps_ son una poderosa estructura de datos a considerar. Sin embargo, _Objects_ también tiene algunas ventajas importantes:
+
+- **JSON** - Los _Objects_ funcionan perfectamente con `JSON.parse()` y `JSON.stringify()`, dos funciones esenciales para trabajar con [JSON](./how-to-work-with-json-in-javascript.html), un formato de datos común con el que tratan muchas API REST.
+- **Trabajar con un solo elemento** - Al trabajar con un valor conocido en un _Object_, puede acceder a él directamente con la clave sin la necesidad de utilizar un método, como `get()` de _Map_.
+
+Esta lista le ayudará a decidir si un _Map_ u _Object_ es la estructura de datos adecuada para su caso de uso.
+
+## _Set_
