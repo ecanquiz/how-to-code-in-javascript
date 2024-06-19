@@ -462,3 +462,99 @@ Debido a estos factores, los _Maps_ son una poderosa estructura de datos a consi
 Esta lista le ayudará a decidir si un _Map_ u _Object_ es la estructura de datos adecuada para su caso de uso.
 
 ## _Set_
+
+Un _Set_ es una colección de valores únicos. A diferencia de un _Map_, un _Set_ es conceptualmente más similar a un _Array_ que a un _Object_, ya que es una lista de valores y no pares clave/valor. Sin embargo, _Set_ no reemplaza a los _Arrays_, sino más bien un complemento para brindar soporte adicional para trabajar con datos duplicados.
+
+Puede inicializar _Set_ con la sintaxis `new Set()`.
+
+
+```js
+const set = new Set()
+```
+
+Esto nos da un _Set_ vacío:
+
+
+```js
+Output
+Set(0) {}
+```
+
+Los elementos se pueden agregar a un _Set_ con el método `add()`. (Esto no debe confundirse con el método `set()` disponible para _Map_, aunque son similares).
+
+
+
+```js
+// Add items to a Set
+set.add('Beethoven')
+set.add('Mozart')
+set.add('Chopin')
+```
+
+
+Dado que los _Sets_ solo pueden contener valores únicos, se ignorará cualquier intento de agregar un valor que ya exista.
+
+
+```js
+set.add('Chopin') // Set will still contain 3 unique values
+```
+
+
+:::info Nota
+La misma comparación de igualdad que se aplica a las claves del _Map_ se aplica a los elementos del _Set_. Dos objetos que tengan el mismo valor pero no compartan la misma referencia no se considerarán iguales.
+::::
+
+
+También puede inicializar _Sets_ con un _Array_ de valores. Si hay valores duplicados en la matriz, se eliminarán del _Set_.
+
+
+```js
+// Initialize a Set from an Array
+const set = new Set(['Beethoven', 'Mozart', 'Chopin', 'Chopin'])
+```
+
+```sh
+Output
+Set(3) {"Beethoven", "Mozart", "Chopin"}
+```
+
+Por el contrario, un _Set_ se puede convertir en un _Array_ con una línea de código:
+
+
+```js
+const arr = [...set]
+```
+
+```sh
+Output
+(3) ["Beethoven", "Mozart", "Chopin"]
+```
+
+_Set_ tiene muchos de los mismos métodos y propiedades que _Map_, incluidos `delete()`, `has()`, `clear()` y `size`.
+
+
+```js
+// Delete an item
+set.delete('Beethoven') // true
+
+// Check for the existence of an item
+set.has('Beethoven') // false
+
+// Clear a Set
+set.clear()
+
+// Check the size of a Set
+set.size // 0
+```
+
+
+Tenga en cuenta que _Set_ no tiene una manera de acceder a un valor mediante una clave o índice, como _Map.get(key)_ o _arr[index]_.
+
+
+## Keys, Values, and Entries for Sets
+
+
+
+
+
+
