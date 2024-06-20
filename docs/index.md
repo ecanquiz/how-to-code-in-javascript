@@ -78,6 +78,8 @@ features:
     details: La palabra clave this es un concepto muy importante en JavaScript y también particularmente confuso tanto para los nuevos desarrolladores como para aquellos que tienen experiencia en otros lenguajes de programación. En JavaScript, this es una referencia a un objeto. En este artículo, aprenderá a qué se refiere this según el contexto y cómo puede usar los métodos bind, call y apply para determinar explícitamente el valor de this.
   - title: Comprender Map y Set  de Objetos en JavaScript
     details: Introducidos en ECMAScript 2015, los mapas en JavaScript son colecciones ordenadas de pares clave/valor, y los conjuntos son colecciones de valores únicos. En este artículo, repasará los objetos Map y Set, qué los hace similares o diferentes a Objects y Arrays, las propiedades y métodos disponibles para ellos y ejemplos de algunos usos prácticos.
+  - title: Comprender Generadores en JavaScript
+    details: En ECMAScript 2015, se introdujeron generadores en el lenguaje JavaScript. Un generador es un proceso que se puede pausar y reanudar y puede generar múltiples valores. Pueden mantener el estado, proporcionando una forma eficiente de crear iteradores y son capaces de manejar infinitos flujos de datos. En este artículo, cubriremos cómo crear funciones generadoras, cómo iterar sobre objetos Generator, la diferencia entre rendimiento y retorno dentro de un generador y otros aspectos del trabajo con generadores.
     
 footer: MIT Licensed | Copyleft © 2024-present Ernesto Canquiz
 ---

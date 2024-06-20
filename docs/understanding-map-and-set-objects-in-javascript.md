@@ -551,10 +551,99 @@ set.size // 0
 Tenga en cuenta que _Set_ no tiene una manera de acceder a un valor mediante una clave o índice, como _Map.get(key)_ o _arr[index]_.
 
 
-## Keys, Values, and Entries for Sets
+### Claves, Valores y Entradas para _Sets_
+
+Tanto _Map_ como _Set_ tienen métodos `keys()`, `values()` y `entries()` que devuelven un iterador. Sin embargo, si bien cada uno de estos métodos tiene un propósito distinto en _Map_, los _Sets_ no tienen claves y, por lo tanto, las claves son un alias para los valores. Esto significa que `keys()` y `values()` devolverán el mismo iterador, y `entries()` devolverá el valor dos veces. Tiene más sentido usar únicamente `values()` con _Set_, ya que los otros dos métodos existen para mantener la coherencia y la compatibilidad cruzada con _Map_.
+
+
+```js
+const set = new Set([1, 2, 3])
+// Get the values of a set
+set.values()
+```
+
+```sh
+Output
+SetIterator {1, 2, 3}
+```
+
+### Iteración con _Set_
+
+
+Al igual que _Map_, _Set_ tiene un método `forEach()` incorporado. Dado que los _Sets_ no tienen claves, el primer y segundo parámetro de la devolución de llamada `forEach()` devuelven el mismo valor, por lo que no hay ningún caso de uso fuera de la compatibilidad con _Map_. Los parámetros de `forEach()` son `value, key, set`.
+
+Tanto `forEach()` como `for...of` se pueden utilizar en _Set_. Primero, veamos la iteración de `forEach()`:
+
+
+```js
+const set = new Set(['hi', 'hello', 'good day'])
+
+// Iterate a Set with forEach
+set.forEach((value) => console.log(value))
+```
+
+Entonces podemos escribir la versión `for...of`:
+
+
+```js
+// Iterate a Set with for...of
+for (const value of set) {  
+    console.log(value);
+}
+```
+
+Ambas estrategias producirán lo siguiente:
+
+
+```sh
+Output
+hi
+hello
+good day
+```
+
+### Propiedades y Métodos de _Set_
+
+
+La siguiente tabla muestra una lista de propiedades y métodos de _Set_ para referencia rápida:
 
 
 
 
 
+|Propiedades/Métodos|Descripción|Devoluciones|
+|-|-|-|
+|[`add(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add)|Agrega un nuevo elemento a un _Set_|`Set` Object|
+|[`delete(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete)|Elimina el elemento especificado de un _Set_|Boolean|
+|[`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has)|Comprueba la presencia de un elemento en un _Set_|Boolean|
+|[`clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear)|Elimina todos los elementos de un _Set_|N/A|
+|[`keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys)|Devuelve todos los valores de un _Set_ (lo mismo que `values()`)|`SetIterator` object|
+|[`values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values)|Devuelve todos los valores de un _Set_ (lo mismo que `keys()`)|`SetIterator` object|
+|[`entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries)|Devuelve todos los valores en un _Set_ como `[value, value]`|`SetIterator` object|
+|[`forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach)|Itera a través del _Set_ en orden de inserción|N/A|
+|[`size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size)|Devuelve el número de elementos de un _Set_|Number|
 
+### Cuándo utilizar el _Set_
+
+_Set_ es una adición útil a su kit de herramientas de JavaScript, particularmente para trabajar con valores duplicados en datos.
+
+En una sola línea podemos crear un nuevo _Array_ sin valores duplicados a partir de un _Array_ que tiene valores duplicados.
+
+
+```js
+const uniqueArray = [ ...new Set([1, 1, 2, 2, 2, 3])] // (3) [1, 2, 3]
+```
+
+Esto dará:
+
+
+```sh
+Output
+(3) [1, 2, 3]
+```
+
+_Set_ se puede utilizar para encontrar la unión, intersección y diferencia entre dos _Sets_ de datos. Sin embargo, los _Arrays_ tienen una ventaja significativa sobre los _Set_ para la manipulación adicional de los datos debido a los métodos `sort()`, `map()`, `filter()` y `reduce()`, así como la compatibilidad directa con los métodos `JSON`.
+
+## Conclusión
+
+En este artículo, aprendió que un _Map_ es una colección de pares clave/valor ordenados y que un _Set_ es una colección de valores únicos. Ambas estructuras de datos agregan capacidades adicionales a JavaScript y simplifican tareas comunes, como encontrar la longitud de una colección de pares clave/valor y eliminar elementos duplicados de un conjunto de datos, respectivamente. Por otro lado, los _Objects_ y _Arrays_ se han utilizado tradicionalmente para el almacenamiento y manipulación de datos en JavaScript, y tienen compatibilidad directa con _JSON_, lo que los sigue convirtiendo en las estructuras de datos más esenciales, especialmente para trabajar con API REST. Los _Maps_ y _Sets_ son principalmente útiles como soporte de estructuras de datos para _Objects_ y _Arrays_.

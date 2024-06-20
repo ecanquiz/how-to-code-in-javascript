@@ -125,3 +125,7 @@ La palabra clave `this` es un concepto muy importante en JavaScript y también p
 ## [Comprender Map y Set  de Objetos en JavaScript](./understanding-map-and-set-objects-in-javascript.html)
 
 Introducidos en ECMAScript 2015, los mapas en JavaScript son colecciones ordenadas de pares clave/valor, y los conjuntos son colecciones de valores únicos. En este artículo, repasará los objetos Map y Set, qué los hace similares o diferentes a Objects y Arrays, las propiedades y métodos disponibles para ellos y ejemplos de algunos usos prácticos.
+
+## [Comprender Generadores en JavaScript](./understanding-generators-in-javascript.html)
+
+En ECMAScript 2015, se introdujeron generadores en el lenguaje JavaScript. Un generador es un proceso que se puede pausar y reanudar y puede generar múltiples valores. Pueden mantener el estado, proporcionando una forma eficiente de crear iteradores y son capaces de manejar infinitos flujos de datos. En este artículo, cubriremos cómo crear funciones generadoras, cómo iterar sobre objetos Generator, la diferencia entre rendimiento y retorno dentro de un generador y otros aspectos del trabajo con generadores.
