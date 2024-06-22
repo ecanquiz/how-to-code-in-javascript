@@ -13,5 +13,59 @@ Los generadores pueden mantener el estado, proporcionando una forma eficiente de
 En este artículo, cubriremos cómo crear funciones generadoras, cómo iterar sobre objetos `Generator`, la diferencia entre `yield` y `return` dentro de un generador y otros aspectos del trabajo con generadores.
 
 
-## Generator Functions
+## Funciones Generadoras
+
+Una [función generadora](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*) es una función que devuelve un objeto `Generator` y se define mediante la palabra clave `function` seguida de un asterisco (`*`), como se muestra a continuación:
+
+
+```js
+// Generator function declaration
+function* generatorFunction() {}
+```
+
+
+Ocasionalmente, verá el asterisco junto al nombre de la función, en lugar de la palabra clave de la función, como `function *generatorFunction()`. Esto funciona igual, pero `función*` es una sintaxis más aceptada.
+
+Las funciones generadoras también se pueden definir en una expresión, como las [funciones](./how-to-define-functions-in-javascript.html) regulares:
+
+
+```js
+// Generator function expression
+const generatorFunction = function*() {}
+```
+
+Los generadores pueden incluso ser los métodos de un [objeto](./understanding-objects-in-javascript.html) o [clase](./understanding-classes-in-javascript.html):
+
+
+```js
+// Generator as the method of an object
+const generatorObj = {
+  *generatorMethod() {},
+}
+
+// Generator as the method of a class
+class GeneratorClass {
+  *generatorMethod() {}
+}
+```
+
+
+Los ejemplos a lo largo de este artículo utilizarán la sintaxis de declaración de función generadora.
+
+
+:::info Nota
+A diferencia de las funciones normales, los generadores no se pueden construir con la palabra clave `new` ni se pueden usar junto con [funciones de flecha](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
+:::
+
+
+Ahora que sabes cómo declarar funciones generadoras, veamos los objetos `Generator` iterables que devuelven.
+
+## Generator Objects
+
+
+
+
+
+
+
 
