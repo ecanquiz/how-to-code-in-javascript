@@ -146,7 +146,55 @@ generatorFunction {<closed>}
 
 Hasta el momento, solo hemos demostrado cómo una función generadora puede ser una forma más compleja de obtener el valor `return` de una función. Pero las funciones generadoras también tienen características únicas que las distinguen de las funciones normales. En la siguiente sección, aprenderemos sobre el operador `yield` y veremos cómo un generador puede pausar y reanudar la ejecución.
 
-## `yield` Operators
+## Operadores `yield`
 
+Los generadores introducen una nueva palabra clave en JavaScript: [`yield`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield). `yield` puede pausar una función generadora y devolver el valor que sigue a `yield`, proporcionando una forma ligera de iterar a través de valores.
+
+En este ejemplo, pausaremos la función generadora tres veces con valores diferentes y devolveremos un valor al final. Luego asignaremos nuestro objeto `Generator` a la variable `generator`.
+
+
+```js
+// Create a generator function with multiple yields
+function* generatorFunction() {
+  yield 'Neo'
+  yield 'Morpheus'
+  yield 'Trinity'
+
+  return 'The Oracle'
+}
+
+const generator = generatorFunction()
+```
+
+
+Ahora, cuando llamamos a `next()` en la función del generador, se detendrá cada vez que encuentre `yield`. `done` se establecerá en `false` después de cada `yield`, lo que indica que el generador no ha terminado. Una vez que encuentre un `return`, o no se encuentren más `yields` en la función, `done` cambiará a `true` y el generador finalizará.
+
+Utilice el método `next()` cuatro veces seguidas:
+
+
+```js
+// Call next four times
+generator.next()
+generator.next()
+generator.next()
+generator.next()
+```
+
+Estos darán las siguientes cuatro líneas de salida en orden:
+
+
+```js
+Output
+{value: "Neo", done: false}
+{value: "Morpheus", done: false}
+{value: "Trinity", done: false}
+{value: "The Oracle", done: true}
+```
+
+Tenga en cuenta que un generador no requiere un `return`; si se omite, la última iteración devolverá `{value: undefined, done: true}`, al igual que cualquier llamada posterior a `next()` después de que se haya completado un generador.
+
+
+
+## Iterating Over a Generator
 
 
