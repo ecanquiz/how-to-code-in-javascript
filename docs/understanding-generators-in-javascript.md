@@ -195,6 +195,54 @@ Tenga en cuenta que un generador no requiere un `return`; si se omite, la últim
 
 
 
-## Iterating Over a Generator
+## Iterando Sobre un Generador
+
+Usando el método `next()`, iteramos manualmente a través del objeto `Generator`, recibiendo todo el valor y las propiedades hechas del objeto completo. Sin embargo, al igual que [`Array`](./understanding-arrays-in-javascript.html), [`Map` y `Set`](./understanding-map-and-set-objects-in-javascript.html), un `Generator` sigue el [protocolo de iteración](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) y se puede iterar con [`for...of`](./for-loops-for-of-loops-and-for-in-loops-in-javascript.html):
+
+
+```js
+// Iterate over Generator object
+for (const value of generator) {
+  console.log(value)
+}
+```
+
+Esto devolverá lo siguiente:
+
+
+
+```js
+Output
+Neo
+Morpheus
+Trinity
+```
+
+El [operador de propagación](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) también se puede utilizar para asignar los valores de un `Generator` a una matriz.
+
+
+```js
+// Create an array from the values of a Generator object
+const values = [...generator]
+
+console.log(values)
+```
+
+Esto dará la siguiente matriz:
+
+
+```sh
+Output
+(3) ["Neo", "Morpheus", "Trinity"]
+```
+
+Tanto la propagación como el `for...of` no factorizará el `return` en los valores (en este caso, habría sido `The Oracle`).
+
+
+:::info Nota
+Si bien ambos métodos son efectivos para trabajar con generadores finitos, si un generador está tratando con un flujo de datos infinito, no será posible utilizar propagación o `for...of` directamente sin crear un bucle infinito.
+:::
+
+
 
 
