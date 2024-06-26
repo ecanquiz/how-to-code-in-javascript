@@ -183,7 +183,7 @@ generator.next()
 Estos darán las siguientes cuatro líneas de salida en orden:
 
 
-```js
+```sh
 Output
 {value: "Neo", done: false}
 {value: "Morpheus", done: false}
@@ -211,7 +211,7 @@ Esto devolverá lo siguiente:
 
 
 
-```js
+```sh
 Output
 Neo
 Morpheus
@@ -244,5 +244,101 @@ Si bien ambos métodos son efectivos para trabajar con generadores finitos, si u
 :::
 
 
+## Cerrando un Generador
+
+Como hemos visto, un generador puede tener su propiedad `done` establecida en `true` y su estado en `closed` iterando a través de todos sus valores. Hay dos formas adicionales de cancelar inmediatamente un generador: con el método `return()` y con el método `throw()`.
+
+Con `return()`, el generador puede finalizar en cualquier punto, como si hubiera una declaración `return` en el cuerpo de la función. Puede pasar un argumento a `return()` o dejarlo en blanco para un valor indefinido.
+
+
+Para demostrar `return()`, crearemos un generador con algunos valores `yield` pero sin `return` en la definición de la función:
+
+
+```js
+function* generatorFunction() {
+  yield 'Neo'
+  yield 'Morpheus'
+  yield 'Trinity'
+}
+
+const generator = generatorFunction()
+```
+
+
+El primer `next()` nos dará `'Neo'`, con `done` establecido en `false`. Si invocamos un método `return()` en el objeto `Generator` inmediatamente después de eso, ahora obtendremos el valor pasado y `done` establecido en `true`. Cualquier llamada adicional a `next()` dará la respuesta predeterminada del generador completado con un valor indefinido.
+
+Para demostrar esto, ejecute los siguientes tres métodos en `generator`:
+
+
+```js
+generator.next()
+generator.return('There is no spoon!')
+generator.next()
+```
+
+
+Esto dará los tres resultados siguientes:
+
+
+```sh
+Output
+{value: "Neo", done: false}
+{value: "There is no spoon!", done: true}
+{value: undefined, done: true}
+```
+
+
+El método `return()` obligó al objeto `Generator` a completarse e ignorar cualquier otra palabra clave `yield`. Esto es particularmente útil en programación asincrónica cuando necesita hacer que funciones se puedan cancelar, como interrumpir una solicitud web cuando un usuario desea realizar una acción diferente, ya que no es posible cancelar directamente una Promesa.
+
+
+Si el cuerpo de una función del generador tiene una forma de detectar y tratar errores, puede usar el método `throw()` para generar un error en el generador. Esto inicia el generador, genera el error y finaliza el generador.
+
+
+Para demostrar esto, pondremos un [`try...catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) dentro del cuerpo de la función del generador y registraremos un error si se encuentra uno:
+
+
+
+```js
+// Define a generator function with a try...catch
+function* generatorFunction() {
+  try {
+    yield 'Neo'
+    yield 'Morpheus'
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// Invoke the generator and throw an error
+const generator = generatorFunction()
+```
+
+
+Ahora ejecutaremos el método `next()`, seguido de `throw()`:
+
+
+```js
+generator.next()
+generator.throw(new Error('Agent Smith!'))
+```
+
+
+
+Esto dará el siguiente resultado:
+
+
+
+```sh
+Output
+{value: "Neo", done: false}
+Error: Agent Smith!
+{value: undefined, done: true}
+```
+
+
+Usando `throw()`, inyectamos un error en el generador, que fue detectado por `try...catch` y registrado en la consola.
+
+
+## Generator Object Methods and States
 
 
