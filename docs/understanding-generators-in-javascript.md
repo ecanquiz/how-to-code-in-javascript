@@ -339,6 +339,90 @@ Error: Agent Smith!
 Usando `throw()`, inyectamos un error en el generador, que fue detectado por `try...catch` y registrado en la consola.
 
 
-## Generator Object Methods and States
+## Métodos y Eestados del Objeto Generador
+
+La siguiente tabla muestra una lista de métodos que se pueden utilizar en objetos `Generator`:
+
+
+|Método|Descripción|
+|-|-|
+|[`next()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator/next)|Devuelve el siguiente valor en un generador|
+|[`return()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator/return)|Devuelve un valor en un generador y finaliza el generador|
+|[`throw()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator/throw)|Lanza un error y finaliza el generador|
+
+
+La siguiente tabla enumera los posibles estados de un objeto `Generator`:
+
+
+|Estado|Descripcion|
+|-|-|
+|`suspended`|El generador ha detenido la ejecución pero no ha terminado|
+|`closed`|El generador finalizó al encontrar un error, retornar o iterar a través de todos los valores|
+
+
+## Delegación de `yield`
+
+Además del operador `yield` normal, los generadores también pueden usar la expresión [`yield*`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*) para delegar más valores a otro generador. Cuando el `yield*` se encuentra dentro de un generador, irá dentro del generador delegado y comenzará a iterar a través de todos los `yield`s hasta que se cierre ese generador. Esto se puede usar para separar diferentes funciones del generador para organizar semánticamente su código, sin dejar de tener todos sus `yield`s iterables en el orden correcto.
+
+Para demostrarlo, podemos crear dos funciones generadoras, una de las cuales `yield*` operará sobre la otra:
+
+
+```js
+// Generator function that will be delegated to
+function* delegate() {
+  yield 3
+  yield 4
+}
+
+// Outer generator function
+function* begin() {
+  yield 1
+  yield 2
+  yield* delegate()
+}
+```
+
+
+A continuación, iteremos a través de la función generadora `start()`:
+
+
+
+```js
+// Iterate through the outer generator
+const generator = begin()
+
+for (const value of generator) {
+  console.log(value)
+}
+```
+
+
+Esto dará los siguientes valores en el orden en que se generan:
+
+
+
+```sh
+Output
+1
+2
+3
+4
+```
+
+
+El generador externo produjo los valores `1` y `2`, luego los delegó al otro generador con `yield*`, que devolvió `3` y `4`.
+
+
+
+yield* can also delegate to any object that is iterable, such as an Array or a Map. Yield delegation can be helpful in organizing code, since any function within a generator that wanted to use yield would also have to be a generator.
+
+
+`yield*` también puede delegar a cualquier objeto que sea iterable, como un _Array_ o un _Map_. La delegación _Yield_ puede ser útil para organizar el código, ya que cualquier función dentro de un generador que quisiera usar `yield` también tendría que ser un generador.
+
+
+
+## Infinite Data Streams
+
+
 
 
