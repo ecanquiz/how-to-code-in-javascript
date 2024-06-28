@@ -421,8 +421,111 @@ yield* can also delegate to any object that is iterable, such as an Array or a M
 
 
 
-## Infinite Data Streams
+## Flujos de Datos Infinitos
+
+Uno de los aspectos útiles de los generadores es la capacidad de trabajar con infinitos flujos y colecciones de datos. Esto se puede demostrar creando un bucle infinito dentro de una función generadora que incrementa un número en uno.
+
+En el siguiente bloque de código, definimos esta función de generador y luego iniciamos el generador:
 
 
+```js
+// Define a generator function that increments by one
+function* incrementer() {
+  let i = 0
+
+  while (true) {
+    yield i++
+  }
+}
+
+// Initiate the generator
+const counter = incrementer()
+```
+
+Ahora, itere a través de los valores usando `next()`:
 
 
+```js
+// Iterate through the values
+counter.next()
+counter.next()
+counter.next()
+counter.next()
+```
+
+
+Esto dará el siguiente resultado:
+
+
+```sh
+Output
+{value: 0, done: false}
+{value: 1, done: false}
+{value: 2, done: false}
+{value: 3, done: false}
+```
+
+La función devuelve valores sucesivos en el bucle infinito mientras la propiedad `done` permanece `false`, asegurando que no finalizará.
+
+
+Con los generadores, no tienes que preocuparte por crear un bucle infinito, porque puedes detener y reanudar la ejecución a voluntad. Sin embargo, aún debes tener cuidado al invocar el generador. Si usa propagación o `for...of` en un flujo de datos infinito, seguirá iterando sobre un bucle infinito a la vez, lo que provocará que el entorno falle.
+
+Para un ejemplo más complejo de un flujo de datos infinito, podemos crear una función generadora de Fibonacci. La secuencia de Fibonacci, que suma continuamente los dos valores anteriores, se puede escribir usando un bucle infinito dentro de un generador de la siguiente manera:
+
+
+```js
+// Create a fibonacci generator function
+function* fibonacci() {
+  let prev = 0
+  let next = 1
+
+  yield prev
+  yield next
+
+  // Add previous and next values and yield them forever
+  while (true) {
+    const newVal = next + prev
+
+    yield newVal
+
+    prev = next
+    next = newVal
+  }
+}
+```
+
+
+Para probar esto, podemos recorrer un número finito e imprimir la secuencia de Fibonacci en la consola.
+
+
+```js
+// Print the first 10 values of fibonacci
+const fib = fibonacci()
+
+for (let i = 0; i < 10; i++) {
+  console.log(fib.next().value)
+}
+```
+
+Esto dará lo siguiente:
+
+
+```sh
+Output
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+```
+
+
+La capacidad de trabajar con infinitos conjuntos de datos es una parte de lo que hace que los generadores sean tan poderosos. Esto puede resultar útil para ejemplos como la implementación de desplazamiento infinito en la interfaz de una aplicación web.
+
+
+## Passing Values in Generators
