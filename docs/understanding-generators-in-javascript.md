@@ -528,4 +528,72 @@ Output
 La capacidad de trabajar con infinitos conjuntos de datos es una parte de lo que hace que los generadores sean tan poderosos. Esto puede resultar útil para ejemplos como la implementación de desplazamiento infinito en la interfaz de una aplicación web.
 
 
-## Passing Values in Generators
+## Pasando Valores en Generadores
+
+A lo largo de este artículo, hemos utilizado generadores como iteradores y hemos obtenido valores en cada iteración. Además de producir valores, los generadores también pueden consumir valores de `next()`. En este caso, `yield` contendrá un valor.
+
+
+Es importante tener en cuenta que el primer `next()` que se llama no pasará un valor, sino que solo iniciará el generador. Para demostrar esto, podemos registrar el valor de `yield` y llamar a `next()` varias veces con algunos valores.
+
+
+```js
+function* generatorFunction() {
+  console.log(yield)
+  console.log(yield)
+
+  return 'The end'
+}
+
+const generator = generatorFunction()
+
+generator.next()
+generator.next(100)
+generator.next(200)
+```
+
+
+Esto dará el siguiente resultado:
+
+
+```sh
+Output
+100
+200
+{value: "The end", done: true}
+```
+
+También es posible inicializar el generador con un valor inicial. En el siguiente ejemplo, crearemos un bucle `for` y pasaremos cada valor al método `next()`, pero también pasaremos un argumento a la función inicial:
+
+
+```js
+function* generatorFunction(value) {
+  while (true) {
+    value = yield value * 10
+  }
+}
+
+// Initiate a generator and seed it with an initial value
+const generator = generatorFunction(0)
+
+for (let i = 0; i < 5; i++) {
+  console.log(generator.next(i).value)
+}
+```
+
+Recuperaremos el valor de `next()` y generaremos un nuevo valor para la siguiente iteración, que es el valor anterior multiplicado por diez. Esto dará lo siguiente:
+
+```sh
+Output
+0
+10
+20
+30
+40
+```
+
+Otra forma de lidiar con el inicio de un generador es envolver el generador en una función que siempre llamará a `next()` una vez antes de hacer cualquier otra cosa.
+
+
+## `async`/`await` with Generators
+
+
