@@ -594,6 +594,116 @@ Output
 Otra forma de lidiar con el inicio de un generador es envolver el generador en una función que siempre llamará a `next()` una vez antes de hacer cualquier otra cosa.
 
 
-## `async`/`await` with Generators
+## `async`/`await` con Generadores
 
 
+
+Una [función asincrónica](https://www.digitalocean.com/community/tutorials/how-to-write-asynchronous-code-in-node-js) es un tipo de función disponible en JavaScript ES6+ que hace que trabajar con datos asincrónicos sea más fácil de entender al hacer que parezcan sincrónicos. Los generadores tienen una gama más amplia de capacidades que las funciones asincrónicas, pero son capaces de replicar un comportamiento similar. Implementar programación asincrónica de esta manera puede aumentar la flexibilidad de su código.
+
+En esta sección, demostraremos un ejemplo de reproducción de [`async`/`await`](https://www.digitalocean.com/community/tutorials/how-to-write-asynchronous-code-in-node-js#writing-javascript-with-asyncawait) con generadores.
+
+Creemos una función asincrónica que utilice [la API Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) para obtener datos de la [API JSONPlaceholder](https://jsonplaceholder.typicode.com/) (que proporciona datos [JSON](./how-to-work-with-json-in-javascript.html) de ejemplo con fines de prueba) y registre la respuesta en la consola.
+
+
+Comience definiendo una función asincrónica llamada `getUsers` que obtiene datos de la API y devuelve una matriz de objetos, luego llame a `getUsers`:
+
+
+```js
+const getUsers = async function() {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users')
+  const json = await response.json()
+
+  return json
+}
+
+// Call the getUsers function and log the response
+getUsers().then(response => console.log(response))
+```
+
+
+Esto proporcionará datos JSON similares a los siguientes:
+
+
+```sh
+Output
+[ {id: 1, name: "Leanne Graham" ...},
+  {id: 2, name: "Ervin Howell" ...},
+  {id: 3, name: "Clementine Bauch" ...}, 
+  {id: 4, name: "Patricia Lebsack"...},
+  {id: 5, name: "Chelsey Dietrich"...},
+  ...]
+```
+
+Usando generadores, podemos crear algo casi idéntico que no use las palabras clave `async`/`await`. En su lugar, utilizará una nueva función que creamos y generará valores en lugar de esperar promesas.
+
+Usando generadores, podemos crear algo casi idéntico que no use las palabras clave `async`/`await`. En su lugar, utilizará una nueva función que creamos y valores de `yield` en lugar de promesas `await`.
+
+En el siguiente bloque de código, definimos una función llamada `getUsers` que usa nuestra nueva función `asyncAlt` (que escribiremos más adelante) para imitar `async`/`await`.
+
+
+```js
+const getUsers = asyncAlt(function*() {
+  const response = yield fetch('https://jsonplaceholder.typicode.com/users')
+  const json = yield response.json()
+
+  return json
+})
+
+// Invoking the function
+getUsers().then(response => console.log(response))
+```
+
+Como podemos ver, parece casi idéntico a la implementación `async`/`await`, excepto que se pasa una función generadora que produce valores.
+
+
+Ahora podemos crear una función `asyncAlt` que se parezca a una función asincrónica. `asyncAlt` tiene una función generadora como parámetro, que es nuestra función que genera las promesas que devuelve `fetch`. `asyncAlt` devuelve una función en sí misma y resuelve cada promesa que encuentra hasta la última:
+
+
+```js
+// Define a function named asyncAlt that takes a generator function as an argument
+function asyncAlt(generatorFunction) {
+  // Return a function
+  return function() {
+    // Create and assign the generator object
+    const generator = generatorFunction()
+
+    // Define a function that accepts the next iteration of the generator
+    function resolve(next) {
+      // If the generator is closed and there are no more values to yield,
+      // resolve the last value
+      if (next.done) {
+        return Promise.resolve(next.value)
+      }
+
+      // If there are still values to yield, they are promises and
+      // must be resolved.
+      return Promise.resolve(next.value).then(response => {
+        return resolve(generator.next(response))
+      })
+    }
+
+    // Begin resolving promises
+    return resolve(generator.next())
+  }
+}
+```
+
+
+Esto dará el mismo resultado que la versión `async`/`await`:
+
+
+```sh
+Output
+[ {id: 1, name: "Leanne Graham" ...},
+  {id: 2, name: "Ervin Howell" ...},
+  {id: 3, name: "Clementine Bauch" ...}, 
+  {id: 4, name: "Patricia Lebsack"...},
+  {id: 5, name: "Chelsey Dietrich"...},
+  ...]
+```
+
+
+Tenga en cuenta que esta implementación sirve para demostrar cómo se pueden utilizar los generadores en lugar de `async`/`await` y no es un diseño listo para producción. No tiene configurado el manejo de errores ni tiene la capacidad de pasar parámetros a los valores obtenidos. Aunque este método puede agregar flexibilidad a su código, a menudo `async`/`await` será una mejor opción, ya que abstrae los detalles de implementación y le permite concentrarse en escribir código productivo.
+
+
+## Conclusion
