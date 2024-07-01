@@ -129,3 +129,8 @@ Introducidos en ECMAScript 2015, los mapas en JavaScript son colecciones ordenad
 ## [Comprender Generadores en JavaScript](./understanding-generators-in-javascript.html)
 
 En ECMAScript 2015, se introdujeron generadores en el lenguaje JavaScript. Un generador es un proceso que se puede pausar y reanudar y puede generar múltiples valores. Pueden mantener el estado, proporcionando una forma eficiente de crear iteradores y son capaces de manejar infinitos flujos de datos. En este artículo, cubriremos cómo crear funciones generadoras, cómo iterar sobre objetos Generator, la diferencia entre rendimiento y retorno dentro de un generador y otros aspectos del trabajo con generadores.
+
+## [Comprender Parámetros Predeterminados en JavaScript](./understanding-default-parameters-in-javascript.html)
+
+En ECMAScript 2015, se introdujeron parámetros de función predeterminados en el lenguaje de programación JavaScript. Estos permiten a los desarrolladores inicializar una función con valores predeterminados si los argumentos no se proporcionan a la llamada de función. Inicializar los parámetros de la función de esta manera hará que sus funciones sean más fáciles de leer y lo ayudará a evitar errores causados ​​por argumentos indefinidos y la desestructuración de objetos que no existen. En este artículo, aprenderá a utilizar los parámetros predeterminados.
+
