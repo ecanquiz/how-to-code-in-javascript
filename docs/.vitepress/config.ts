@@ -50,6 +50,7 @@ export default defineConfig({
         { text: 'This, Bind, Call y Apply', link: '/understanding-this-bind-call-and-apply-in-javascript' },
         { text: 'Map y Set  de Objetos', link: '/understanding-map-and-set-objects-in-javascript' },
         { text: 'Generadores', link: '/understanding-generators-in-javascript' },
+        { text: 'Parámetros Predeterminados', link: '/understanding-default-parameters-in-javascript' },
         { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
       ]
     }],

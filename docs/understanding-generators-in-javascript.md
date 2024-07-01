@@ -706,4 +706,10 @@ Output
 Tenga en cuenta que esta implementación sirve para demostrar cómo se pueden utilizar los generadores en lugar de `async`/`await` y no es un diseño listo para producción. No tiene configurado el manejo de errores ni tiene la capacidad de pasar parámetros a los valores obtenidos. Aunque este método puede agregar flexibilidad a su código, a menudo `async`/`await` será una mejor opción, ya que abstrae los detalles de implementación y le permite concentrarse en escribir código productivo.
 
 
-## Conclusion
+## Conclusión
+
+Los generadores son procesos que pueden detener y reanudar la ejecución. Son una característica poderosa y versátil de JavaScript, aunque no se usan comúnmente. En este tutorial, aprendimos sobre las funciones del generador y los objetos del generador, los métodos disponibles para los generadores, los operadores `yield` y `yield*`, y los generadores utilizados con conjuntos de datos finitos e infinitos. También exploramos una forma de implementar código asincrónico sin devoluciones de llamadas anidadas ni largas cadenas de promesas.
+
+Si desea obtener más información sobre la sintaxis de JavaScript, eche un vistazo a nuestros tutoriales [Comprender This, Bind, Call y Apply en JavaScript ](./understanding-this-bind-call-and-apply-in-javascript.html) y [Comprender Map y Set de Objetos en JavaScript](./understanding-map-and-set-objects-in-javascript.html).
+
+
