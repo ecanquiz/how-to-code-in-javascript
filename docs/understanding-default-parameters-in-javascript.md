@@ -81,5 +81,95 @@ En este caso, `cube()` intenta calcular el valor de `undefined * undefined * und
 
 Este comportamiento automático a veces puede ser un problema. En algunos casos, es posible que desee que el parámetro tenga un valor incluso si no se pasó ningún argumento a la función. Ahí es donde resulta útil la característica de _parámetros predeterminados_, un tema que cubrirá en la siguiente sección.
 
-## Default Parameter Syntax
+## Sintaxis de Parámetros Predeterminada
 
+
+Con la adición de parámetros predeterminados en ES2015, ahora puede asignar un valor predeterminado a cualquier parámetro, que la función usará en lugar de `undefined` cuando se llame sin un argumento. Esta sección primero le mostrará cómo hacer esto manualmente y luego lo guiará a través de la configuración de los parámetros predeterminados.
+
+Sin parámetros predeterminados, tendría que verificar explícitamente si hay valores `undefined` para poder establecer los valores predeterminados, como se muestra en este ejemplo:
+
+
+
+```js
+// Check for undefined manually
+function cube(x) {
+  if (typeof x === 'undefined') {
+    x = 5
+  }
+
+  return x * x * x
+}
+
+cube()
+```
+
+Esto utiliza una [declaración condicional](./how-to-write-conditional-statements-in-javascript.html) para verificar si el valor se ha proporcionado automáticamente como `undefined`, luego establece el valor de `x` en `5`. Esto dará como resultado el siguiente resultado:
+
+
+```sh
+Output
+125
+```
+
+Por el contrario, el uso de parámetros predeterminados logra el mismo objetivo con mucho menos código. Puede establecer un valor predeterminado para el parámetro en el `cube` asignándolo con el operador de asignación de igualdad (`=`), como se resalta aquí:
+
+
+```js{2}
+// Define a cube function with a default value
+function cube(x = 5) {
+  return x * x * x
+}
+```
+
+
+Ahora, cuando se invoca la función `cube` sin un argumento, asignará `5` a `x` y devolverá el cálculo en lugar de `NaN`:
+
+
+```js
+// Invoke cube function without an argument
+cube()
+```
+
+```sh
+Output
+125
+```
+
+Seguirá funcionando según lo previsto cuando se pase un argumento, ignorando el valor predeterminado:
+
+
+```js
+// Invoke cube function with an argument
+cube(2)
+```
+
+```sh
+Output
+8
+```
+
+
+Sin embargo, una advertencia importante a tener en cuenta es que el valor del parámetro predeterminado también anulará un `undefined` explícito pasado como argumento a una función, como se demuestra aquí:
+
+
+```js
+// Invoke cube function with undefined
+cube(undefined)
+```
+
+
+Esto dará el cálculo con `x` igual a `5`:
+
+
+```sh
+Output
+125
+```
+
+
+En este caso, se calcularon los valores de los parámetros predeterminados y un valor `undefined` explícito no los anuló.
+
+Ahora que tiene una idea de la sintaxis básica de los parámetros predeterminados, la siguiente sección mostrará cómo funcionan los parámetros predeterminados con diferentes tipos de datos.
+
+
+## Default Parameter Data Types
