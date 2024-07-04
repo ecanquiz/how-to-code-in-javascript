@@ -172,4 +172,219 @@ En este caso, se calcularon los valores de los parámetros predeterminados y un 
 Ahora que tiene una idea de la sintaxis básica de los parámetros predeterminados, la siguiente sección mostrará cómo funcionan los parámetros predeterminados con diferentes tipos de datos.
 
 
-## Default Parameter Data Types
+## Tipos de Datos de Parámetros Predeterminados
+
+Cualquier [valor primitivo](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) u [objeto](./understanding-objects-in-javascript.html) se puede utilizar como valor de parámetro predeterminado. En esta sección, verá cómo esta flexibilidad aumenta las formas en que se pueden utilizar los parámetros predeterminados.
+
+Primero, establezca los parámetros utilizando un [número](./understanding-data-types.html#numbers), [cadena](./understanding-data-types.html#strings), [booleano](./understanding-data-types.html#booleans), objeto, [matriz](./understanding-arrays-in-javascript.html) y valor nulo como valor predeterminado. Este ejemplo utilizará la sintaxis de la [función de flecha](/how-to-define-functions-in-javascript.html#funciones-de-flecha):
+
+```js
+// Create functions with a default value for each data type
+const defaultNumber = (number = 42) => console.log(number)
+const defaultString = (string = 'Shark') => console.log(string)
+const defaultBoolean = (boolean = true) => console.log(boolean)
+const defaultObject = (object = { id: 7 }) => console.log(object)
+const defaultArray = (array = [1, 2, 3]) => console.log(array)
+const defaultNull = (nullValue = null) => console.log(nullValue)
+```
+
+Cuando estas funciones se invocan sin parámetros, todas utilizarán los valores predeterminados:
+
+```js
+// Invoke each function
+defaultNumber()
+defaultString()
+defaultBoolean()
+defaultObject()
+defaultArray()
+defaultNull()
+```
+
+```sh
+Output
+42
+"Shark"
+true
+{id: 7}
+(3) [1, 2, 3]
+null
+```
+
+Tenga en cuenta que cualquier objeto creado en un parámetro predeterminado se creará cada vez que se llame a la función. Uno de los casos de uso común de los parámetros predeterminados es utilizar este comportamiento para obtener valores de un objeto. Si intenta desestructurar o acceder a un valor desde un objeto que no existe, arrojará un error. Sin embargo, si el parámetro predeterminado es un objeto vacío, simplemente le dará valores `undefined` en lugar de generar un error:
+
+
+```js
+// Define a settings function with a default object
+function settings(options = {}) {
+  const { theme, debug } = options
+
+  // Do something with settings
+}
+```
+
+Esto evitará el error causado por desestructurar objetos que no existen.
+
+Ahora que ha visto cómo funcionan los parámetros predeterminados con diferentes tipos de datos, la siguiente sección explicará cómo pueden funcionar varios parámetros predeterminados juntos.
+
+
+## Usar Múltiples Parámetros Predeterminados
+
+Puede utilizar tantos parámetros predeterminados como desee en una función. Esta sección le mostrará cómo hacer esto y cómo usarlo para manipular el [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) en un ejemplo del mundo real.
+
+Primero, declare una función `sum()` con múltiples parámetros predeterminados:
+
+
+```js
+// Define a function to add two values
+function sum(a = 1, b = 2) {
+  return a + b
+}
+
+sum()
+```
+
+Esto dará como resultado el siguiente cálculo predeterminado:
+
+
+```sh
+Output
+3
+```
+
+Además, el valor utilizado en un parámetro se puede utilizar en cualquier parámetro predeterminado posterior, de izquierda a derecha. Por ejemplo, esta función `createUser` crea un objeto de usuario `userObj` como tercer parámetro, y todo lo que hace la función es devolver `userObj` con los dos primeros parámetros:
+
+
+```js
+// Define a function to create a user object using parameters
+function createUser(name, rank, userObj = { name, rank }) {
+  return userObj
+}
+
+// Create user
+const user = createUser('Jean-Luc Picard', 'Captain')
+```
+
+Si llama al `user` aquí, obtendrá lo siguiente:
+
+
+```sh
+Output
+{name: "Jean-Luc Picard", rank: "Captain"}
+```
+
+
+Generalmente se recomienda colocar todos los parámetros predeterminados al final de una lista de parámetros, para que pueda omitir fácilmente los valores opcionales. Si usa un parámetro predeterminado primero, tendrá que pasar explícitamente `undefined` para usar el valor predeterminado.
+
+A continuación se muestra un ejemplo con el parámetro predeterminado al principio de la lista:
+
+
+```js
+// Define a function with a default parameter at the start of the list
+function defaultFirst(a = 1, b) {
+  return a + b
+}
+```
+
+
+Al llamar a esta función, tendrías que llamar a `defaultFirst()` con dos argumentos:
+
+
+```js
+defaultFirst(undefined, 2)
+```
+
+
+Esto daría lo siguiente:
+
+```sh
+Output
+3
+```
+
+A continuación se muestra un ejemplo con el parámetro predeterminado al final de la lista:
+
+
+```js
+// Define a function with a default parameter at the end of the list
+function defaultLast(a, b = 1) {
+  return a + b
+}
+
+defaultLast(2)
+```
+
+
+Esto produciría el mismo valor:
+
+
+```sh
+Output
+3
+```
+
+
+Ambas funciones tienen el mismo resultado, pero la que tiene el último valor predeterminado permite una llamada de función mucho más limpia.
+
+Para ver un ejemplo del mundo real, aquí hay una función que creará un elemento DOM y agregará una etiqueta de texto y clases, si existen.
+
+
+```js
+// Define function to create an element
+function createNewElement(tag, text, classNames = []) {
+  const el = document.createElement(tag)
+  el.textContent = text
+
+  classNames.forEach(className => {
+    el.classList.add(className)
+  })
+
+  return el
+}
+```
+
+Puedes llamar a la función con algunas clases en una matriz:
+
+
+
+```js
+const greeting = createNewElement('p', 'Hello!', ['greeting', 'active'])
+```
+
+Llamar `greeting` dará el siguiente valor:
+
+
+```sh
+Output
+<p class="greeting active">Hello!</p>
+```
+
+Sin embargo, si deja la matriz `classNames` fuera de la llamada a la función, seguirá funcionando.
+
+
+```js
+const greeting2 = createNewElement('p', 'Hello!')
+```
+
+`greeting2` ahora tiene el siguiente valor:
+
+
+```sh
+Output
+<p>Hello!</p>
+```
+
+
+En este ejemplo, [`forEach()`](./how-to-use-array-methods-in-javascript-iteration-methods.html#foreach) se puede utilizar en una matriz vacía sin problemas. Si esa matriz vacía no estuviera configurada en el parámetro predeterminado, obtendría el siguiente error:
+
+
+
+```sh
+Output
+VM2673:5 Uncaught TypeError: Cannot read property 'forEach' of undefined
+    at createNewElement (<anonymous>:5:14)
+    at <anonymous>:12:18
+```
+
+Ahora que ha visto cómo pueden interactuar múltiples parámetros predeterminados, puede pasar a la siguiente sección para ver cómo funcionan las llamadas a funciones como parámetros predeterminados.
+
+## Function Calls as Default Parameters
