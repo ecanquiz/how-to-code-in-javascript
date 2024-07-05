@@ -387,4 +387,96 @@ VM2673:5 Uncaught TypeError: Cannot read property 'forEach' of undefined
 
 Ahora que ha visto cómo pueden interactuar múltiples parámetros predeterminados, puede pasar a la siguiente sección para ver cómo funcionan las llamadas a funciones como parámetros predeterminados.
 
-## Function Calls as Default Parameters
+## Llamadas de Funciones Como Parámetros Predeterminados
+
+Además de las primitivas y los objetos, el resultado de llamar a una función se puede utilizar como parámetro predeterminado.
+
+En este bloque de código, creará una función para devolver un número aleatorio y luego usará el resultado como valor de parámetro predeterminado en una función de `cube`:
+
+
+```js
+// Define a function to return a random number from 1 to 10
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10)
+}
+
+// Use the random number function as a default parameter for the cube function
+function cube(x = getRandomNumber()) {
+  return x * x * x
+}
+```
+
+Ahora, invocar la función `cube` sin un parámetro tendrá resultados potencialmente diferentes cada vez que la llame:
+
+
+```js
+// Invoke cube function twice for two potentially different results
+cube()
+cube()
+```
+
+
+El resultado de estas llamadas a funciones variará:
+
+
+```sh
+Output
+512
+64
+```
+
+
+Incluso puedes usar métodos integrados, como los del objeto `Math`, y usar el valor devuelto en una llamada de función como parámetro en otra función.
+
+En el siguiente ejemplo, se asigna un número aleatorio a `x`, que se utiliza como parámetro en la función `cube` que creó. El parámetro `y` luego calculará la raíz cúbica del número y verificará si `x` e `y` son iguales:
+
+
+```js
+// Assign a random number to x
+// Assign the cube root of the result of the cube function and x to y
+function doesXEqualY(x = getRandomNumber(), y = Math.cbrt(cube(x))) {
+  return x === y
+}
+
+doesXEqualY()
+```
+
+
+Esto dará lo siguiente:
+
+
+```sh
+Output
+true
+```
+
+Un parámetro predeterminado puede incluso ser una definición de función, como se ve en este ejemplo, que define un parámetro como la función `inner` y devuelve la llamada de función del `parameter`:
+
+
+```js
+// Define a function with a default parameter that is an anonymous function
+function outer(
+  parameter = function inner() {
+    return 100
+  }
+) {
+  return parameter()
+}
+
+// Invoke outer function
+outer()
+```
+
+```sh
+Output
+100
+```
+
+Esta función `inner` se creará desde cero cada vez que se invoque la función `outer`.
+
+
+## Conclusión
+
+En este artículo, aprendió qué son los parámetros de función predeterminados y cómo usarlos. Ahora puede utilizar parámetros predeterminados para ayudar a mantener sus funciones limpias y fáciles de leer. También puede asignar objetos y matrices vacías a parámetros por adelantado para reducir tanto la complejidad como las líneas de código cuando se trata de situaciones como recuperar valores de un objeto o recorrer una matriz.
+
+Si desea obtener más información sobre JavaScript, consulte la página de inicio de nuestra serie [Cómo codificar en JavaScript](./intro.html) o explore nuestra serie [Cómo codificar en Node.js](https://www.digitalocean.com/community/tutorial-series/how-to-code-in-node-js) para obtener artículos sobre desarrollo back-end.
