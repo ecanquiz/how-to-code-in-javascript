@@ -137,3 +137,6 @@ En ECMAScript 2015, se introdujeron generadores en el lenguaje JavaScript. Un ge
 
 En ECMAScript 2015, se introdujeron parámetros de función predeterminados en el lenguaje de programación JavaScript. Estos permiten a los desarrolladores inicializar una función con valores predeterminados si los argumentos no se proporcionan a la llamada de función. Inicializar los parámetros de la función de esta manera hará que sus funciones sean más fáciles de leer y lo ayudará a evitar errores causados ​​por argumentos indefinidos y la desestructuración de objetos que no existen. En este artículo, aprenderá a utilizar los parámetros predeterminados.
 
+## [Comprender Desestructuración, Parámetros de Resto y Sintaxis Propagada en JavaScript](./understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript.html)
+
+Introducidos en ECMAScript 2015 (ES6), la desestructuración, los parámetros de resto y la sintaxis propagada brindan formas más directas de acceder a los miembros de una matriz o un objeto, y pueden hacer que trabajar con estructuras de datos sea más rápido y conciso. En este artículo, aprenderá cómo desestructurar objetos y matrices en JavaScript, cómo usar el operador de propagación para descomprimir objetos y matrices y cómo usar parámetros de resto en llamadas a funciones.
