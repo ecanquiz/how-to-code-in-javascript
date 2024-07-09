@@ -193,7 +193,201 @@ Output
 La cadena `A string` se convirtió implícitamente en un objeto aquí para recuperar la propiedad `length`.
 
 
-### Array Destructuring
+### Desestructuración de Matrices
+
+La desestructuración de matrices le permite crear nuevas variables utilizando un elemento de matriz como valor. Considere este ejemplo, una matriz con las distintas partes de una fecha:
+
+
+```js
+const date = ['1970', '12', '01']
+```
+
+
+Se garantiza que las matrices en JavaScript conservarán su orden, por lo que en este caso el primer índice siempre será un año, el segundo será el mes, y así sucesivamente. Sabiendo esto, puedes crear variables a partir de los elementos de la matriz:
+
+
+```js
+// Create variables from the Array items
+const year = date[0]
+const month = date[1]
+const day = date[2]
+```
+
+
+Pero hacer esto manualmente puede ocupar mucho espacio en su código. Con la desestructuración de matrices, puedes descomprimir los valores de la matriz en orden y asignarlos a sus propias variables, así:
+
+
+```js
+// Destructure Array values into variables
+const [year, month, day] = date
+```
+
+
+Ahora registre las nuevas variables:
+
+
+```js
+console.log(year)
+console.log(month)
+console.log(day)
+```
+
+Obtendrá el siguiente resultado:
+
+
+```sh
+Output
+1970
+12
+01
+```
+
+
+Los valores se pueden omitir dejando la sintaxis de desestructuración en blanco entre comas:
 
 
 
+```js
+// Skip the second item in the array
+const [year, , day] = date
+
+console.log(year)
+console.log(day)
+```
+
+
+Ejecutar esto dará el valor de `year` y `day`:
+
+
+```sh
+Output
+1970
+01
+```
+
+
+Las matrices anidadas también se pueden desestructurar. Primero, crea una matriz anidada:
+
+
+```js
+// Create a nested array
+const nestedArray = [1, 2, [3, 4], 5]
+```
+
+Luego desestructura esa matriz y registra las nuevas variables:
+
+
+```js
+// Destructure nested items
+const [one, two, [three, four], five] = nestedArray
+
+console.log(one, two, three, four, five)
+```
+
+
+Recibirá el siguiente resultado:
+
+
+```js
+Output
+1 2 3 4 5
+```
+
+
+La sintaxis de desestructuración se puede aplicar para desestructurar los parámetros de una función. Para probar esto, desestructurará las `keys` y los `values` de [`Object.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries).
+
+
+Primero, declara el objeto `note`:
+
+
+```js
+const note = {
+  id: 1,
+  title: 'My first note',
+  date: '01/01/1970',
+}
+```
+
+
+Dado este objeto, podría enumerar los pares clave-valor desestructurando los argumentos a medida que se pasan al [método `forEach()`](./how-to-use-array-methods-in-javascript-iteration-methods.html#foreach):
+
+
+```js
+// Using forEach
+Object.entries(note).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`)
+})
+```
+
+
+O podrías lograr lo mismo usando un [bucle `for`](./for-loops-for-of-loops-and-for-in-loops-in-javascript.html#bucle-for):
+
+
+```js
+// Using a for loop
+for (let [key, value] of Object.entries(note)) {
+  console.log(`${key}: ${value}`)
+}
+```
+
+De cualquier manera, recibirá lo siguiente:
+
+
+```sh
+Output
+id: 1
+title: My first note
+date: 01/01/1970
+```
+
+
+La desestructuración de objetos y la desestructuración de matrices se pueden combinar en una única tarea de desestructuración. Los [parámetros predeterminados](./understanding-default-parameters-in-javascript.html) también se pueden usar con la desestructuración, como se ve en este ejemplo que establece la fecha predeterminada en [`new Date()`](./understanding-date-and-time-in-javascript.html#el-objeto-de-fecha).
+
+Primero, declara el objeto `note`:
+
+
+```js
+const note = {
+  title: 'My first note',
+  author: {
+    firstName: 'Sherlock',
+    lastName: 'Holmes',
+  },
+  tags: ['personal', 'writing', 'investigations'],
+}
+```
+
+
+
+Luego desestructura el objeto y al mismo tiempo configura una nueva variable `date` con el valor predeterminado de `new Date()`:
+
+
+
+```js
+const {
+  title,
+  date = new Date(),
+  author: { firstName },
+  tags: [personalTag, writingTag],
+} = note
+
+console.log(date)
+```
+
+`console.log(date)` dará un resultado similar al siguiente:
+
+
+```sh
+Output
+Fri May 08 2020 23:53:49 GMT-0500 (Central Daylight Time)
+```
+
+
+Como se muestra en esta sección, la sintaxis de asignación de desestructuración agrega mucha flexibilidad a JavaScript y le permite escribir código más conciso. En la siguiente sección, verá cómo se puede utilizar la sintaxis propagada para expandir las estructuras de datos en sus entradas de datos constituyentes.
+
+
+## Propagar
+
+La sintaxis propagada `(...)` es otra adición útil a JavaScript para trabajar con matrices, objetos y llamadas a funciones. Propagar permite descomprimir o expandir objetos e iterables (como matrices), lo que se puede utilizar para hacer copias superficiales de estructuras de datos para aumentar la facilidad de manipulación de datos.
+
+### Spread with Arrays
