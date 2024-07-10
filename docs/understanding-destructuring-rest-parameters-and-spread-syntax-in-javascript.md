@@ -390,4 +390,207 @@ Como se muestra en esta sección, la sintaxis de asignación de desestructuraci�
 
 La sintaxis propagada `(...)` es otra adición útil a JavaScript para trabajar con matrices, objetos y llamadas a funciones. Propagar permite descomprimir o expandir objetos e iterables (como matrices), lo que se puede utilizar para hacer copias superficiales de estructuras de datos para aumentar la facilidad de manipulación de datos.
 
-### Spread with Arrays
+### Propagar con Matrices
+
+Propagar puede simplificar tareas comunes con matrices. Por ejemplo, digamos que tienes dos matrices y quieres combinarlas:
+
+
+
+
+
+
+```js
+// Create an Array
+const tools = ['hammer', 'screwdriver']
+const otherTools = ['wrench', 'saw']
+```
+
+
+Originalmente usarías [`concat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) para concatenar las dos matrices:
+
+
+```js
+// Concatenate tools and otherTools together
+const allTools = tools.concat(otherTools)
+```
+
+Ahora también puedes usar propagar para descomprimir las matrices en una nueva matriz:
+
+
+```js
+// Unpack the tools Array into the allTools Array
+const allTools = [...tools, ...otherTools]
+
+console.log(allTools)
+```
+
+Ejecutar esto daría lo siguiente:
+
+
+```sh
+Output
+["hammer", "screwdriver", "wrench", "saw"]
+```
+
+
+Esto puede resultar particularmente útil con la inmutabilidad. Por ejemplo, es posible que esté trabajando con una aplicación que tiene `users` almacenados en una serie de objetos:
+
+
+```js
+// Array of users
+const users = [
+  { id: 1, name: 'Ben' },
+  { id: 2, name: 'Leslie' },
+]
+```
+
+
+Podrías usar `push` para modificar la matriz existente y agregar un nuevo usuario, que sería la opción mutable:
+
+
+```js
+// A new user to be added
+const newUser = { id: 3, name: 'Ron' }
+
+users.push(newUser)
+```
+
+Pero esto cambia la matriz `user`, que quizás queramos preservar.
+
+Propagar le permite crear una nueva matriz a partir de la existente y agregar un nuevo elemento al final:
+
+
+```js
+const updatedUsers = [...users, newUser]
+
+console.log(users)
+console.log(updatedUsers)
+```
+
+Ahora la nueva matriz, `updatedUsers`, tiene el nuevo usuario, pero la matriz de usuarios original permanece sin cambios:
+
+
+```sh
+Output
+[{id: 1, name: "Ben"}
+ {id: 2, name: "Leslie"}]
+
+[{id: 1, name: "Ben"}
+ {id: 2, name: "Leslie"}
+ {id: 3, name: "Ron"}]
+```
+
+Crear copias de datos en lugar de cambiar los datos existentes puede ayudar a evitar cambios inesperados. En JavaScript, cuando crea un objeto o matriz y lo asigna a otra variable, en realidad no está creando un nuevo objeto, sino que está pasando una referencia.
+
+Tomemos este ejemplo, en el que se crea una matriz y se asigna a otra variable:
+
+
+```js
+// Create an Array
+const originalArray = ['one', 'two', 'three']
+
+// Assign Array to another variable
+const secondArray = originalArray
+```
+
+Eliminar el último elemento del segundo Array modificará el primero:
+
+
+```js
+// Remove the last item of the second Array
+secondArray.pop()
+
+console.log(originalArray)
+```
+
+Esto dará la salida:
+
+
+```sh
+Output
+["one", "two"]
+```
+
+
+Propagar le permite hacer una copia superficial de una matriz u objeto, lo que significa que cualquier propiedad de nivel superior se clonará, pero los objetos anidados se seguirán pasando por referencia. Para matrices u objetos simples, una copia superficial puede ser todo lo que necesita.
+
+Si escribe el mismo código de ejemplo pero copia la matriz con extensión, la matriz original ya no se modificará:
+
+
+```js
+// Create an Array
+const originalArray = ['one', 'two', 'three']
+
+// Use spread to make a shallow copy
+const secondArray = [...originalArray]
+
+// Remove the last item of the second Array
+secondArray.pop()
+
+console.log(originalArray)
+```
+
+Lo siguiente se registrará en la consola:
+
+
+```sh
+Output
+["one", "two", "three"]
+```
+
+Propagar también se puede utilizar para convertir un [set](./understanding-map-and-set-objects-in-javascript.html) o cualquier otro [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#Iterable_examples) en una matriz.
+
+Cree un nuevo conjunto y agréguele algunas entradas:
+
+
+```js
+// Create a set
+const set = new Set()
+
+set.add('octopus')
+set.add('starfish')
+set.add('whale')
+```
+
+A continuación, utilice el operador de extensión con `set` y registre los resultados:
+
+
+```js
+// Convert Set to Array
+const seaCreatures = [...set]
+
+console.log(seaCreatures)
+```
+
+
+Esto dará lo siguiente:
+
+
+```sh
+Output
+["octopus", "starfish", "whale"]
+```
+
+Esto también puede resultar útil para crear una matriz a partir de una cadena:
+
+
+```sh
+const string = 'hello'
+
+const stringArray = [...string]
+
+console.log(stringArray)
+```
+
+Esto dará una matriz con cada carácter como un elemento de la matriz:
+
+
+```sh
+Output
+["h", "e", "l", "l", "o"]
+```
+
+
+## Spread with Objects
+
+
