@@ -1,4 +1,5 @@
-# Comprender Sintaxis de Desestructuración, Parámetros de Resto y Propagación en JavaScript
+# Comprender Desestructuración, Parámetros _Resto_ y Sintaxis Propagada en JavaScript
+
 :::info
 La fuente original (en ingles) de este tutorial se encuentra [aquí](https://www.digitalocean.com/community/tutorials/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript)
 :::
@@ -6,9 +7,11 @@ La fuente original (en ingles) de este tutorial se encuentra [aquí](https://www
 
 ## Introducción
 
-Desde la [Edición 2015](https://262.ecma-international.org/6.0/) de la especificación ECMAScript, se han puesto a disposición del lenguaje [JavaScript](/intro.html) muchas funciones nuevas para trabajar con [matrices](./understanding-arrays-in-javascript.html) y [objetos](./understanding-objects-in-javascript.html). Algunos de los más importantes que aprenderá en este artículo son la sintaxis de _desestructuración_, _parámetros de resto_ y _propagación_. Estas características proporcionan formas más directas de acceder a los miembros de una matriz o de un objeto y pueden hacer que trabajar con estas estructuras de datos sea más rápido y conciso.
+Desde la [Edición 2015](https://262.ecma-international.org/6.0/) de la especificación ECMAScript, se han puesto a disposición del lenguaje [JavaScript](/intro.html) muchas funciones nuevas para trabajar con [matrices](./understanding-arrays-in-javascript.html) y [objetos](./understanding-objects-in-javascript.html). Algunos de los más importantes que aprenderá en este artículo son la sintaxis de _desestructuración_, _parámetros resto_ y _propagación_. Estas características proporcionan formas más directas de acceder a los miembros de una matriz o de un objeto y pueden hacer que trabajar con estas estructuras de datos sea más rápido y conciso.
 
-Muchos otros lenguajes no tienen una sintaxis correspondiente para desestructurar, parámetros de resto y propagación, por lo que estas características pueden tener una curva de aprendizaje tanto para los nuevos desarrolladores de JavaScript como para aquellos que vienen de otro lenguaje. En este artículo, aprenderá cómo desestructurar objetos y matrices, cómo usar el operador de propagación para desempaquetar objetos y matrices, y cómo usar parámetros de resto en llamadas a funciones.
+Muchos otros lenguajes no tienen una sintaxis correspondiente para desestructurar, parámetros _resto_ y propagación, por lo que estas características pueden tener una curva de aprendizaje tanto para los nuevos desarrolladores de JavaScript como para aquellos que vienen de otro lenguaje. En este artículo, aprenderá cómo desestructurar objetos y matrices, cómo usar el operador de propagación para desempaquetar objetos y matrices, y cómo usar parámetros _resto_ en llamadas a funciones.
+
+>Para lograr un significado más metafórico, en este artículo se conservará la palabra original **_Spread_** en lugar de su traducción a **_Propagación_**.
 
 ## Desestructuración
 
@@ -383,16 +386,16 @@ Fri May 08 2020 23:53:49 GMT-0500 (Central Daylight Time)
 ```
 
 
-Como se muestra en esta sección, la sintaxis de asignación de desestructuración agrega mucha flexibilidad a JavaScript y le permite escribir código más conciso. En la siguiente sección, verá cómo se puede utilizar la sintaxis propagada para expandir las estructuras de datos en sus entradas de datos constituyentes.
+Como se muestra en esta sección, la sintaxis de asignación de desestructuración agrega mucha flexibilidad a JavaScript y le permite escribir código más conciso. En la siguiente sección, verá cómo se puede utilizar la sintaxis _spread_ para expandir las estructuras de datos en sus entradas de datos constituyentes.
 
 
-## Propagar
+## _Spread_
 
-La sintaxis propagada `(...)` es otra adición útil a JavaScript para trabajar con matrices, objetos y llamadas a funciones. Propagar permite descomprimir o expandir objetos e iterables (como matrices), lo que se puede utilizar para hacer copias superficiales de estructuras de datos para aumentar la facilidad de manipulación de datos.
+La sintaxis _spread_ `(...)` es otra adición útil a JavaScript para trabajar con matrices, objetos y llamadas a funciones. _Spread_ permite descomprimir o expandir objetos e iterables (como matrices), lo que se puede utilizar para hacer copias superficiales de estructuras de datos para aumentar la facilidad de manipulación de datos.
 
-### Propagar con Matrices
+### _Spread_ con Matrices
 
-Propagar puede simplificar tareas comunes con matrices. Por ejemplo, digamos que tienes dos matrices y quieres combinarlas:
+_Spread_ puede simplificar tareas comunes con matrices. Por ejemplo, digamos que tienes dos matrices y quieres combinarlas:
 
 
 
@@ -414,7 +417,7 @@ Originalmente usarías [`concat()`](https://developer.mozilla.org/en-US/docs/Web
 const allTools = tools.concat(otherTools)
 ```
 
-Ahora también puedes usar propagar para descomprimir las matrices en una nueva matriz:
+Ahora también puedes usar _spread_ para descomprimir las matrices en una nueva matriz:
 
 
 ```js
@@ -455,9 +458,9 @@ const newUser = { id: 3, name: 'Ron' }
 users.push(newUser)
 ```
 
-Pero esto cambia la matriz `user`, que quizás queramos preservar.
+Pero esto cambia la matriz `users`, que quizás queramos preservar.
 
-Propagar le permite crear una nueva matriz a partir de la existente y agregar un nuevo elemento al final:
+_Spread_ le permite crear una nueva matriz a partir de la existente y agregar un nuevo elemento al final:
 
 
 ```js
@@ -512,7 +515,7 @@ Output
 ```
 
 
-Propagar le permite hacer una copia superficial de una matriz u objeto, lo que significa que cualquier propiedad de nivel superior se clonará, pero los objetos anidados se seguirán pasando por referencia. Para matrices u objetos simples, una copia superficial puede ser todo lo que necesita.
+_Spread_ le permite hacer una copia superficial de una matriz u objeto, lo que significa que cualquier propiedad de nivel superior se clonará, pero los objetos anidados se seguirán pasando por referencia. Para matrices u objetos simples, una copia superficial puede ser todo lo que necesita.
 
 Si escribe el mismo código de ejemplo pero copia la matriz con extensión, la matriz original ya no se modificará:
 
@@ -538,7 +541,7 @@ Output
 ["one", "two", "three"]
 ```
 
-Propagar también se puede utilizar para convertir un [set](./understanding-map-and-set-objects-in-javascript.html) o cualquier otro [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#Iterable_examples) en una matriz.
+_Spread_ también se puede utilizar para convertir un [set](./understanding-map-and-set-objects-in-javascript.html) o cualquier otro [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#Iterable_examples) en una matriz.
 
 Cree un nuevo conjunto y agréguele algunas entradas:
 
@@ -591,6 +594,358 @@ Output
 ```
 
 
-## Spread with Objects
+### _Spread_ con Objetos
+
+
+Cuando se trabaja con objetos, se puede utilizar _spread_ para copiar y actualizar objetos.
+
+
+Originalmente, [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) se usaba para copiar un objeto:
+
+
+
+```js
+// Create an Object and a copied Object with Object.assign()
+const originalObject = { enabled: true, darkMode: false }
+const secondObject = Object.assign({}, originalObject)
+```
+
+El `secondObject` ahora será un clon del `originalObject`.
+
+Esto se simplifica con la sintaxis _spread_ — puedes copiar superficialmente un objeto propagándolo en uno nuevo:
+
+
+```js
+// Create an object and a copied object with spread
+const originalObject = { enabled: true, darkMode: false }
+const secondObject = { ...originalObject }
+
+console.log(secondObject)
+```
+
+
+Esto dará como resultado lo siguiente:
+
+
+```sh
+Output
+{enabled: true, darkMode: false}
+```
+
+Al igual que con las matrices, esto solo creará una copia superficial y los objetos anidados se seguirán pasando por referencia.
+
+Agregar o modificar propiedades en un objeto existente de forma inmutable se simplifica con _spread_. En este ejemplo, la propiedad `isLoggedIn` se agrega al objeto `user`:
+
+
+```js
+const user = {
+  id: 3,
+  name: 'Ron',
+}
+
+const updatedUser = { ...user, isLoggedIn: true }
+
+console.log(updatedUser)
+```
+
+
+Esto generará lo siguiente:
+
+
+```js
+Output
+{id: 3, name: "Ron", isLoggedIn: true}
+```
+
+
+Una cosa importante a tener en cuenta al actualizar objetos mediante _spread_ es que cualquier objeto anidado también deberá propagarse. Por ejemplo, digamos que en el objeto `user` hay un objeto `organization` anidado:
+
+
+```js
+const user = {
+  id: 3,
+  name: 'Ron',
+  organization: {
+    name: 'Parks & Recreation',
+    city: 'Pawnee',
+  },
+}
+```
+
+
+Si intenta agregar un nuevo elemento a `organization`, se sobrescribirán los campos existentes:
+
+
+```js
+const updatedUser = { ...user, organization: { position: 'Director' } }
+
+console.log(updatedUser)
+```
+
+
+Esto daría como resultado lo siguiente:
+
+
+```sh
+Output
+id: 3
+name: "Ron"
+organization: {position: "Director"}
+```
+
+
+Si la mutabilidad no es un problema, el campo podría actualizarse directamente:
+
+
+```js
+user.organization.position = 'Director'
+```
+
+
+Pero como buscamos una solución inmutable, podemos propagar el objeto interno para conservar las propiedades existentes:
+
+
+```js
+const updatedUser = {
+  ...user,
+  organization: {
+    ...user.organization,
+    position: 'Director',
+  },
+}
+
+console.log(updatedUser)
+```
+
+
+Esto dará lo siguiente:
+
+
+```sh
+Output
+id: 3
+name: "Ron"
+organization: {name: "Parks & Recreation", city: "Pawnee", position: "Director"}
+```
+
+
+### _Spread_ Difundir Llamadas de Funciones
+
+_Spread_ también se puede utilizar con argumentos en llamadas de funciones.
+
+Como ejemplo, aquí hay una función `multiply` que toma tres parámetros y los multiplica:
+
+
+
+```js
+// Create a function to multiply three items
+function multiply(a, b, c) {
+  return a * b * c
+}
+```
+
+
+Normalmente, pasarías tres valores individualmente como argumentos para la llamada a la función, así:
+
+
+```js
+multiply(1, 2, 3)
+```
+
+Esto daría lo siguiente:
+
+
+```sh
+Output
+6
+```
+
+
+Sin embargo, si todos los valores que desea pasar a la función ya existen en una matriz, la sintaxis extendida le permite usar cada elemento de una matriz como argumento:
+
+
+```js
+const numbers = [1, 2, 3]
+
+multiply(...numbers)
+```
+
+
+Esto dará el mismo resultado:
+
+
+```js
+Output
+6
+```
+
+
+::: info Nota
+Sin _spread_, esto se puede lograr usando `apply()`:
+
+```js
+multiply.apply(null, [1, 2, 3])
+```
+
+Esto dará:
+
+```sh
+Output
+6
+```
+:::
+
+Ahora que has visto cómo _spread_ puede acortar tu código, puedes echar un vistazo a un uso diferente de la sintaxis `...`: parámetros _resto_.
+
+## Parámetros _Resto_
+
+
+La última característica que aprenderá en este artículo es la sintaxis del parámetro _resto_. La sintaxis parece la misma que _spread_ (`...`) pero tiene el efecto opuesto. En lugar de descomprimir una matriz u objeto en valores individuales, la sintaxis _resto_ creará una matriz de un número indefinido de argumentos.
+
+En la función `restTest` por ejemplo, si quisiéramos que `args` fuera una matriz compuesta por un número indefinido de argumentos, podríamos tener lo siguiente:
+
+
+
+```js
+function restTest(...args) {
+  console.log(args)
+}
+
+restTest(1, 2, 3, 4, 5, 6)
+```
+
+
+Todos los argumentos pasados ​​a la función `restTest` ahora están disponibles en la matriz `args`:
+
+
+
+```sh
+Output
+[1, 2, 3, 4, 5, 6]
+```
+
+
+La sintaxis _resto_ se puede utilizar como único parámetro o como último parámetro de la lista. Si se usa como único parámetro, reunirá todos los argumentos, pero si está al final de una lista, reunirá todos los argumentos restantes, como se ve en este ejemplo:
+
+
+```js
+function restTest(one, two, ...args) {
+  console.log(one)
+  console.log(two)
+  console.log(args)
+}
+
+restTest(1, 2, 3, 4, 5, 6)
+```
+
+
+Esto tomará los dos primeros argumentos individualmente y luego agrupará el _resto_ en una matriz:
+
+
+```sh
+Output
+1
+2
+[3, 4, 5, 6]
+```
+
+
+En el código antiguo, la variable `arguments` se podía utilizar para recopilar todos los argumentos pasados ​​a una función:
+
+
+```js
+function testArguments() {
+  console.log(arguments)
+}
+
+testArguments('how', 'many', 'arguments')
+```
+
+Esto daría el siguiente resultado:
+
+
+```sh
+[secondary_label Output]1
+Arguments(3) ["how", "many", "arguments"]
+```
+
+
+Sin embargo, esto tiene algunas desventajas. Primero, la variable `arguments` no se puede usar con funciones de flecha.
+
+
+```js
+const testArguments = () => {
+  console.log(arguments)
+}
+
+testArguments('how', 'many', 'arguments')
+```
+
+
+Esto produciría un error:
+
+
+```sh
+Output
+Uncaught ReferenceError: arguments is not defined
+```
+
+
+Además, `arguments` no es una matriz verdadera y no pueden usar métodos como [`map` y `filter`](./how-to-use-array-methods-in-javascript-iteration-methods.html#map) sin antes convertirse en una matriz. También recopilará todos los argumentos pasados ​​en lugar de solo el _resto_ de los argumentos, como se ve en el ejemplo `restTest(one, two, ...args)`.
+
+_Rest_ también se puede utilizar al desestructurar matrices:
+
+
+
+```js
+const [firstTool, ...rest] = ['hammer', 'screwdriver', 'wrench']
+
+console.log(firstTool)
+console.log(rest)
+```
+
+
+Esto dará:
+
+
+```sh
+Output
+hammer
+["screwdriver", "wrench"]
+```
+
+
+_Resto_ también se puede utilizar al desestructurar objetos:
+
+
+```js
+const { isLoggedIn, ...rest } = { id: 1, name: 'Ben', isLoggedIn: true }
+
+console.log(isLoggedIn)
+console.log(rest)
+```
+
+
+Dando el siguiente resultado:
+
+
+```sh
+Output
+true
+{id: 1, name: "Ben"}
+```
+
+
+De esta manera, la sintaxis _resto_ proporciona métodos eficientes para reunir una cantidad indeterminada de elementos.
+
+## Conclusión
+
+En este artículo, aprendió sobre la desestructuración, la sintaxis _spread_ y los parámetros _resto_. En resumen:
+
+- La desestructuración se utiliza para crear variables a partir de elementos de una matriz o propiedades de objetos.
+- La sintaxis _spread_ se utiliza para descomprimir iterables como matrices, objetos y llamadas a funciones.
+- La sintaxis del parámetro _resto_ creará una matriz a partir de un número indefinido de valores.
+
+La desestructuración, los parámetros _resto_ y la sintaxis _spread_ son funciones útiles en JavaScript que ayudan a mantener el código conciso y limpio.
 
 

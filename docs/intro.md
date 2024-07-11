@@ -140,3 +140,7 @@ En ECMAScript 2015, se introdujeron parámetros de función predeterminados en e
 ## [Comprender Desestructuración, Parámetros de Resto y Sintaxis Propagada en JavaScript](./understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript.html)
 
 Introducidos en ECMAScript 2015 (ES6), la desestructuración, los parámetros de resto y la sintaxis propagada brindan formas más directas de acceder a los miembros de una matriz o un objeto, y pueden hacer que trabajar con estructuras de datos sea más rápido y conciso. En este artículo, aprenderá cómo desestructurar objetos y matrices en JavaScript, cómo usar el operador de propagación para descomprimir objetos y matrices y cómo usar parámetros de resto en llamadas a funciones.
+
+## [Comprender Literales de Plantilla en JavaScript](./understanding-template-literals-in-javascript.html)
+
+La edición 2015 de la especificación ECMAScript (ES6) agregó literales de plantilla al lenguaje JavaScript. Los literales de plantilla son una nueva forma de crear cadenas en JavaScript que agrega muchas capacidades nuevas y poderosas, como la creación de cadenas de varias líneas, el uso de marcadores de posición para incrustar expresiones en una cadena y el análisis de expresiones de cadena dinámicas con literales de plantilla etiquetados. En este artículo, repasará las diferencias entre cadenas entre comillas simples o dobles y literales de plantilla.

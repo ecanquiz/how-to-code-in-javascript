@@ -51,7 +51,8 @@ export default defineConfig({
         { text: 'Map y Set  de Objetos', link: '/understanding-map-and-set-objects-in-javascript' },
         { text: 'Generadores', link: '/understanding-generators-in-javascript' },
         { text: 'Parámetros Predeterminados', link: '/understanding-default-parameters-in-javascript' },
-        { text: 'Desestructuración, Parámetros de Resto y Sintaxis Propagada', link: '/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript' },
+        { text: 'Desestructuración, Parámetros Resto y Sintaxis Propagada', link: '/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript' },
+        { text: 'Comprender Literales de Plantilla', link: '/understanding-template-literals-in-javascript' },
         { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
       ]
     }],
@@ -60,7 +61,3 @@ export default defineConfig({
     ]
   }
 })
-
-
-
-
