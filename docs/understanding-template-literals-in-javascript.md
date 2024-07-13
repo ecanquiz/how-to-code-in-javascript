@@ -85,6 +85,112 @@ Los literales de plantilla pueden hacer todo lo que pueden hacer las cadenas nor
 Ahora que ha visto cómo declarar cadenas con comillas simples, comillas dobles y comillas invertidas, puede pasar a la primera ventaja de los literales de plantilla: escribir cadenas de varias líneas.
 
 
-## Multi-line Strings
+## Cadenas Multilínea
+
+En esta sección, primero repasará la forma en que se declaraban cadenas con varias líneas antes de ES6 y luego verá cómo los literales de plantilla lo hacen más fácil.
+
+Originalmente, si quisieras escribir una cadena que abarcara varias líneas en tu editor de texto, usarías el [operador de concatenación](./how-to-work-with-strings-in-javascript.html#concatenacion-de-cadenas). Sin embargo, este no siempre fue un proceso sencillo. La siguiente concatenación de cadenas parecía abarcar varias líneas:
+
+```js
+const address = 
+  'Homer J. Simpson' + 
+  '742 Evergreen Terrace' + 
+  'Springfield'
+```
+
+Esto podría permitirle dividir la cadena en líneas más pequeñas e incluirla en varias líneas en el editor de texto, pero no tiene ningún efecto en la salida de la cadena. En este caso, todas las cadenas estarán en una línea y no estarán separadas por nuevas líneas o espacios. Si registró `address` en la consola, obtendrá lo siguiente:
+
+
+```sh
+Output
+Homer J. Simpson742 Evergreen TerraceSpringfield
+```
+
+Puede utilizar el carácter de barra invertida (`\`) para continuar la cadena en varias líneas:
+
+
+```js
+const address =
+  'Homer J. Simpson\
+  742 Evergreen Terrace\
+  Springfield'
+```
+
+
+Esto conservará cualquier sangría como espacio en blanco, pero la cadena seguirá estando en una línea en la salida:
+
+
+```sh
+Output
+Homer J. Simpson  742 Evergreen Terrace  Springfield
+```
+
+Usando el carácter de nueva línea (`\n`), puede crear una verdadera cadena de varias líneas:
+
+
+```js
+const address = 
+  'Homer J. Simpson\n' + 
+  '742 Evergreen Terrace\n' + 
+  'Springfield'
+```
+
+Cuando registre en la consola, se mostrará lo siguiente:
+
+
+```sh
+Output
+Homer J. Simpson
+742 Evergreen Terrace
+Springfield
+```
+
+Sin embargo, el uso de caracteres de nueva línea para designar cadenas de varias líneas puede resultar contrario a la intuición. Por el contrario, crear una cadena de varias líneas con literales de plantilla puede ser mucho más sencillo. No es necesario concatenar, utilizar caracteres de nueva línea ni barras invertidas. Simplemente presionar `ENTER` y escribir la cadena en varias líneas funciona de forma predeterminada:
+
+
+```js
+const address = `Homer J. Simpson
+742 Evergreen Terrace
+Springfield`
+```
+
+
+La salida de registrar esto en la consola es la misma que la entrada:
+
+
+```sh
+Output
+Homer J. Simpson
+742 Evergreen Terrace
+Springfield
+```
+
+
+Se conservará cualquier sangría, por lo que es importante no sangrar ninguna línea adicional en la cadena si no lo desea. Por ejemplo, considere lo siguiente:
+
+
+```js
+const address = `Homer J. Simpson
+                 742 Evergreen Terrace
+                 Springfield`
+```
+
+Aunque este estilo de escritura de la línea puede hacer que el código sea más legible para los humanos, el resultado no será:
+
+
+```sh
+Output
+Homer J. Simpson
+                 742 Evergreen Terrace
+                 Springfield
+```
+
+
+Una vez cubiertas las cadenas de varias líneas, la siguiente sección abordará cómo se interpolan las expresiones en sus valores con las diferentes declaraciones de cadenas.
+
+
+## Expression Interpolation
+
+
 
 
