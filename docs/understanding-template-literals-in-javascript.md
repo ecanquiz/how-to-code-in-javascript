@@ -189,8 +189,144 @@ Homer J. Simpson
 Una vez cubiertas las cadenas de varias líneas, la siguiente sección abordará cómo se interpolan las expresiones en sus valores con las diferentes declaraciones de cadenas.
 
 
-## Expression Interpolation
+## Interpolación de Expresiones
+
+En cadenas anteriores a ES6, se usaba la concatenación para crear una cadena dinámica con variables o expresiones:
 
 
+```js
+const method = 'concatenation'
+const dynamicString = 'This string is using ' + method + '.'
+```
+
+Cuando registre en la consola, esto producirá lo siguiente:
+
+
+```sh
+Output
+This string is using concatenation.
+```
+
+Con los literales de plantilla, se puede incrustar una expresión en un `marcador de posición`. Un marcador de posición está representado por `${}`, todo lo que esté dentro de las llaves se trata como JavaScript y todo lo que está fuera de las llaves se trata como una cadena:
+
+
+```js
+const method = 'interpolation'
+const dynamicString = `This string is using ${method}.`
+```
+
+Cuando `dynamicString` se registra en la consola, la consola mostrará lo siguiente:
+
+
+```sh
+Output
+This string is using interpolation.
+```
+
+Un ejemplo común de incrustación de valores en una cadena podría ser la creación de URL dinámicas. Con la concatenación, esto puede resultar engorroso. Por ejemplo, lo siguiente declara una [función](./how-to-define-functions-in-javascript.html) para generar una cadena de acceso [OAuth](https://datatracker.ietf.org/doc/html/rfc6749):
+
+
+```js
+function createOAuthString(host, clientId, scope) {
+  return host + '/login/oauth/authorize?client_id=' + clientId + '&scope=' + scope
+}
+
+createOAuthString('https://github.com', 'abc123', 'repo,user')
+```
+
+Al registrar esta función se obtendrá la siguiente URL a la consola:
+
+
+```sh
+Output
+https://github.com/login/oauth/authorize?client_id=abc123&scope=repo,user
+```
+
+Al utilizar la interpolación de cadenas, ya no es necesario realizar un seguimiento de las cadenas de apertura y cierre ni de la ubicación del operador de concatenación. Aquí está el mismo ejemplo con literales de plantilla:
+
+
+```js
+function createOAuthString(host, clientId, scope) {
+  return `${host}/login/oauth/authorize?client_id=${clientId}&scope=${scope}`
+}
+
+createOAuthString('https://github.com', 'abc123', 'repo,user')
+```
+
+Esto tendrá el mismo resultado que el ejemplo de concatenación:
+
+
+```sh
+Output
+https://github.com/login/oauth/authorize?client_id=abc123&scope=repo,user
+```
+
+También puede utilizar el [método `trim()`](./how-to-index-split-and-manipulate-strings-in-javascript.html#recortar-espacios-en-blanco) en un literal de plantilla para eliminar cualquier espacio en blanco al principio o al final de la cadena. Por ejemplo, lo siguiente utiliza una [función de flecha](./how-to-define-functions-in-javascript.html#funciones-de-flecha) para crear un [elemento `<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) HTML con un enlace personalizado:
+
+
+```js
+const menuItem = (url, link) =>
+  `
+<li>
+  <a href="${url}">${link}</a>
+</li>
+`.trim()
+
+menuItem('https://google.com', 'Google')
+```
+
+
+Se eliminarán todos los espacios en blanco del resultado, asegurando que el elemento se represente correctamente:
+
+
+```sh
+Output
+<li>
+  <a href="https://google.com">Google</a>
+</li>
+```
+
+Se pueden interpolar expresiones enteras, no sólo variables, como en este ejemplo de la suma de dos números:
+
+
+```js
+const sum = (x, y) => x + y
+const x = 5
+const y = 100
+const string = `The sum of ${x} and ${y} is ${sum(x, y)}.`
+
+console.log(string)
+```
+
+
+Este código define la función `sum` y las variables `x` e `y`, luego usa tanto la función como las variables en una cadena. El resultado registrado mostrará lo siguiente:
+
+
+```sh
+Output
+The sum of 5 and 100 is 105.
+```
+
+Esto puede resultar particularmente útil con [operadores ternarios](./how-to-write-conditional-statements-in-javascript.html#operador-ternario), que permiten condicionales dentro de una cadena:
+
+
+```js
+const age = 19
+const message = `You can ${age < 21 ? 'not' : ''} view this page`
+console.log(message)
+```
+
+El mensaje registrado aquí cambiará dependiendo de si el valor de `age` es mayor o menor de `21` años. Dado que en este ejemplo es `19`, se registrará el siguiente resultado:
+
+
+```sh
+Output
+You can not view this page
+```
+
+Ahora tiene una idea de cómo los literales de plantilla pueden resultar útiles cuando se utilizan para interpolar expresiones. La siguiente sección llevará esto un paso más allá al examinar los literales de plantilla etiquetados para trabajar con las expresiones pasadas a los marcadores de posición.
+
+
+## Tagged Template Literals
 
 
