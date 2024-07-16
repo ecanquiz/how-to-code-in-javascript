@@ -144,3 +144,7 @@ Introducidos en ECMAScript 2015 (ES6), la desestructuración, los parámetros de
 ## [Comprender Literales de Plantilla en JavaScript](./understanding-template-literals-in-javascript.html)
 
 La edición 2015 de la especificación ECMAScript (ES6) agregó literales de plantilla al lenguaje JavaScript. Los literales de plantilla son una nueva forma de crear cadenas en JavaScript que agrega muchas capacidades nuevas y poderosas, como la creación de cadenas de varias líneas, el uso de marcadores de posición para incrustar expresiones en una cadena y el análisis de expresiones de cadena dinámicas con literales de plantilla etiquetados. En este artículo, repasará las diferencias entre cadenas entre comillas simples o dobles y literales de plantilla.
+
+## [Comprender las Funciones de Flecha en JavaScript](./understanding-arrow-functions-in-javascript)
+
+Las funciones de flecha son una nueva forma de escribir expresiones de funciones anónimas en JavaScript y son similares a las funciones lambda en otros lenguajes de programación como Python. Se diferencian de las funciones tradicionales en la forma en que se determina su alcance y en cómo se expresa su sintaxis, y son particularmente útiles cuando se pasa una función como parámetro a una función de orden superior, como un método iterador de matriz. En este artículo, encontrará ejemplos del comportamiento y la sintaxis de la función de flecha.

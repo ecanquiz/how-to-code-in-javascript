@@ -327,6 +327,164 @@ You can not view this page
 Ahora tiene una idea de cómo los literales de plantilla pueden resultar útiles cuando se utilizan para interpolar expresiones. La siguiente sección llevará esto un paso más allá al examinar los literales de plantilla etiquetados para trabajar con las expresiones pasadas a los marcadores de posición.
 
 
-## Tagged Template Literals
+## Literales de Plantilla Etiquetados
+
+Una característica avanzada de los literales de plantilla es el uso de literales de plantilla etiquetados, a veces denominados _etiquetas de plantilla_. Una plantilla etiquetada comienza con una función de etiqueta que analiza un literal de plantilla, lo que le permite tener más control sobre la manipulación y la devolución de una cadena dinámica.
+
+
+En este ejemplo, creará una función `tag` para usarla como función que opera en una plantilla etiquetada. Los literales de cadena son el primer parámetro de la función, aquí denominados cadenas, y cualquier expresión interpolada en la cadena se empaqueta en el segundo parámetro utilizando [parámetros restantes](./understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript.html#parametros-resto). Puede consultar el parámetro para ver qué contendrán:
+
+Puede consultar por cónsola el parámetro para ver qué contendrán:
+
+
+```js
+function tag(strings, ...expressions) {
+  console.log(strings)
+  console.log(expressions)
+}
+```
+
+Utilice la función `tag` como función de plantilla etiquetada y analice la cadena de la siguiente manera:
+
+
+```js
+const string = tag`This is a string with ${true} and ${false} and ${100} interpolated inside.`
+```
+
+Dado que está registrando `strings` y `expressions` en la consola, este será el resultado:
+
+
+```sh
+Output
+(4) ["This is a string with ", " and ", " and ", " interpolated inside."
+(3) [true, false, 100]
+```
+
+El primer parámetro, `strings`, es una [matriz](./understanding-arrays-in-javascript.html) que contiene todos los literales de cadena:
+
+
+- `"This is a string with "`
+- `" and "`
+- `" and "`
+- `" interpolated inside."`
+
+
+También hay una propiedad `raw` disponible en este argumento en `strings.raw`, que contiene las cadenas sin que se procese ninguna secuencia de escape. Por ejemplo, `/n` sería simplemente el carácter `/n` y no se incluiría como escape en una nueva línea.
+
+
+El segundo parámetro, `...expressions`, es una matriz de parámetros restantes que consta de todas las expresiones:
+
+
+- `true`
+- `false`
+- `100`
+
+
+Los literales de cadena y las expresiones se pasan como parámetros a la etiquetada función de plantilla `tag`. Tenga en cuenta que la plantilla etiquetada no necesita devolver una cadena; puede operar con esos valores y devolver cualquier tipo de valor. Por ejemplo, podemos hacer que la función ignore todo y devuelva `null`, como en esta función `returnNull`:
+
+```js
+function returnsNull(strings, ...expressions) {
+  return null
+}
+
+const string = returnsNull`Does this work?`
+console.log(string)
+```
+
+Al registrar la variable `string` se devolverá:
+
+
+```sh
+Output
+null
+```
+
+Un ejemplo de una acción que se puede realizar en plantillas etiquetadas es aplicar algún cambio a ambos lados de cada expresión, como si quisiera envolver cada expresión en una etiqueta HTML. Crea una función `bold` que agregará `<strong>` y `</strong>` a cada expresión:
+
+
+```js
+function bold(strings, ...expressions) {
+  let finalString = ''
+
+  // Loop through all expressions
+  expressions.forEach((value, i) => {
+    finalString += `${strings[i]}<strong>${value}</strong>`
+  })
+
+  // Add the last string literal
+  finalString += strings[strings.length - 1]
+
+  return finalString
+}
+
+const string = bold`This is a string with ${true} and ${false} and ${100} interpolated inside.`
+
+console.log(string)
+```
+
+Este código utiliza el [método `forEach`](./how-to-use-array-methods-in-javascript-iteration-methods.html#foreach) para recorrer la matriz `expressions` y agregar el elemento en negrita:
+
+
+```sh
+Output
+This is a string with <strong>true</strong> and <strong>false</strong> and <strong>100</strong> interpolated inside.
+```
+
+
+Hay algunos ejemplos de literales de plantilla etiquetados en bibliotecas de JavaScript populares. La biblioteca [`graphql-tag`](https://github.com/apollographql/graphql-tag) utiliza la plantilla etiquetada `gql` para analizar cadenas de consulta [GraphQL](https://graphql.org/) en el árbol de sintaxis abstracta (AST) que GraphQL entiende:
+
+
+```js
+import gql from 'graphql-tag'
+
+// A query to retrieve the first and last name from user 5
+const query = gql`
+  {
+    user(id: 5) {
+      firstName
+      lastName
+    }
+  }
+`
+```
+
+
+Otra biblioteca que utiliza funciones de plantilla etiquetadas es [`styled-components`](https://github.com/styled-components/styled-components), que le permite crear nuevos [componentes de React](https://www.digitalocean.com/community/tutorials/how-to-create-custom-components-in-react) a partir de elementos [DOM](https://ecanquiz.github.io/understanding-the-dom/intro.html) normales y aplicarles [estilos CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) adicionales:
+
+
+
+```js
+import styled from 'styled-components'
+
+const Button = styled.button`
+  color: magenta;
+`
+
+// <Button> can now be used as a custom component
+```
+
+También puede utilizar el método [`String.raw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/raw) integrado en literales de plantilla etiquetados para evitar que se procesen secuencias de escape:
+
+
+```js
+const rawString = String.raw`I want to write /n without it being escaped.`
+console.log(rawString)
+```
+
+Esto registrará lo siguiente:
+
+
+```sh
+Output
+I want to write /n without it being escaped.
+```
+
+## Conclusión
+
+En este artículo, revisó los literales de cadena entre comillas simples y dobles y aprendió sobre los literales de plantilla y los literales de plantilla etiquetados. Los literales de plantilla simplifican muchas tareas de cadenas comunes al interpolar expresiones en cadenas y crear cadenas de varias líneas sin ninguna concatenación ni escape. Las etiquetas de plantilla también son una característica avanzada útil de los literales de plantilla que han utilizado muchas bibliotecas populares, como GraphQL y `styled-components`.
+
+Para obtener más información sobre cadenas en JavaScript, lea [Cómo Trabajar con Cadenas en JavaScript](./how-to-work-with-strings-in-javascript.html) y [Cómo Indexar, Dividir y Manipular Cadenas en JavaScript](./how-to-index-split-and-manipulate-strings-in-javascript.html).
+
+
 
 
