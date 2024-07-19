@@ -168,5 +168,11 @@ const sum = (a, b) => {
 
 Al igual que las expresiones de funciones tradicionales, las funciones de flecha no están elevadas, por lo que no puedes llamarlas antes de declararlas. También son siempre anónimas—no hay forma de nombrar una función de flecha. En la siguiente sección, explorará más diferencias sintácticas y prácticas entre las funciones de flecha y las funciones tradicionales.
 
-## Arrow Function Behavior and Syntax
+## Comportamiento y Sintaxis de Función de Flecha
+
+Las funciones de flecha tienen algunas distinciones importantes en su funcionamiento que las distinguen de las funciones tradicionales, así como algunas mejoras sintácticas. La mayor diferencia funcional es que las funciones de flecha no tienen su propio `this` vinculante o prototipo y no pueden usarse como constructor. Las funciones de flecha también se pueden escribir como una alternativa más compacta a las funciones tradicionales, ya que otorgan la capacidad de omitir paréntesis alrededor de los parámetros y agregar el concepto de un cuerpo de función conciso con retorno implícito.
+
+En esta sección, analizará ejemplos que ilustran cada uno de estos casos.
+
+
 
