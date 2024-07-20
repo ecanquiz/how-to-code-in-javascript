@@ -176,3 +176,112 @@ En esta sección, analizará ejemplos que ilustran cada uno de estos casos.
 
 
 
+### Léxico `this`
+
+La palabra clave `this` a menudo se considera un tema complicado en JavaScript. El artículo [Comprender This, Bind, Call y Apply en JavaScript](./understanding-this-bind-call-and-apply-in-javascript.html) explica cómo funciona `this` y cómo se puede inferir implícitamente en función de si el programa lo usa en el contexto global, como método dentro de un objeto, como constructor de una función o clase, o como manejador de eventos [DOM](https://ecanquiz.github.io/understanding-the-dom).
+
+Las funciones de flecha tienen _léxico_ `this`, lo que significa que el valor de `this` está determinado por el alcance circundante (el entorno léxico).
+
+El siguiente ejemplo demostrará la diferencia entre cómo las funciones tradicionales y de flecha manejan `this`. En el siguiente objeto `printNumbers`, hay dos propiedades: `phrase` y `numbers`. También hay un método en el objeto, `loop`, que debería imprimir la cadena `phrase` y el valor actual en `numbers`:
+
+
+```js
+const printNumbers = {
+  phrase: 'The current value is:',
+  numbers: [1, 2, 3, 4],
+
+  loop() {
+    this.numbers.forEach(function (number) {
+      console.log(this.phrase, number)
+    })
+  },
+}
+```
+
+Se podría esperar que la función `loop` imprima la cadena y el número actual en el bucle en cada iteración. Sin embargo, en el resultado de ejecutar la función, la `phrase` en realidad es `undefined`:
+
+
+```js
+printNumbers.loop()
+```
+
+Esto dará lo siguiente:
+
+
+```sh
+Output
+undefined 1
+undefined 2
+undefined 3
+undefined 4
+```
+
+Como muestra esto, `this.phrase` no está definido, lo que indica que `this` dentro de la función anónima pasada al [método `forEach`](./how-to-use-array-methods-in-javascript-iteration-methods.html#foreach) no se refiere al objeto `printNumbers`. Esto se debe a que una función tradicional no determinará su valor `this` desde el alcance del entorno, que es el objeto `printNumbers`.
+
+En versiones anteriores de JavaScript, habría tenido que utilizar el método `bind`, que establece `this` explícitamente. Este patrón se puede encontrar a menudo en algunas versiones anteriores de frameworks, como [React](https://react.dev/), antes de la llegada de ES6.
+
+Utilice `bind` para arreglar la función:
+
+
+```js
+const printNumbers = {
+  phrase: 'The current value is:',
+  numbers: [1, 2, 3, 4],
+
+  loop() {
+    // Bind the `this` from printNumbers to the inner forEach function
+    this.numbers.forEach(
+      function (number) {
+        console.log(this.phrase, number)
+      }.bind(this),
+    )
+  },
+}
+
+printNumbers.loop()
+```
+
+Esto dará el resultado esperado:
+
+```sh
+Output
+The current value is: 1
+The current value is: 2
+The current value is: 3
+The current value is: 4
+```
+
+Las funciones de flecha proporcionan una forma más directa de abordar esto. Dado que su valor `this` se determina en función del alcance léxico, la función interna llamada en `forEach` ahora puede acceder a las propiedades del objeto externo `printNumbers`, como se demuestra:
+
+
+```js
+const printNumbers = {
+  phrase: 'The current value is:',
+  numbers: [1, 2, 3, 4],
+
+  loop() {
+    this.numbers.forEach((number) => {
+      console.log(this.phrase, number)
+    })
+  },
+}
+
+printNumbers.loop()
+```
+
+Esto dará el resultado esperado:
+
+
+```sh
+Output
+The current value is: 1
+The current value is: 2
+The current value is: 3
+The current value is: 4
+```
+
+Estos ejemplos establecen que el uso de funciones de flecha en métodos de matriz integrados como `forEach`, `map`, `filter` y `reduce` puede ser más intuitivo y fácil de leer, lo que hace que sea más probable que esta estrategia cumpla con las expectativas.
+
+
+## Arrow Functions as Object Methods
+
