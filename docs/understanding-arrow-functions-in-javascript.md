@@ -283,5 +283,42 @@ The current value is: 4
 Estos ejemplos establecen que el uso de funciones de flecha en métodos de matriz integrados como `forEach`, `map`, `filter` y `reduce` puede ser más intuitivo y fácil de leer, lo que hace que sea más probable que esta estrategia cumpla con las expectativas.
 
 
-## Arrow Functions as Object Methods
+### Funciones de Flecha como Métodos de Objeto
+
+Si bien las funciones de flecha son excelentes como funciones de parámetros pasadas a métodos de matriz, no son efectivas como métodos de objetos debido a la forma en que utilizan el alcance léxico para `this`. Usando el mismo ejemplo anterior, tome el método `loop` y conviértalo en una función de flecha para descubrir cómo se ejecutará:
+
+
+```js
+const printNumbers = {
+  phrase: 'The current value is:',
+  numbers: [1, 2, 3, 4],
+
+  loop: () => {
+    this.numbers.forEach((number) => {
+      console.log(this.phrase, number)
+    })
+  },
+}
+```
+
+En este caso de un método de objeto, `this` debería hacer referencia a las propiedades y métodos del objeto `printNumbers`. Sin embargo, dado que un objeto no crea un nuevo alcance léxico, una función de flecha buscará más allá del objeto el valor de `this`.
+
+Llame al método `loop()`:
+
+
+```js
+printNumbers.loop()
+```
+
+Esto dará lo siguiente:
+
+
+```sh
+Output
+Uncaught TypeError: Cannot read property 'forEach' of undefined
+```
+
+Dado que el objeto no crea un alcance léxico, el método de función de flecha busca `this` en el alcance externo–[`Window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) en este ejemplo. Dado que la propiedad `numbers` no existe en el objeto `Window`, genera un error. Como regla general, es más seguro utilizar funciones tradicionales como métodos de objeto de forma predeterminada.
+
+### Arrow Functions Have No constructor or prototype
 
