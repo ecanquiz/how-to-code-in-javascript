@@ -320,5 +320,90 @@ Uncaught TypeError: Cannot read property 'forEach' of undefined
 
 Dado que el objeto no crea un alcance léxico, el método de función de flecha busca `this` en el alcance externo–[`Window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) en este ejemplo. Dado que la propiedad `numbers` no existe en el objeto `Window`, genera un error. Como regla general, es más seguro utilizar funciones tradicionales como métodos de objeto de forma predeterminada.
 
-### Arrow Functions Have No constructor or prototype
+### Las Funciones de Flecha No Tienen `constructor` ni `prototype`
 
+El tutorial [Comprender las Funciones de Flecha en JavaScript](./understanding-prototypes-and-inheritance-in-javascript.html) anterior en esta serie explicó que las funciones y clases tienen una propiedad `prototype`, que es lo que JavaScript usa como modelo para la clonación y la herencia.
+
+Para ilustrar esto, cree una función y registre la propiedad `prototype` asignada automáticamente:
+
+
+```js
+function myFunction() {
+  this.value = 5
+}
+
+// Log the prototype property of myFunction
+console.log(myFunction.prototype)
+```
+
+
+Esto imprimirá lo siguiente en la consola:
+
+
+```sh
+Output
+{constructor: ƒ}
+```
+
+
+Esto muestra que en la propiedad `prototype` hay un objeto con un `constructor`. Esto le permite usar la palabra clave `new` para crear una instancia de la función:
+
+
+```js
+const instance = new myFunction()
+
+console.log(instance.value)
+```
+
+
+Esto producirá el valor de la propiedad `value` que definiste cuando declaraste la función por primera vez:
+
+
+```sh
+Output
+5
+```
+
+Por el contrario, las funciones de flecha no tienen una propiedad `prototype`. Cree una nueva función de flecha e intente registrar su prototipo:
+
+
+```js
+const myArrowFunction = () => {}
+
+// Attempt to log the prototype property of myArrowFunction
+console.log(myArrowFunction.prototype)
+```
+
+
+Esto dará lo siguiente:
+
+
+```sh
+Output
+undefined
+```
+
+Como resultado de la propiedad `prototype` que falta, la palabra clave `new` no está disponible y no se puede construir una instancia a partir de la función de flecha:
+
+
+```js
+const arrowInstance = new myArrowFunction()
+
+console.log(arrowInstance)
+```
+
+Esto dará el siguiente error:
+
+
+```sh
+Output
+Uncaught TypeError: myArrowFunction is not a constructor
+```
+
+
+Esto es consistente con nuestro ejemplo anterior: dado que las funciones de flecha no tienen su propio valor `this`, se deduce que no podría usar una función de flecha como constructor.
+
+Como se muestra aquí, las funciones de flecha tienen muchos cambios sutiles que las hacen operar de manera diferente a las funciones tradicionales en ES5 y versiones anteriores. También ha habido algunos cambios sintácticos opcionales que hacen que la escritura de funciones de flecha sea más rápida y menos detallada. La siguiente sección mostrará ejemplos de estos cambios de sintaxis.
+
+
+### Implicit Return
