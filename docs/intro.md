@@ -148,3 +148,12 @@ La edición 2015 de la especificación ECMAScript (ES6) agregó literales de pla
 ## [Comprender las Funciones de Flecha en JavaScript](./understanding-arrow-functions-in-javascript)
 
 Las funciones de flecha son una nueva forma de escribir expresiones de funciones anónimas en JavaScript y son similares a las funciones lambda en otros lenguajes de programación como Python. Se diferencian de las funciones tradicionales en la forma en que se determina su alcance y en cómo se expresa su sintaxis, y son particularmente útiles cuando se pasa una función como parámetro a una función de orden superior, como un método iterador de matriz. En este artículo, encontrará ejemplos del comportamiento y la sintaxis de la función de flecha.
+
+## [Comprender Event Loop, Callbacks, Promises, y Async/Await en JavaScript](./understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript)
+
+Para evitar el bloqueo de código en el desarrollo de JavaScript, se deben utilizar técnicas de codificación asincrónica para operaciones que requieren mucho tiempo, como las solicitudes de red realizadas desde API web como Fetch. En este artículo, se tratarán los fundamentos de la programación asincrónica, se le enseñará sobre el bucle de eventos, la forma original de tratar el comportamiento asincrónico a través de devoluciones de llamadas, la incorporación de promesas en ECMAScript 2015 (ES6) actualizada y la práctica moderna de usar async/await.
+
+
+## [Comprender Módulos y Declaraciones de Importación y Exportación en JavaScript](./understanding-modules-and-import-and-export-statements-in-javascript)
+
+A medida que aumenta la importancia de JavaScript en el desarrollo web, existe una mayor necesidad de utilizar código de terceros para tareas comunes, dividir el código en archivos modulares y evitar contaminar el espacio de nombres global. Para tener esto en cuenta, ECMAScript 2015 (ES6) introdujo módulos en el lenguaje JavaScript, lo que permitió el uso de declaraciones de importación y exportación. En este tutorial, aprenderá qué es un módulo de JavaScript y cómo utilizar la importación y exportación para organizar su código.
