@@ -406,4 +406,104 @@ Esto es consistente con nuestro ejemplo anterior: dado que las funciones de flec
 Como se muestra aquí, las funciones de flecha tienen muchos cambios sutiles que las hacen operar de manera diferente a las funciones tradicionales en ES5 y versiones anteriores. También ha habido algunos cambios sintácticos opcionales que hacen que la escritura de funciones de flecha sea más rápida y menos detallada. La siguiente sección mostrará ejemplos de estos cambios de sintaxis.
 
 
-### Implicit Return
+### Retorno Implícito
+
+El cuerpo de una función tradicional está contenido dentro de un bloque que utiliza llaves `{}` y finaliza cuando el código encuentra una palabra clave `return`. A continuación se muestra cómo se ve esta implementación como una función de flecha:
+
+
+
+```js
+const sum = (a, b) => {
+  return a + b
+}
+```
+
+
+Las funciones de flecha introducen una _sintaxis de cuerpo conciso_ o _retorno implícito_. Esto permite omitir las llaves y la palabra clave `return`.
+
+
+
+```js
+const sum = (a, b) => a + b
+```
+
+El retorno implícito es útil para crear operaciones breves de una línea en `map`, `filter` y otros métodos de matriz comunes. Tenga en cuenta que tanto los corchetes como la palabra clave `return` deben omitirse. Si no puede escribir el cuerpo como una declaración de retorno de una línea, entonces tendrá que usar la sintaxis de cuerpo de bloque normal.
+
+En el caso de devolver un objeto, la sintaxis requiere que encierre el literal del objeto entre paréntesis. De lo contrario, los corchetes se tratarán como un cuerpo de función y no calcularán un valor de `return`.
+
+Para ilustrar esto, busque el siguiente ejemplo:
+
+
+
+```js
+const sum = (a, b) => ({result: a + b})
+
+sum(1, 2)
+```
+
+
+Esto dará el siguiente resultado:
+
+
+```sh
+Output
+{result: 3}
+```
+
+
+### Omitir Paréntesis Alrededor de un Solo Parámetro
+
+
+Otra mejora sintáctica útil es la capacidad de eliminar los paréntesis que rodean un único parámetro de una función. En el siguiente ejemplo, la función `square` solo opera sobre un parámetro, `x`:
+
+
+```js
+const square = (x) => x * x
+```
+
+
+Como resultado, puedes omitir los paréntesis alrededor del parámetro y funcionará de la misma manera:
+
+
+```js
+const square = x => x * x
+
+square(10)
+```
+
+
+Esto dará como resultado lo siguiente:
+
+
+```sh
+Output
+100
+```
+
+
+Tenga en cuenta que si una función no toma parámetros, se requerirán paréntesis:
+
+
+```js
+const greet = () => 'Hello!'
+
+greet()
+```
+
+
+Llamar a `greet()` funcionará de la siguiente manera:
+
+
+```sh
+Output
+'Hello!'
+```
+
+Algunas bases de código optan por omitir los paréntesis siempre que sea posible, y otras optan por mantener siempre los paréntesis alrededor de los parámetros sin importar qué, en particular en bases de código que usan [TypeScript](https://www.typescriptlang.org/) y requieren más información sobre cada variable y parámetro. Al decidir cómo escribir las funciones de flecha, consulte la guía de estilo del proyecto al que está contribuyendo.
+
+
+## Conclusión
+
+En este artículo, repasó las funciones tradicionales y la diferencia entre las declaraciones de funciones y las expresiones de funciones. Aprendió que las funciones de flecha siempre son anónimas, no tienen un `prototype` ni `constructor`, no se pueden usar con la palabra clave `new` y determinan el valor de `this` a través del alcance léxico. Finalmente, exploró las nuevas mejoras sintácticas disponibles para las funciones de flecha, como el retorno implícito y la omisión de paréntesis para funciones de un solo parámetro.
+
+Para una revisión de las funciones básicas, lea [Cómo Definir Funciones en JavaScript](./how-to-define-functions-in-javascript.html). Para leer más sobre el concepto de alcance y elevación en JavaScript, lea [Comprender Variables, Alcance y Elevación en JavaScript](./understanding-variables-scope-and-hoisting.html).

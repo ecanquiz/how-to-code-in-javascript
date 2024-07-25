@@ -53,7 +53,9 @@ export default defineConfig({
         { text: 'Parámetros Predeterminados', link: '/understanding-default-parameters-in-javascript' },
         { text: 'Desestructuración, Parámetros Resto y Sintaxis Propagada', link: '/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript' },
         { text: 'Comprender Literales de Plantilla', link: '/understanding-template-literals-in-javascript' },
-        { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' }
+        { text: 'Funciones de Flecha', link: '/understanding-arrow-functions-in-javascript' },
+        { text: 'Event Loop, Callbacks, Promises, y Async/Await', link: '/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript' },
+        { text: 'Módulos y Declaraciones de Importación y Exportación', link: '/understanding-modules-and-import-and-export-statements-in-javascript' }
       ]
     }],
     socialLinks: [
