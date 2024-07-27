@@ -146,4 +146,109 @@ También hay otra cola llamada cola de trabajos o cola de microtareas que maneja
 
 Ahora ya sabe cómo el bucle de eventos utiliza la pila y la cola para manejar el orden de ejecución del código. La siguiente tarea es averiguar cómo controlar el orden de ejecución en su código. Para ello, primero aprenderá sobre la forma original de garantizar que el bucle de eventos maneje correctamente el código asincrónico: las funciones de devolución de llamada.
 
-## Callback Functions
+## Funciones de Devolución de Llamada
+
+En el ejemplo `setTimeout`, la función con el tiempo de espera se ejecutó después de todo lo que se encontraba en el contexto de ejecución principal de nivel superior. Pero si desea asegurarse de que una de las funciones, como la función `third` , se ejecutara después del tiempo de espera, entonces tendría que usar métodos de codificación asincrónica. El tiempo de espera aquí puede representar una llamada API asincrónica que contiene datos. Desea trabajar con los datos de la llamada API, pero debe asegurarse de que los datos se devuelvan primero.
+
+La solución original para tratar este problema es usar _funciones de devolución de llamada_. Las funciones de devolución de llamada no tienen una sintaxis especial; son simplemente una función que se ha pasado como argumento a otra función. La función que toma otra función como argumento se denomina _función de orden superior_. Según esta definición, cualquier función puede convertirse en una función de devolución de llamada si se pasa como argumento. Las devoluciones de llamada no son asincrónicas por naturaleza, pero se pueden utilizar para fines asincrónicos.
+
+A continuación se muestra un ejemplo de código sintáctico de una función de orden superior y una devolución de llamada:
+
+
+```js
+// A function
+function fn() {
+  console.log('Just a function')
+}
+
+// A function that takes another function as an argument
+function higherOrderFunction(callback) {
+  // When you call a function that is passed as an argument, it is referred to as a callback
+  callback()
+}
+
+// Passing a function
+higherOrderFunction(fn)
+```
+
+
+En este código, se define una función `fn`, se define una función `higherOrderFunction` que toma un `callback` de función como argumento y se pasa `fn` como una devolución de llamada a `higherOrderFunction`.
+
+Si se ejecuta este código, se obtendrá lo siguiente:
+
+
+```sh
+Output
+Just a function
+```
+
+
+Volvamos a las funciones `first`, `second` y `third` con `setTimeout`. Esto es lo que tienes hasta ahora:
+
+
+```js
+function first() {
+  console.log(1)
+}
+
+function second() {
+  setTimeout(() => {
+    console.log(2)
+  }, 0)
+}
+
+function third() {
+  console.log(3)
+}
+```
+
+La tarea consiste en lograr que la función `third` siempre retrase la ejecución hasta que se haya completado la acción asincrónica en la función `second`. Aquí es donde entran en juego las devoluciones de llamadas. En lugar de ejecutar `first`, `second` y `third` en el nivel superior de ejecución, pasará la función `third` como argumento a `second`. La función `second` ejecutará la devolución de llamada después de que se haya completado la acción asincrónica.
+
+A continuación, se muestran las tres funciones con una devolución de llamada aplicada:
+
+
+```js
+// Define three functions
+function first() {
+  console.log(1)
+}
+
+function second(callback) {
+  setTimeout(() => {
+    console.log(2)
+
+    // Execute the callback function
+    callback()
+  }, 0)
+}
+
+function third() {
+  console.log(3)
+}
+```
+
+Ahora, ejecute `first` y `second`, luego pase `third` como argumento a `second`:
+
+
+```js
+first()
+second(third)
+```
+
+Después de ejecutar este bloque de código, recibirá el siguiente resultado:
+
+
+```sh
+Output
+1
+2
+3
+```
+
+Primero se imprimirá `1` y, una vez que se complete el temporizador (en este caso, cero segundos, pero puede cambiarlo a cualquier cantidad), imprimirá `2` y luego `3`. Al pasar una función como devolución de llamada, ha retrasado con éxito la ejecución de la función hasta que se complete la API Web asincrónica (`setTimeout`).
+
+La conclusión clave aquí es que las funciones de devolución de llamada no son asincrónicas—`setTimeout` es la API Web asincrónica responsable de gestionar las tareas asincrónicas. La devolución de llamada solo le permite recibir información sobre cuándo se ha completado una tarea asincrónica y gestiona el éxito o el fracaso de la tarea.
+
+Ahora que ha aprendido a utilizar las devoluciones de llamadas para gestionar tareas asincrónicas, la siguiente sección explica los problemas de anidar demasiadas devoluciones de llamadas y crear una "pirámide de la perdición".
+
+## Nested Callbacks and the Pyramid of Doom
