@@ -251,4 +251,108 @@ La conclusión clave aquí es que las funciones de devolución de llamada no son
 
 Ahora que ha aprendido a utilizar las devoluciones de llamadas para gestionar tareas asincrónicas, la siguiente sección explica los problemas de anidar demasiadas devoluciones de llamadas y crear una "pirámide de la perdición".
 
-## Nested Callbacks and the Pyramid of Doom
+## Devoluciones de Llamada anidadas y la Pirámide de la Perdición
+
+Las funciones de devolución de llamadas son una forma eficaz de garantizar la ejecución retrasada de una función hasta que otra se complete y regrese con datos. Sin embargo, debido a la naturaleza anidada de las devoluciones de llamadas, el código puede terminar volviéndose desordenado si tiene muchas solicitudes asincrónicas consecutivas que dependen unas de otras. Esto fue una gran frustración para los desarrolladores de JavaScript al principio y, como resultado, el código que contiene devoluciones de llamadas anidadas a menudo se denomina la "pirámide de la perdición" o "el infierno de las devoluciones de llamadas".
+
+A continuación, se muestra una demostración de devoluciones de llamadas anidadas:
+
+
+```js
+function pyramidOfDoom() {
+  setTimeout(() => {
+    console.log(1)
+    setTimeout(() => {
+      console.log(2)
+      setTimeout(() => {
+        console.log(3)
+      }, 500)
+    }, 2000)
+  }, 1000)
+}
+```
+
+En este código, cada nuevo `setTimeout` se anida dentro de una función de orden superior, lo que crea una forma piramidal de devoluciones de llamadas cada vez más profundas. Al ejecutar este código, obtendríamos lo siguiente:
+
+
+```sh
+Output
+1
+2
+3
+```
+
+En la práctica, con el código asincrónico del mundo real, esto puede volverse mucho más complicado. Lo más probable es que necesites manejar errores en código asincrónico y luego pasar algunos datos de cada respuesta a la siguiente solicitud. Hacer esto con devoluciones de llamadas hará que tu código sea difícil de leer y mantener.
+
+A continuación, se muestra un ejemplo ejecutable de una “pirámide de la perdición” más realista con la que puedes experimentar:
+
+
+```js
+// Example asynchronous function
+function asynchronousRequest(args, callback) {
+  // Throw an error if no arguments are passed
+  if (!args) {
+    return callback(new Error('Whoa! Something went wrong.'))
+  } else {
+    return setTimeout(
+      // Just adding in a random number so it seems like the contrived asynchronous function
+      // returned different data
+      () => callback(null, {body: args + ' ' + Math.floor(Math.random() * 10)}),
+      500,
+    )
+  }
+}
+
+// Nested asynchronous requests
+function callbackHell() {
+  asynchronousRequest('First', function first(error, response) {
+    if (error) {
+      console.log(error)
+      return
+    }
+    console.log(response.body)
+    asynchronousRequest('Second', function second(error, response) {
+      if (error) {
+        console.log(error)
+        return
+      }
+      console.log(response.body)
+      asynchronousRequest(null, function third(error, response) {
+        if (error) {
+          console.log(error)
+          return
+        }
+        console.log(response.body)
+      })
+    })
+  })
+}
+
+// Execute 
+callbackHell()
+```
+
+
+En este código, debes hacer que cada función tenga en cuenta un posible `response` y un posible `error`, lo que hace que la función `callbackHell` sea visualmente confusa.
+
+Si ejecutas este código, obtendrás lo siguiente:
+
+
+```sh
+Output
+
+First 9
+Second 3
+Error: Whoa! Something went wrong.
+    at asynchronousRequest (<anonymous>:4:21)
+    at second (<anonymous>:29:7)
+    at <anonymous>:9:13
+```
+
+Esta forma de manejar el código asincrónico es difícil de seguir. Por ello, en ES6 se introdujo el concepto de _promesas_. Este es el tema central de la siguiente sección.
+
+## Promesas
+
+Una _promesa_ representa la finalización de una función asincrónica. Es un objeto que podría devolver un valor en el futuro. Cumple el mismo objetivo básico que una función de devolución de llamada, pero con muchas características adicionales y una sintaxis más legible. Como desarrollador de JavaScript, es probable que pase más tiempo consumiendo promesas que creándolas, ya que generalmente son las API web asincrónicas las que devuelven una promesa para que el desarrollador la consuma. Este tutorial le mostrará cómo hacer ambas cosas.
+
+### Creating a Promise
