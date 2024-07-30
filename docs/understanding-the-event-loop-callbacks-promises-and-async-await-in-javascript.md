@@ -412,5 +412,80 @@ Después de ser cumplida o rechazada, una promesa se liquida.
 
 Ahora que tiene una idea de cómo se crean las promesas, veamos cómo un desarrollador puede consumirlas.
 
-## Consuming a Promise
+### Consumiendo una Promesa
+
+La promesa de la última sección se ha cumplido con un valor, pero también quieres poder acceder a ese valor. Las promesas tienen un método llamado `then` que se ejecutará después de que una promesa alcance `resolve` en el código. `then` devolverá el valor de la promesa como parámetro.
+
+Así es como devolverías y registrarías el `value` de la promesa de ejemplo:
+
+
+```js
+promise.then((response) => {
+  console.log(response)
+})
+```
+
+La promesa que creaste tenía un `[[PromiseValue]]` de `We did it!`. Este valor es el que se pasará a la función anónima como `response`:
+
+
+```sh
+Output
+We did it!
+```
+
+Hasta ahora, el ejemplo que creaste no involucraba una API Web asincrónica — solo explicaba cómo crear, resolver y consumir una promesa de JavaScript nativa. Con `setTimeout`, puedes probar una solicitud asincrónica.
+
+El siguiente código simula los datos devueltos de una solicitud asincrónica como una promesa:
+
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Resolving an asynchronous request!'), 2000)
+})
+
+// Log the result
+promise.then((response) => {
+  console.log(response)
+})
+```
+
+El uso de la sintaxis `then` garantiza que el `response` se registrará solo cuando la operación `setTimeout` se complete después de `2000` milisegundos. Todo esto se hace sin anidar devoluciones de llamadas.
+
+Ahora, después de dos segundos, resolverá el valor de la promesa y se registrará en `then`:
+
+
+```sh
+Output
+Resolving an asynchronous request!
+```
+
+Las promesas también se pueden encadenar para pasar datos a más de una operación asincrónica. Si se devuelve un valor en `then`, se puede agregar otro `then` que cumpla con el valor de retorno del `then` anterior:
+
+
+```js
+// Chain a promise
+promise
+  .then((firstResponse) => {
+    // Return a new value for the next then
+    return firstResponse + ' And chaining!'
+  })
+  .then((secondResponse) => {
+    console.log(secondResponse)
+  })
+```
+
+La respuesta cumplida en el segundo `then` registrará el valor de retorno:
+
+
+```sh
+Output
+Resolving an asynchronous request! And chaining!
+```
+
+Dado que `then` se puede encadenar, permite que el consumo de promesas parezca más sincrónico que las devoluciones de llamadas, ya que no necesitan estar anidadas. Esto permitirá un código más legible que se pueda mantener y verificar más fácilmente.
+
+
+### Error Handling
+
+
 
