@@ -355,4 +355,62 @@ Esta forma de manejar el código asincrónico es difícil de seguir. Por ello, e
 
 Una _promesa_ representa la finalización de una función asincrónica. Es un objeto que podría devolver un valor en el futuro. Cumple el mismo objetivo básico que una función de devolución de llamada, pero con muchas características adicionales y una sintaxis más legible. Como desarrollador de JavaScript, es probable que pase más tiempo consumiendo promesas que creándolas, ya que generalmente son las API web asincrónicas las que devuelven una promesa para que el desarrollador la consuma. Este tutorial le mostrará cómo hacer ambas cosas.
 
-### Creating a Promise
+### Creando una Promesa
+
+Puede inicializar una promesa con la sintaxis `new Promise` y debe inicializarla con una función. La función que se pasa a una promesa tiene los parámetros `resolve` y `reject`. Las funciones `resolve` y `reject` manejan el éxito y el fracaso de una operación, respectivamente.
+
+Escriba la siguiente línea para declarar una promesa:
+
+
+
+```js
+// Initialize a promise
+const promise = new Promise((resolve, reject) => {})
+```
+
+Si inspecciona la promesa inicializada en este estado con la consola de su navegador web, encontrará que tiene un estado `pending` y un valor `undefined`:
+
+
+
+```sh
+Output
+__proto__: Promise
+[[PromiseStatus]]: "pending"
+[[PromiseValue]]: undefined
+```
+
+
+Hasta ahora, no se ha configurado nada para la promesa, por lo que permanecerá en un estado `pending` para siempre. Lo primero que puede hacer para probar una promesa es cumplirla resolviéndola con un valor:
+
+
+```js
+const promise = new Promise((resolve, reject) => {
+  resolve('We did it!')
+})
+```
+
+
+Ahora, al inspeccionar la promesa, encontrará que tiene un estado `fulfilled` y un `value` establecido en el valor que pasó para `resolve`:
+
+
+```sh
+Output
+__proto__: Promise
+[[PromiseStatus]]: "fulfilled"
+[[PromiseValue]]: "We did it!"
+```
+
+Como se indicó al principio de esta sección, una promesa es un objeto que puede devolver un valor. Después de cumplirse correctamente, el `value` pasa de `undefined` a estar lleno de datos.
+
+Una promesa puede tener tres estados posibles: _pending_, _fulfilled_ y _rejected_.
+
+- **_Pending_** - (Pendiente) Estado inicial antes de ser resuelta o rechazada
+- **_Fulfilled_** - (Cumplida) Operación exitosa, la promesa se resolvió
+- **_Rejected_** - (Rechazada) Operación fallida, la promesa se rechazó
+
+Después de ser cumplida o rechazada, una promesa se liquida.
+
+Ahora que tiene una idea de cómo se crean las promesas, veamos cómo un desarrollador puede consumirlas.
+
+## Consuming a Promise
+
