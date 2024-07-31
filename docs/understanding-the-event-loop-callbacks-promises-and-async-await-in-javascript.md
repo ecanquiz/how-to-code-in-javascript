@@ -485,7 +485,152 @@ Resolving an asynchronous request! And chaining!
 Dado que `then` se puede encadenar, permite que el consumo de promesas parezca más sincrónico que las devoluciones de llamadas, ya que no necesitan estar anidadas. Esto permitirá un código más legible que se pueda mantener y verificar más fácilmente.
 
 
-### Error Handling
+### Manejo de Errores
+
+Hasta ahora, solo ha manejado una promesa con una `resolve` exitosa, que pone la promesa en un estado `fulfilled`. Pero con frecuencia con una solicitud asincrónica también tiene que manejar un error — si la API está inactiva o se envía una solicitud mal formada o no autorizada. Una promesa debería poder manejar ambos casos. En esta sección, creará una función para probar tanto el caso de éxito como el de error de la creación y el consumo de una promesa.
+
+Esta función `getUsers` pasará un indicador a una promesa y devolverá la promesa:
+
+
+```js
+function getUsers(onSuccess) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Handle resolve and reject in the asynchronous API
+    }, 1000)
+  })
+}
+```
+
+Configura el código de modo que si `onSuccess` es `true`, el tiempo de espera se cumplirá con algunos datos. Si es `false`, la función rechazará la operación con un error:
+
+
+```js{5,6,7,8,9,10,11,12,13}
+function getUsers(onSuccess) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Handle resolve and reject in the asynchronous API
+      if (onSuccess) {
+        resolve([
+          {id: 1, name: 'Jerry'},
+          {id: 2, name: 'Elaine'},
+          {id: 3, name: 'George'},
+        ])
+      } else {
+        reject('Failed to fetch data!')
+      }
+    }, 1000)
+  })
+}
+```
+
+Para obtener un resultado satisfactorio, se devuelven [objetos JavaScript](./understanding-objects-in-javascript.html) que representan datos de usuario de muestra.
+
+Para manejar el error, utilizará el método de instancia `catch`. Esto le proporcionará una devolución de llamada de error con `error` como parámetro.
+
+Ejecute el comando `getUser` con `onSuccess` establecido en `false`, utilizando el método `then` para el caso de éxito y el método `catch` para el error:
+
+
+```js
+// Run the getUsers function with the false flag to trigger an error
+getUsers(false)
+  .then((response) => {
+    console.log(response)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+```
+
+Dado que se desencadenó el error, se omitirá el `then` y el `catch` manejará el error:
+
+
+```sh
+Output
+Failed to fetch data!
+```
+
+
+Si cambia la bandera y `resolve` en su lugar, se ignorará `catch` y los datos regresarán en su lugar:
+
+
+```js
+// Run the getUsers function with the true flag to resolve successfully
+getUsers(true)
+  .then((response) => {
+    console.log(response)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+```
+
+Esto proporcionará los datos del usuario:
+
+
+```sh
+Output
+(3) [{…}, {…}, {…}]
+0: {id: 1, name: "Jerry"}
+1: {id: 2, name: "Elaine"}
+3: {id: 3, name: "George"}
+```
+
+Como referencia, aquí hay una tabla con los métodos de manejo sobre objetos `Promise`:
+
+|Método|Descripción|
+|-|-|
+|`then()`|Maneja un `resolve`. Devuelve una promesa y llama a la función `onFulfilled` de forma asincrónica.|
+|`catch()`|Maneja un `reject`. Devuelve una promesa y llama a la función `onRejected` de forma asincrónica.|
+|`finally()`|Se llama cuando se cumple una promesa. Devuelve una promesa y llama a la función `onFinally` de forma asincrónica.|
+
+Las promesas pueden ser confusas, tanto para los nuevos desarrolladores como para los programadores experimentados que nunca han trabajado en un entorno asincrónico. Sin embargo, como se mencionó, es mucho más común consumir promesas que crearlas. Por lo general, la API Web de un navegador o una biblioteca de terceros proporcionará la promesa y solo es necesario consumirla.
+
+En la sección final de promesas, este tutorial citará un caso de uso común de una API Web que devuelve promesas: [la API Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+
+
+### Usando la API Fetch con Promesas
+
+Una de las API Web más útiles y utilizadas que devuelve una promesa es la API Fetch, que permite realizar una solicitud de recursos asincrónica a través de una red. `fetch` es un proceso de dos partes y, por lo tanto, requiere encadenar `then`. Este ejemplo demuestra cómo acceder a la API de GitHub para obtener los datos de un usuario y, al mismo tiempo, gestionar cualquier error potencial:
+
+
+```js
+// Fetch a user from the GitHub API
+fetch('https://api.github.com/users/octocat')
+  .then((response) => {
+    return response.json()
+  })
+  .then((data) => {
+    console.log(data)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+```
+
+La solicitud `fetch` se envía a la URL `https://api.github.com/users/octocat`, que espera una respuesta de forma asincrónica. El primer `then` pasa la respuesta a una función anónima que formatea la respuesta como [datos JSON](./how-to-work-with-json-in-javascript.html) y luego pasa el JSON a un segundo `then` que registra los datos en la consola. La declaración `catch` registra cualquier error en la consola.
+
+Al ejecutar este código, se obtendrá lo siguiente:
+
+
+```sh
+Output
+login: "octocat",
+id: 583231,
+avatar_url: "https://avatars3.githubusercontent.com/u/583231?v=4"
+blog: "https://github.blog"
+company: "@github"
+followers: 3203
+...
+```
+
+Estos son los datos solicitados desde `https://api.github.com/users/octocat`, representados en formato JSON.
+
+Esta sección del tutorial mostró que las promesas incorporan muchas mejoras para manejar código asincrónico. Pero, si bien usar `then` para manejar acciones asincrónicas es más fácil de seguir que la pirámide de devoluciones de llamadas, algunos desarrolladores aún prefieren un formato sincrónico para escribir código asincrónico. Para abordar esta necesidad, [ECMAScript 2016 (ES7)](https://262.ecma-international.org/7.0/index.html) introdujo funciones `async` y la palabra clave `await` para facilitar el trabajo con promesas.
+
+## Async Functions with `async/await`
+
+
 
 
 
