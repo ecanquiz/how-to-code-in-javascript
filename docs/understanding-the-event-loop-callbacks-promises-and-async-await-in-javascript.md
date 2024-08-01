@@ -628,7 +628,139 @@ Estos son los datos solicitados desde `https://api.github.com/users/octocat`, re
 
 Esta sección del tutorial mostró que las promesas incorporan muchas mejoras para manejar código asincrónico. Pero, si bien usar `then` para manejar acciones asincrónicas es más fácil de seguir que la pirámide de devoluciones de llamadas, algunos desarrolladores aún prefieren un formato sincrónico para escribir código asincrónico. Para abordar esta necesidad, [ECMAScript 2016 (ES7)](https://262.ecma-international.org/7.0/index.html) introdujo funciones `async` y la palabra clave `await` para facilitar el trabajo con promesas.
 
-## Async Functions with `async/await`
+## Funciones Asincrónicas con `async/await`
+
+Una _función `async`_ le permite manejar código asincrónico de una manera que parezca sincrónica. Las funciones `async` aún usan promesas en segundo plano, pero tienen una sintaxis de JavaScript más tradicional. En esta sección, probará ejemplos de esta sintaxis.
+
+Puede crear una función `async` agregando la palabra clave `async` antes de una función:
+
+
+
+```js
+// Create an async function
+async function getUser() {
+  return {}
+}
+```
+
+Aunque esta función aún no maneja nada asincrónico, se comporta de manera diferente a una función tradicional. Si ejecuta la función, verá que devuelve una promesa con un `[[PromiseStatus]]` y `[[PromiseValue]]` en lugar de un valor de retorno.
+
+Pruebe esto registrando una llamada a la función `getUser`:
+
+
+```js
+console.log(getUser())
+```
+
+Esto dará como resultado lo siguiente:
+
+
+```sh
+Output
+__proto__: Promise
+[[PromiseStatus]]: "fulfilled"
+[[PromiseValue]]: Object
+```
+
+Esto significa que puedes manejar una función `async` con `then` de la misma manera que manejarías una promesa. Prueba esto con el siguiente código:
+
+
+```js
+getUser().then((response) => console.log(response))
+```
+
+
+Esto llamada a `getUser` pasa el valor de retorno a una función anónima que registra el valor en la consola.
+
+Recibirá lo siguiente cuando ejecute este programa:
+
+
+```sh
+Output
+{}
+```
+
+
+Una función `async` puede manejar una promesa llamada dentro de ella usando el operador `await`. `await` se puede usar dentro de una función `async` y esperará hasta que se cumpla una promesa antes de ejecutar el código designado.
+
+Con este conocimiento, puede reescribir la solicitud Fetch de la última sección usando `async`/`await` de la siguiente manera:
+
+
+```js
+// Handle fetch with async/await
+async function getUser() {
+  const response = await fetch('https://api.github.com/users/octocat')
+  const data = await response.json()
+
+  console.log(data)
+}
+
+// Execute async function
+getUser()
+```
+
+
+Los operadores `await` aquí garantizan que `data` no se registre antes de que la solicitud se haya llenado con datos.
+
+Ahora, la `data` final se pueden manejar dentro de la función `getUser`, sin necesidad de usar `then`. Este es el resultado del registro de `data`:
+
+
+```sh
+Output
+login: "octocat",
+id: 583231,
+avatar_url: "https://avatars3.githubusercontent.com/u/583231?v=4"
+blog: "https://github.blog"
+company: "@github"
+followers: 3203
+...
+```
+
+:::info Nota
+En muchos entornos, es necesario `async` para usar `await` — sin embargo, algunas versiones nuevas de navegadores y Node permiten usar `await` de nivel superior, lo que permite evitar la creación de una función asíncrona para envolver `await`.
+:::
+
+Por último, dado que estás manejando la promesa cumplida dentro de la función asincrónica, también puedes manejar el error dentro de la función. En lugar de usar el método `catch` con `then`, usarás el patrón [`try`/`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) para manejar la excepción.
+
+Agrega el siguiente código resaltado:
+
+
+```js{3,9,11,12}
+// Handling success and errors with async/await
+async function getUser() {
+  try {
+    // Handle success in try
+    const response = await fetch('https://api.github.com/users/octocat')
+    const data = await response.json()
+
+    console.log(data)
+  } catch (error) {
+    // Handle error in catch
+    console.error(error)
+  }
+}
+```
+
+
+El programa ahora saltará al bloque `catch` si recibe un error y registrará ese error en la consola.
+
+El código JavaScript asincrónico moderno se maneja con mayor frecuencia con la sintaxis `async`/`await`, pero es importante tener un conocimiento práctico de cómo funcionan las promesas, especialmente porque las promesas son capaces de ofrecer funciones adicionales que no se pueden manejar con `async`/`await`, como combinar promesas con [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all).
+
+
+:::info Nota
+`async`/`await` se puede reproducir mediante el uso de [generadores combinados con promesas](./understanding-generators-in-javascript.html#async-await-con-generadores) para agregar más flexibilidad a su código. Para obtener más información, consulte nuestro tutorial [Comprender Generadores en JavaScript](./understanding-generators-in-javascript.html).
+:::
+
+
+## Conclusión
+
+Dado que las API Web suelen proporcionar datos de forma asincrónica, aprender a manejar el resultado de acciones asincrónicas es una parte esencial de ser un desarrollador de JavaScript. En este artículo, aprendiste cómo el entorno _host_ usa el bucle de eventos para manejar el orden de ejecución del código con la pila y la cola. También probaste ejemplos de tres formas de manejar el éxito o el fracaso de un evento asincrónico, con devoluciones de llamadas, promesas y sintaxis `async`/`await`. Finalmente, usaste la API Web Fetch para manejar acciones asincrónicas.
+
+Para obtener más información sobre cómo el navegador maneja eventos paralelos, lee [Modelo de concurrencia y bucle de eventos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop)  en Mozilla Developer Network. Si deseas obtener más información sobre JavaScript, vuelve a nuestra serie [Cómo codificar en JavaScript](./intro.html).
+
+
+
+
 
 
 
