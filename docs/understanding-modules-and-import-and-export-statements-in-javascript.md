@@ -207,5 +207,190 @@ Los módulos todavía se utilizan a menudo junto con empaquetadores como Webpack
 
 A continuación, explorará algunas formas más en las que se puede utilizar la sintaxis `import` y `export`.
 
-## Named Exports
+## Exportaciones Nombradas
+
+Como se demostró anteriormente, el uso de la sintaxis `export` le permitirá importar individualmente valores que se han exportado por su nombre. Por ejemplo, tome esta versión simplificada de `functions.js`:
+
+
+📃`functions.js`
+```js
+export function sum() {}
+export function difference() {}
+```
+
+Esto le permitirá importar `sum` y `difference` por nombre usando llaves:
+
+
+📃`script.js`
+```js
+import { sum, difference } from './functions.js'
+```
+
+También es posible utilizar un alias para cambiar el nombre de la función. Puede hacerlo para evitar conflictos de nombres dentro del mismo módulo. En este ejemplo, `sum` se renombrará a `add` y `difference` se renombrará a `subtract`.
+
+
+📃`script.js`
+```js
+import {
+  sum as add,
+  difference as subtract
+} from './functions.js'
+
+add(1, 2) // 3
+```
+
+Llamar a `add()` aquí producirá el resultado de la función `sum()`.
+
+Con la sintaxis `*`, puede importar el contenido de todo el módulo en un solo objeto. En este caso, `sum` y `difference` se convertirán en métodos del objeto `mathFunctions`.
+
+
+📃`script.js`
+```js
+import * as mathFunctions from './functions.js'
+
+mathFunctions.sum(1, 2) // 3
+mathFunctions.difference(10, 3) // 7
+```
+
+Se pueden exportar valores primitivos, expresiones y definiciones de funciones, [funciones asincrónicas](./understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript.html#funciones-asincronicas-con-async-await), [clases](./understanding-classes-in-javascript.html) y clases instanciadas, siempre que tengan un identificador:
+
+
+```js
+// Primitive values
+export const number = 100
+export const string = 'string'
+export const undef = undefined
+export const empty = null
+export const obj = { name: 'Homer' }
+export const array = ['Bart', 'Lisa', 'Maggie']
+
+// Function expression
+export const sum = (x, y) => x + y
+
+// Function definition
+export function difference(x, y) {
+  return x - y
+}
+
+// Asynchronous function
+export async function getBooks() {}
+
+// Class
+export class Book {
+  constructor(name, author) {
+    this.name = name
+    this.author = author
+  }
+}
+
+// Instantiated class
+export const book = new Book('Lord of the Rings', 'J. R. R. Tolkien')
+```
+
+Todas estas exportaciones se pueden importar correctamente. El otro tipo de exportación que explorará en la siguiente sección se conoce como exportación predeterminada.
+
+
+## Exportaciones Predeterminadas
+
+En los ejemplos anteriores, exportó varias exportaciones nombradas y las importó de forma individual o como un objeto con cada exportación como método en el objeto. Los módulos también pueden contener una exportación predeterminada, utilizando la palabra clave `default`. Una exportación predeterminada no se importará con llaves, sino que se importará directamente en un identificador nombrado.
+
+Por ejemplo, tome el siguiente contenido para el archivo `functions.js`:
+
+📃`functions.js`
+```js
+export default function sum(x, y) {
+  return x + y
+}
+```
+
+
+En el archivo `script.js`, puedes importar la función predeterminada como `sum` con lo siguiente:
+
+
+📃`script.js`
+```js
+import sum from './functions.js'
+
+sum(1, 2) // 3
+```
+
+
+Esto puede ser peligroso, ya que no existen restricciones sobre el nombre que se le puede dar a una exportación predeterminada durante la importación. En este ejemplo, la función predeterminada se importa como `difference`, aunque en realidad es la función `sum`:
+
+
+📃`script.js`
+```js
+import difference from './functions.js'
+
+difference(1, 2) // 3
+```
+
+Por este motivo, a menudo se prefiere utilizar exportaciones nombradas. A diferencia de las exportaciones nombradas, las exportaciones predeterminadas no requieren un identificador — se puede utilizar un valor primitivo por sí solo o una función anónima como exportación predeterminada. A continuación, se muestra un ejemplo de un objeto utilizado como exportación predeterminada:
+
+
+📃`functions.js`
+```js
+export default {
+  name: 'Lord of the Rings',
+  author: 'J. R. R. Tolkien',
+}
+```
+
+
+Podrías importarlo como `book` con lo siguiente:
+
+
+📃`script.js`
+```js
+import book from './functions.js'
+```
+
+De manera similar, el siguiente ejemplo demuestra cómo exportar una [función de flecha](./understanding-arrow-functions-in-javascript.html) anónima como exportación predeterminada:
+
+
+📃`functions.js`
+```js
+export default () => 'This function is anonymous'
+```
+
+Esto se puede importar con el siguiente `script.js`:
+
+📃`script.js`
+```js
+import anonymousFunction from './functions.js'
+```
+
+Las exportaciones nombradas y las exportaciones predeterminadas se pueden usar juntas, como en este módulo que exporta dos valores nombrados y un valor predeterminado:
+
+
+📃`functions.js`
+```js
+export const length = 10
+export const width = 5
+
+export default function perimeter(x, y) {
+  return 2 * (x + y)
+}
+```
+
+Puede importar estas variables y la función predeterminada con lo siguiente:
+
+
+📃`script.js`
+```js
+import calculatePerimeter, { length, width } from './functions.js'
+
+calculatePerimeter(length, width) // 30
+```
+
+Ahora, tanto el valor predeterminado como los valores nombrados están disponibles para el script.
+
+
+## Conclusión
+
+Las prácticas de diseño de programación modular le permiten separar el código en componentes individuales que pueden ayudar a que su código sea reutilizable y consistente, al mismo tiempo que protege el espacio de nombres global. Se puede implementar una interfaz de módulo en JavaScript nativo con las palabras clave `import` y `export`.
+
+En este artículo, aprendiste sobre la historia de los módulos en JavaScript, cómo separar archivos JavaScript en múltiples scripts de nivel superior, cómo actualizar esos archivos usando un enfoque modular y la sintaxis `import` y `export` para exportaciones predeterminadas y con nombre.
+
+Para obtener más información sobre módulos en JavaScript, lee [Módulos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) en la Red de desarrolladores de Mozilla. Si quieres explorar los módulos en Node.js, prueba el tutorial [Cómo Crear un Módulo de Node.js](https://www.digitalocean.com/community/tutorials/how-to-create-a-node-js-module).
 
